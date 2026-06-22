@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Charlie Parker Wang — Product Strategy &amp; Design</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=DM+Mono:wght@300;400&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #F7F4EF;
+  --bg2: #F0EDE7;
+  --bg3: #E8E4DC;
+  --fg: #1A1814;
+  --mid: #4A4642;
+  --dim: #7A7570;
+  --accent: #C4A882;
+  --accent2: #D4987A;
+  --border: rgba(26,24,20,0.1);
+  --serif: 'Lora', Georgia, serif;
+  --mono: 'DM Mono', monospace;
+}
+
+html { scroll-behavior: smooth; }
+
+html, body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--serif);
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; }
+
+.wrap {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 72px;
+}
+
+/* ---------- HEADER ---------- */
+.site-header {
+  border-bottom: 1px solid var(--border);
+}
+
+.site-header .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-top: 28px;
+  padding-bottom: 28px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.nav-links a {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--dim);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--fg); }
+
+.site-id {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--fg);
+}
+
+/* ---------- SECTION LABEL (shared rhythm with case studies) ---------- */
+.section-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 300;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--dim);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.section-label::after {
+  content: '';
+  display: block;
+  width: 48px;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ---------- HERO ---------- */
+.hero {
+  padding: 72px 0 64px;
+  border-bottom: 1px solid var(--border);
+}
+
+.hero-eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin-bottom: 28px;
+}
+
+.hero-title {
+  font-family: var(--serif);
+  font-size: clamp(34px, 4.5vw, 58px);
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--fg);
+  max-width: 760px;
+  margin-bottom: 24px;
+}
+
+.hero-body {
+  font-family: var(--serif);
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--mid);
+  line-height: 1.85;
+  max-width: 560px;
+}
+
+/* ---------- SELECTED WORK ---------- */
+.work {
+  padding: 88px 0 0;
+}
+
+.work > .wrap > .section-label {
+  margin-bottom: 56px;
+}
+
+.project-spread {
+  display: grid;
+  grid-template-columns: 1fr 410px;
+  gap: 40px;
+  padding: 64px;
+  border: 1px solid var(--border);
+  border-radius: 0;
+  text-decoration: none;
+  color: inherit;
+}
+
+.project-spread + .project-spread {
+  margin-top: 48px;
+}
+
+.work > .wrap {
+  padding-bottom: 56px;
+  border-bottom: 1px solid var(--border);
+}
+
+.project-thumb {
+  position: relative;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  aspect-ratio: 2748 / 1428;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.25s;
+  order: 2;
+}
+
+.project-spread:hover .project-thumb { background: var(--bg3); }
+
+.project-thumb-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.project-thumb-contain {
+  aspect-ratio: 410 / 320;
+}
+
+.project-thumb-contain .project-thumb-img {
+  object-fit: contain;
+}
+
+.project-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.project-num {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--dim);
+  margin-bottom: 14px;
+}
+
+.project-title {
+  font-family: var(--serif);
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 500;
+  color: var(--fg);
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  margin-bottom: 14px;
+  transition: color 0.2s;
+}
+
+.project-spread:hover .project-title { color: var(--accent2); }
+
+.project-meta {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin-bottom: 20px;
+}
+
+.project-desc {
+  font-family: var(--serif);
+  font-size: 15.5px;
+  color: var(--mid);
+  line-height: 1.75;
+  max-width: 480px;
+  margin-bottom: 28px;
+}
+
+.project-facts {
+  display: flex;
+  gap: 44px;
+  margin-bottom: 28px;
+}
+
+.project-fact {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.fact-label {
+  font-family: var(--mono);
+  font-size: 8.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+
+.fact-value {
+  font-family: var(--serif);
+  font-size: 13.5px;
+  color: var(--mid);
+  line-height: 1.4;
+}
+
+.view-link {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 6px;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.project-spread:hover .view-link {
+  color: var(--accent2);
+  border-color: var(--accent2);
+}
+
+.view-link .arrow { color: var(--accent); transition: transform 0.2s; }
+.project-spread:hover .view-link .arrow { transform: translateX(3px); }
+
+/* ---------- PHILOSOPHY ---------- */
+.philosophy {
+  padding: 96px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.philosophy > .wrap > .section-label {
+  margin-bottom: 56px;
+}
+
+.philosophy-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+}
+
+.philosophy-col {
+  background: var(--bg);
+  padding: 4px 40px 4px 0;
+}
+
+.philosophy-col:first-child { padding-left: 0; }
+.philosophy-col:not(:first-child) { padding-left: 40px; }
+
+.phil-num {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--dim);
+  display: block;
+  margin-bottom: 20px;
+}
+
+.phil-line1 {
+  font-family: var(--serif);
+  font-size: 19px;
+  font-weight: 500;
+  color: var(--fg);
+  line-height: 1.45;
+  margin-bottom: 8px;
+}
+
+.phil-line2 {
+  font-family: var(--serif);
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--mid);
+  line-height: 1.5;
+}
+
+/* ---------- FOOTER ---------- */
+.site-footer {
+  padding: 36px 0 44px;
+}
+
+.site-footer .wrap {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.footer-id {
+  text-align: left;
+}
+
+.footer-name {
+  font-family: var(--serif);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--fg);
+  margin-bottom: 4px;
+}
+
+.footer-tagline {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 12px;
+  color: var(--dim);
+}
+
+/* ---------- MOBILE ---------- */
+@media (max-width: 860px) {
+  .wrap { padding: 0 24px; }
+  .hero { padding: 48px 0 40px; }
+  .work { padding: 64px 0 0; }
+  .philosophy { padding: 64px 0; }
+  .project-spread {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding: 36px 24px;
+  }
+  .project-spread + .project-spread {
+    margin-top: 28px;
+  }
+  .philosophy-grid { grid-template-columns: 1fr; gap: 0; background: none; }
+  .philosophy-col {
+    padding: 28px 0 !important;
+    border-bottom: 1px solid var(--border);
+  }
+  .philosophy-col:last-child { border-bottom: none; }
+  .project-facts { gap: 32px; }
+  .site-footer .wrap { align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <div class="site-id">Charlie Parker Wang</div>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="assets/Charlie_Parker_Wang_Resume.pdf" target="_blank" rel="noopener">Resume</a>
+      <a href="https://www.linkedin.com/in/cwang005" target="_blank" rel="noopener">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="wrap">
+      <p class="hero-eyebrow">Product Strategy &amp; Design</p>
+      <h1 class="hero-title">Building products for people and the systems around them.</h1>
+      <p class="hero-body">Selected work across consumer AI, marketplaces, and product systems.</p>
+    </div>
+  </section>
+
+  <section class="work" id="selected-work">
+    <div class="wrap">
+      <div class="section-label">00 — Selected Work</div>
+
+      <a class="project-spread" href="finished-projects/recallia-portfolio.html" aria-label="View case study — Recallia Ecosystem">
+        <div class="project-thumb">
+          <img class="project-thumb-img" src="assets/images/recallia-eco-thumbnail.jpg" alt="Recallia Ecosystem thumbnail" />
+        </div>
+        <div class="project-info">
+          <div class="project-num">01</div>
+          <h3 class="project-title">Recallia Ecosystem</h3>
+          <div class="project-meta">AI Memory Systems &bull; Personal Knowledge &bull; Consumer AI</div>
+          <p class="project-desc">Capturing, organizing, and resurfacing memories through an interconnected ecosystem designed for reflection and recall.</p>
+          <div class="project-facts">
+            <div class="project-fact">
+              <span class="fact-label">Status</span>
+              <span class="fact-value">Research + Product Strategy</span>
+            </div>
+            <div class="project-fact">
+              <span class="fact-label">Note</span>
+              <span class="fact-value">Multi-product ecosystem</span>
+            </div>
+          </div>
+          <span class="view-link"><span class="arrow">&#8594;</span> View Case Study</span>
+        </div>
+      </a>
+
+      <a class="project-spread" href="finished-projects/tiktok-shop-trust-layer.html" aria-label="View case study — TikTok Shop Trust Layer">
+        <div class="project-thumb project-thumb-contain">
+          <img class="project-thumb-img" src="assets/images/tiktok-shop-thumbnail.png" alt="TikTok Shop Trust Layer thumbnail" />
+        </div>
+        <div class="project-info">
+          <div class="project-num">02</div>
+          <h3 class="project-title">TikTok Shop Trust Layer</h3>
+          <div class="project-meta">AI Commerce &bull; Trust Systems &bull; Marketplace UX</div>
+          <p class="project-desc">Designing a confidence layer that helps buyers judge products before purchase, during checkout, and after delivery.</p>
+          <div class="project-facts">
+            <div class="project-fact">
+              <span class="fact-label">Status</span>
+              <span class="fact-value">Concept / Prototype</span>
+            </div>
+            <div class="project-fact">
+              <span class="fact-label">Note</span>
+              <span class="fact-value">Company-scale product strategy</span>
+            </div>
+          </div>
+          <span class="view-link"><span class="arrow">&#8594;</span> View Case Study</span>
+        </div>
+      </a>
+
+      <a class="project-spread" href="finished-projects/room-match-portfolio.html" aria-label="View case study — Room Match">
+        <div class="project-thumb project-thumb-contain">
+          <img class="project-thumb-img" src="assets/images/room-match-thumbnail.png" alt="Room Match thumbnail" />
+        </div>
+        <div class="project-info">
+          <div class="project-num">03</div>
+          <h3 class="project-title">Room Match</h3>
+          <div class="project-meta">Matching Systems &bull; Housing &bull; Consumer Platform</div>
+          <p class="project-desc">Reducing roommate uncertainty through compatibility modeling and preference-based matching.</p>
+          <div class="project-facts">
+            <div class="project-fact">
+              <span class="fact-label">Status</span>
+              <span class="fact-value">End-to-end Product Strategy</span>
+            </div>
+            <div class="project-fact">
+              <span class="fact-label">Note</span>
+              <span class="fact-value">Marketplace experience</span>
+            </div>
+          </div>
+          <span class="view-link"><span class="arrow">&#8594;</span> View Case Study</span>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <section class="philosophy">
+    <div class="wrap">
+      <div class="section-label">Principles</div>
+      <div class="philosophy-grid">
+        <div class="philosophy-col">
+          <span class="phil-num">01</span>
+          <p class="phil-line1">AI should augment judgment.</p>
+          <p class="phil-line2">Not replace it.</p>
+        </div>
+        <div class="philosophy-col">
+          <span class="phil-num">02</span>
+          <p class="phil-line1">Trust is a product feature.</p>
+          <p class="phil-line2">Not marketing copy.</p>
+        </div>
+        <div class="philosophy-col">
+          <span class="phil-num">03</span>
+          <p class="phil-line1">Systems matter more than screens.</p>
+          <p class="phil-line2">Great experiences come from connected experiences.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-id">
+      <div class="footer-name">Charlie Parker Wang</div>
+      <div class="footer-tagline">built on vibes and coffee</div>
+    </div>
+    <nav class="nav-links" aria-label="Footer">
+      <a href="assets/Charlie_Parker_Wang_Resume.pdf" target="_blank" rel="noopener">Resume</a>
+      <a href="https://www.linkedin.com/in/cwang005" target="_blank" rel="noopener">Contact</a>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>

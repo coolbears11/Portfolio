@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Recallia Ecosystem — Charlie Wang</title>
+<link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+
+<div class="workspace">
+
+  <!-- LEFT PANEL -->
+  <aside class="panel">
+    <div class="panel-header">
+      <a class="back-link" href="../index.html#selected-work">← Back</a>
+      <div class="panel-title">Recallia Ecosystem</div>
+      <div class="panel-subtitle">Adaptive Memory Platform</div>
+    </div>
+
+    <nav class="module-nav">
+      <span class="module-nav-label">Four Modules</span>
+      <div class="module-list">
+        <button class="module-btn active" data-module="overview" onclick="switchModule('overview')">
+          <span class="module-dot"></span>
+          <span class="module-btn-text">Overview</span>
+          <span class="module-btn-num">00</span>
+        </button>
+        <button class="module-btn" data-module="onboarding" onclick="switchModule('onboarding')">
+          <span class="module-dot"></span>
+          <span class="module-btn-text">Road to MVP</span>
+          <span class="module-btn-num">01</span>
+        </button>
+        <button class="module-btn" data-module="moment" onclick="switchModule('moment')">
+          <span class="module-dot"></span>
+          <span class="module-btn-text">Moment Creation</span>
+          <span class="module-btn-num">02</span>
+        </button>
+        <button class="module-btn" data-module="sunday" onclick="switchModule('sunday')">
+          <span class="module-dot"></span>
+          <span class="module-btn-text">Sunday Reveal</span>
+          <span class="module-btn-num">03</span>
+        </button>
+      </div>
+    </nav>
+
+    <div class="panel-footer">
+      <div class="panel-meta-row">
+        <div class="panel-meta-item">
+          <span class="panel-meta-label">Timeline</span>
+          <span class="panel-meta-value">May 2025 — Present</span>
+        </div>
+        <div class="panel-meta-item">
+          <span class="panel-meta-label">Role</span>
+          <span class="panel-meta-value">Lead Designer</span>
+        </div>
+        <div class="panel-meta-item">
+          <span class="panel-meta-label">Skills</span>
+          <span class="panel-meta-value">Systems Thinking, Emotional UX, Habit Design, AI Integration</span>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <main class="content">
+
+    <!-- MODULE 0: OVERVIEW -->
+    <div class="module-pane active" id="pane-overview">
+
+      <div class="mod-hero">
+        <div style="display:grid;grid-template-columns:1fr 300px;gap:44px;align-items:center;">
+          <div>
+            <p class="mod-hero-eyebrow">Overview &#8212; Recallia Ecosystem</p>
+            <h1 class="mod-hero-title">Making moments worth returning to.</h1>
+            <p class="mod-hero-sub" style="margin-bottom:0;">Recallia transforms spontaneous moments into weekly reflection rituals through visual progress and AI-assisted storytelling.</p>
+          </div>
+          <img src="../assets/images/overview-logo-full.jpg" alt="Recallia" style="width:300px;display:block;border-radius:6px;" />
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);margin-top:40px;border:1px solid var(--border);border-radius:6px;overflow:hidden;max-width:640px;">
+          <div style="background:var(--bg);padding:20px 22px;"><div style="font-family:var(--mono);font-size:8px;letter-spacing:0.12em;text-transform:uppercase;color:var(--dim);margin-bottom:7px;">Started</div><div style="font-family:var(--serif);font-size:14px;font-weight:500;color:var(--fg);">May 2025</div></div>
+          <div style="background:var(--bg);padding:20px 22px;"><div style="font-family:var(--mono);font-size:8px;letter-spacing:0.12em;text-transform:uppercase;color:var(--dim);margin-bottom:7px;">Launched</div><div style="font-family:var(--serif);font-size:14px;font-weight:500;color:var(--fg);">Oct 22, 2025</div></div>
+          <div style="background:var(--bg);padding:20px 22px;"><div style="font-family:var(--mono);font-size:8px;letter-spacing:0.12em;text-transform:uppercase;color:var(--dim);margin-bottom:7px;">Platform</div><div style="font-family:var(--serif);font-size:14px;font-weight:500;color:var(--fg);">iOS</div></div>
+          <div style="background:var(--bg);padding:20px 22px;"><div style="font-family:var(--mono);font-size:8px;letter-spacing:0.12em;text-transform:uppercase;color:var(--dim);margin-bottom:7px;">Team</div><div style="font-family:var(--serif);font-size:14px;font-weight:500;color:var(--fg);line-height:1.3;">Joshua Jenkins + Charlie Wang</div></div>
+          <div style="background:var(--bg);padding:20px 22px;"><div style="font-family:var(--mono);font-size:8px;letter-spacing:0.12em;text-transform:uppercase;color:var(--dim);margin-bottom:7px;">Users</div><div style="font-family:var(--serif);font-size:14px;font-weight:500;color:var(--fg);">100+</div></div>
+          <div style="background:var(--bg);padding:20px 22px;"><div style="font-family:var(--mono);font-size:8px;letter-spacing:0.12em;text-transform:uppercase;color:var(--dim);margin-bottom:7px;">Role</div><div style="font-family:var(--serif);font-size:14px;font-weight:500;color:var(--fg);">Lead Product Designer</div></div>
+        </div>
+      </div>
+
+      <!-- 01 — Four Systems, One Loop -->
+      <div class="content-block">
+        <div class="block-label">01 &#8212; Four Systems, One Loop</div>
+        <h2 class="block-title">Four systems. One habit loop.</h2>
+        <div style="display:flex;align-items:flex-start;gap:0;margin-top:40px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:8px;">
+          <div style="flex:1;min-width:130px;text-align:center;">
+            <div style="font-family:var(--serif);font-size:14px;font-weight:500;color:var(--fg);background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px 10px;margin-bottom:10px;">Moment Creation</div>
+            <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);">Capture</div>
+          </div>
+          <div style="flex-shrink:0;display:flex;align-items:center;height:62px;padding:0 8px;color:var(--dim);font-size:13px;">&#8594;</div>
+          <div style="flex:1;min-width:130px;text-align:center;">
+            <div style="font-family:var(--serif);font-size:14px;font-weight:500;color:var(--fg);background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px 10px;margin-bottom:10px;">Sunday Timeline</div>
+            <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);">Anticipation</div>
+          </div>
+          <div style="flex-shrink:0;display:flex;align-items:center;height:62px;padding:0 8px;color:var(--dim);font-size:13px;">&#8594;</div>
+          <div style="flex:1;min-width:130px;text-align:center;">
+            <div style="font-family:var(--serif);font-size:14px;font-weight:500;color:var(--fg);background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px 10px;margin-bottom:10px;">Sunday Letter</div>
+            <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);">Reward</div>
+          </div>
+          <div style="flex-shrink:0;display:flex;align-items:center;height:62px;padding:0 8px;color:var(--dim);font-size:13px;">&#8594;</div>
+          <div style="flex:1;min-width:130px;text-align:center;">
+            <div style="font-family:var(--serif);font-size:14px;font-weight:500;color:var(--fg);background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px 10px;margin-bottom:10px;">Reflection</div>
+            <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);">Reflection</div>
+          </div>
+          <div style="flex-shrink:0;display:flex;align-items:center;height:62px;padding:0 8px;color:var(--dim);font-size:13px;">&#8594;</div>
+          <div style="flex:1;min-width:130px;text-align:center;">
+            <div style="font-family:var(--serif);font-size:14px;font-weight:500;color:var(--bg);background:var(--accent);border:1px solid var(--accent);border-radius:8px;padding:16px 10px;margin-bottom:10px;">Return</div>
+            <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);">Retention</div>
+          </div>
+        </div>
+        <div style="margin-top:14px;font-family:var(--mono);font-size:9px;color:var(--dim);">&#8635; Return loops back into Moment Creation &#8212; the system has no exit, only re-entry.</div>
+      </div>
+
+      <!-- 02 — The Problem -->
+      <div class="content-block">
+        <div class="block-label">02 &#8212; The Problem</div>
+        <h2 class="block-title">Traditional journaling asks too much.</h2>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);margin-top:32px;border:1px solid var(--border);border-radius:6px;overflow:hidden;">
+          <div style="background:var(--bg);padding:32px 30px;">
+            <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:#C4826A;margin-bottom:22px;">Traditional Journaling</div>
+            <div style="display:flex;flex-direction:column;gap:15px;">
+              <div style="display:flex;gap:10px;align-items:baseline;"><span style="color:var(--dim);font-size:12px;flex-shrink:0;">&#8212;</span><span style="font-family:var(--serif);font-size:14px;color:var(--mid);">Blank page syndrome</span></div>
+              <div style="display:flex;gap:10px;align-items:baseline;"><span style="color:var(--dim);font-size:12px;flex-shrink:0;">&#8212;</span><span style="font-family:var(--serif);font-size:14px;color:var(--mid);">Emotional decay</span></div>
+              <div style="display:flex;gap:10px;align-items:baseline;"><span style="color:var(--dim);font-size:12px;flex-shrink:0;">&#8212;</span><span style="font-family:var(--serif);font-size:14px;color:var(--mid);">No visible progress</span></div>
+              <div style="display:flex;gap:10px;align-items:baseline;"><span style="color:var(--dim);font-size:12px;flex-shrink:0;">&#8212;</span><span style="font-family:var(--serif);font-size:14px;color:var(--mid);">Reflection depends on discipline</span></div>
+              <div style="display:flex;gap:10px;align-items:baseline;"><span style="color:var(--dim);font-size:12px;flex-shrink:0;">&#8212;</span><span style="font-family:var(--serif);font-size:14px;color:var(--mid);">Hard to sustain</span></div>
+            </div>
+          </div>
+          <div style="background:var(--bg);padding:32px 30px;">
+            <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:22px;">Recallia</div>
+            <div style="display:flex;flex-direction:column;gap:15px;">
+              <div style="display:flex;gap:10px;align-items:baseline;"><span style="color:var(--accent);font-size:11px;flex-shrink:0;">&#10003;</span><span style="font-family:var(--serif);font-size:14px;color:var(--fg);">Capture moments instead of entries</span></div>
+              <div style="display:flex;gap:10px;align-items:baseline;"><span style="color:var(--accent);font-size:11px;flex-shrink:0;">&#10003;</span><span style="font-family:var(--serif);font-size:14px;color:var(--fg);">Preserve emotions while they&#8217;re fresh</span></div>
+              <div style="display:flex;gap:10px;align-items:baseline;"><span style="color:var(--accent);font-size:11px;flex-shrink:0;">&#10003;</span><span style="font-family:var(--serif);font-size:14px;color:var(--fg);">Visual progress throughout the week</span></div>
+              <div style="display:flex;gap:10px;align-items:baseline;"><span style="color:var(--accent);font-size:11px;flex-shrink:0;">&#10003;</span><span style="font-family:var(--serif);font-size:14px;color:var(--fg);">Weekly reward system</span></div>
+              <div style="display:flex;gap:10px;align-items:baseline;"><span style="color:var(--accent);font-size:11px;flex-shrink:0;">&#10003;</span><span style="font-family:var(--serif);font-size:14px;color:var(--fg);">Reflection becomes habitual</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 03 — North Star -->
+      <div class="content-block">
+        <div class="block-label">03 &#8212; North Star</div>
+        <h2 class="block-title">Designing for return, not reminders.</h2>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--border);margin-top:36px;border:1px solid var(--border);border-radius:6px;overflow:hidden;">
+          <div style="background:var(--bg);padding:44px 36px;position:relative;">
+            <img src="../assets/images/overview-logo-flower.png" alt="" style="width:26px;display:block;position:absolute;top:24px;right:24px;opacity:0.9;" />
+            <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--dim);margin-bottom:20px;">Mission</div>
+            <p style="font-family:var(--serif);font-size:18px;color:var(--fg);line-height:1.5;max-width:220px;">Make reflection effortless, fun, and rewarding.</p>
+          </div>
+          <div style="background:var(--bg);padding:44px 36px;">
+            <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--dim);margin-bottom:20px;">Vision</div>
+            <p style="font-family:var(--serif);font-size:18px;color:var(--fg);line-height:1.5;max-width:220px;">Help people preserve the moments that shape who they are.</p>
+          </div>
+          <div style="background:var(--bg);padding:44px 36px;">
+            <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:20px;">Principle</div>
+            <p style="font-family:var(--serif);font-size:18px;font-style:italic;color:var(--fg);line-height:1.5;">People don&#8217;t need reminders to journal. They need something worth returning to.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 04 — Product System -->
+      <div class="content-block">
+        <div class="block-label">04 &#8212; Product System</div>
+        <h2 class="block-title">A behavior loop, not a collection of features.</h2>
+        <div style="display:flex;flex-direction:column;gap:1px;background:var(--border);margin-top:32px;border:1px solid var(--border);border-radius:6px;overflow:hidden;">
+          <div style="background:var(--bg);padding:20px 26px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;align-items:center;"><div style="font-family:var(--serif);font-size:14px;font-weight:500;color:var(--fg);">Notification</div><div><div style="font-family:var(--mono);font-size:8px;letter-spacing:0.1em;text-transform:uppercase;color:var(--dim);margin-bottom:3px;">Input</div><div style="font-family:var(--serif);font-size:12.5px;color:var(--mid);">Time + context signal</div></div><div><div style="font-family:var(--mono);font-size:8px;letter-spacing:0.1em;text-transform:uppercase;color:var(--dim);margin-bottom:3px;">Output</div><div style="font-family:var(--serif);font-size:12.5px;color:var(--mid);">App opens</div></div></div>
+          <div style="background:var(--bg);padding:20px 26px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;align-items:center;"><div style="font-family:var(--serif);font-size:14px;font-weight:500;color:var(--fg);">Capture Moment</div><div><div style="font-family:var(--mono);font-size:8px;letter-spacing:0.1em;text-transform:uppercase;color:var(--dim);margin-bottom:3px;">Input</div><div style="font-family:var(--serif);font-size:12.5px;color:var(--mid);">A photo</div></div><div><div style="font-family:var(--mono);font-size:8px;letter-spacing:0.1em;text-transform:uppercase;color:var(--dim);margin-bottom:3px;">Output</div><div style="font-family:var(--serif);font-size:12.5px;color:var(--mid);">A structured moment</div></div></div>
+          <div style="background:var(--bg);padding:20px 26px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;align-items:center;"><div style="font-family:var(--serif);font-size:14px;font-weight:500;color:var(--fg);">Timeline Growth</div><div><div style="font-family:var(--mono);font-size:8px;letter-spacing:0.1em;text-transform:uppercase;color:var(--dim);margin-bottom:3px;">Input</div><div style="font-family:var(--serif);font-size:12.5px;color:var(--mid);">Moments across the week</div></div><div><div style="font-family:var(--mono);font-size:8px;letter-spacing:0.1em;text-transform:uppercase;color:var(--dim);margin-bottom:3px;">Output</div><div style="font-family:var(--serif);font-size:12.5px;color:var(--mid);">Visible progress</div></div></div>
+          <div style="background:var(--bg);padding:20px 26px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;align-items:center;"><div style="font-family:var(--serif);font-size:14px;font-weight:500;color:var(--fg);">Sunday Letter</div><div><div style="font-family:var(--mono);font-size:8px;letter-spacing:0.1em;text-transform:uppercase;color:var(--dim);margin-bottom:3px;">Input</div><div style="font-family:var(--serif);font-size:12.5px;color:var(--mid);">A week of moments</div></div><div><div style="font-family:var(--mono);font-size:8px;letter-spacing:0.1em;text-transform:uppercase;color:var(--dim);margin-bottom:3px;">Output</div><div style="font-family:var(--serif);font-size:12.5px;color:var(--mid);">A personal narrative</div></div></div>
+          <div style="background:var(--bg);padding:20px 26px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;align-items:center;"><div style="font-family:var(--serif);font-size:14px;font-weight:500;color:var(--fg);">Reflection</div><div><div style="font-family:var(--mono);font-size:8px;letter-spacing:0.1em;text-transform:uppercase;color:var(--dim);margin-bottom:3px;">Input</div><div style="font-family:var(--serif);font-size:12.5px;color:var(--mid);">The letter</div></div><div><div style="font-family:var(--mono);font-size:8px;letter-spacing:0.1em;text-transform:uppercase;color:var(--dim);margin-bottom:3px;">Output</div><div style="font-family:var(--serif);font-size:12.5px;color:var(--mid);">Meaning, closure</div></div></div>
+          <div style="background:rgba(196,168,130,0.1);padding:20px 26px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;align-items:center;"><div style="font-family:var(--serif);font-size:14px;font-weight:500;color:var(--accent);">Return</div><div><div style="font-family:var(--mono);font-size:8px;letter-spacing:0.1em;text-transform:uppercase;color:var(--dim);margin-bottom:3px;">Input</div><div style="font-family:var(--serif);font-size:12.5px;color:var(--mid);">The experience</div></div><div><div style="font-family:var(--mono);font-size:8px;letter-spacing:0.1em;text-transform:uppercase;color:var(--dim);margin-bottom:3px;">Output</div><div style="font-family:var(--serif);font-size:12.5px;color:var(--mid);">Motivation to capture again</div></div></div>
+        </div>
+      </div>
+
+      <!-- 05 — What I Owned -->
+      <div class="content-block">
+        <div class="block-label">05 &#8212; Overall Contribution</div>
+        <h2 class="block-title">From idea to shipped product.</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1px;background:var(--border);margin-top:32px;border:1px solid var(--border);border-radius:6px;overflow:hidden;">
+          <div style="background:var(--bg);padding:26px 24px;">
+            <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;">Product</div>
+            <div style="font-family:var(--serif);font-size:13px;color:var(--mid);line-height:1.8;">Problem framing<br />Feature prioritization<br />Roadmapping</div>
+          </div>
+          <div style="background:var(--bg);padding:26px 24px;">
+            <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;">Research</div>
+            <div style="font-family:var(--serif);font-size:13px;color:var(--mid);line-height:1.8;">User interviews<br />Community feedback<br />Behavioral insights</div>
+          </div>
+          <div style="background:var(--bg);padding:26px 24px;">
+            <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;">Design</div>
+            <div style="font-family:var(--serif);font-size:13px;color:var(--mid);line-height:1.8;">Interaction design<br />Motion<br />Visual systems</div>
+          </div>
+          <div style="background:var(--bg);padding:26px 24px;">
+            <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;">AI</div>
+            <div style="font-family:var(--serif);font-size:13px;color:var(--mid);line-height:1.8;">Prompt architecture<br />Personalization<br />Information hierarchy</div>
+          </div>
+          <div style="background:var(--bg);padding:26px 24px;">
+            <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;">Growth</div>
+            <div style="font-family:var(--serif);font-size:13px;color:var(--mid);line-height:1.8;">Spotlight Card Show<br />Campus posters<br />User acquisition</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- MODULE 2: MOMENT CREATION -->
+    <div class="module-pane" id="pane-moment">
+
+      <!-- HERO -->
+      <div class="mod-hero">
+        <p class="mod-hero-eyebrow">Module 02 &#8212; Capture Loop</p>
+        <h1 class="mod-hero-title">Moment Creation</h1>
+        <div style="margin-top:20px;padding:28px 32px;background:rgba(26,24,20,0.04);border-left:3px solid var(--fg);border-radius:0 4px 4px 0;">
+          <p style="font-family:var(--serif);font-size:17px;color:var(--fg);line-height:1.7;">People already capture memories. The problem isn&#8217;t getting them to take more photos. The problem is preserving context before it disappears. Moment Creation is the input layer &#8212; a capture loop designed to take under 60 seconds and stack onto a habit that already exists.</p>
+        </div>
+        <div class="mod-hero-tags" style="margin-top:24px;">
+          <span class="mod-tag">Behavioral Design</span>
+          <span class="mod-tag">Habit Stacking</span>
+          <span class="mod-tag">Friction Reduction</span>
+          <span class="mod-tag">Context Capture</span>
+        </div>
+      </div>
+
+      <!-- 02. WALKTHROUGH -->
+      <div class="content-block">
+        <div class="block-label">02 &#8212; Moment Creation Walkthrough</div>
+        <h2 class="block-title">The complete loop in under 60 seconds.</h2>
+        <p class="block-body" style="margin-top:16px;margin-bottom:36px;">Notification &#8594; pick a photo &#8594; guided reaction &#8594; optional context &#8594; saved.</p>
+        <div style="display:grid;grid-template-columns:1fr 1.8fr;gap:48px;align-items:center;">
+          <div style="display:flex;justify-content:center;">
+            <video autoplay loop muted playsinline style="width:100%;max-width:280px;display:block;border-radius:4px;">
+              <source src="../assets/video/moment-walkthrough.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <div>
+            <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--dim);margin-bottom:20px;">What you&#8217;re seeing</div>
+            <div style="display:flex;flex-direction:column;gap:1px;background:var(--border);">
+              <div style="display:flex;gap:20px;align-items:flex-start;padding:16px 22px;background:var(--bg);"><div style="font-family:var(--mono);font-size:10px;color:var(--dim);flex-shrink:0;min-width:20px;padding-top:2px;">01</div><div><div style="font-family:var(--serif);font-size:14px;font-weight:500;color:var(--fg);margin-bottom:3px;">Notification nudge</div><div style="font-family:var(--serif);font-size:13px;color:var(--mid);line-height:1.6;">Lock screen prompt while the feeling is still live. Curiosity over obligation.</div></div></div>
+              <div style="display:flex;gap:20px;align-items:flex-start;padding:16px 22px;background:var(--bg);"><div style="font-family:var(--mono);font-size:10px;color:var(--dim);flex-shrink:0;min-width:20px;padding-top:2px;">02</div><div><div style="font-family:var(--serif);font-size:14px;font-weight:500;color:var(--fg);margin-bottom:3px;">Pick a moment</div><div style="font-family:var(--serif);font-size:13px;color:var(--mid);line-height:1.6;">Select from camera roll. Privacy signal visible immediately.</div></div></div>
+              <div style="display:flex;gap:20px;align-items:flex-start;padding:16px 22px;background:var(--bg);"><div style="font-family:var(--mono);font-size:10px;color:var(--dim);flex-shrink:0;min-width:20px;padding-top:2px;">03</div><div><div style="font-family:var(--serif);font-size:14px;font-weight:500;color:var(--fg);margin-bottom:3px;">Guided reaction</div><div style="font-family:var(--serif);font-size:13px;color:var(--mid);line-height:1.6;">A statement is surfaced based on prior selections. One tap confirms or corrects.</div></div></div>
+              <div style="display:flex;gap:20px;align-items:flex-start;padding:16px 22px;background:var(--bg);"><div style="font-family:var(--mono);font-size:10px;color:var(--dim);flex-shrink:0;min-width:20px;padding-top:2px;">04</div><div><div style="font-family:var(--serif);font-size:14px;font-weight:500;color:var(--fg);margin-bottom:3px;">Optional context</div><div style="font-family:var(--serif);font-size:13px;color:var(--mid);line-height:1.6;">Add a sentence or skip it. The moment is valid either way.</div></div></div>
+              <div style="display:flex;gap:20px;align-items:flex-start;padding:16px 22px;background:var(--bg);"><div style="font-family:var(--mono);font-size:10px;color:var(--dim);flex-shrink:0;min-width:20px;padding-top:2px;">05</div><div><div style="font-family:var(--serif);font-size:14px;font-weight:500;color:var(--fg);margin-bottom:3px;">Saved</div><div style="font-family:var(--serif);font-size:13px;color:var(--mid);line-height:1.6;">Confirmed in the user&#8217;s own words. The loop is complete.</div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 03. RESEARCH SNAPSHOT -->
+      <div class="content-block">
+        <div class="block-label">03 &#8212; Research Snapshot</div>
+        <h2 class="block-title">Tested in the wild. 20 participants. Zero onboarding.</h2>
+        <p class="block-body" style="margin-top:16px;margin-bottom:32px;">We built an MVP web app and approached strangers in public with no prior explanation &#8212; no pitch, no context. We handed them a QR code and waited three seconds after they finished before saying anything. Two rounds of testing. The signal was clear: users were willing to reflect when the loop felt quick, private, and guided. Most still needed a clearer reason to return.</p>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);margin-bottom:1px;">
+          <div style="background:var(--bg);padding:24px;"><div style="font-family:var(--serif);font-size:38px;font-weight:400;color:var(--fg);line-height:1;margin-bottom:8px;">20</div><div style="font-family:var(--mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--dim);">Participants</div></div>
+          <div style="background:var(--bg);padding:24px;"><div style="font-family:var(--serif);font-size:38px;font-weight:400;color:var(--fg);line-height:1;margin-bottom:8px;">2</div><div style="font-family:var(--mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--dim);">Testing rounds</div></div>
+          <div style="background:var(--bg);padding:24px;"><div style="font-family:var(--serif);font-size:38px;font-weight:400;color:var(--fg);line-height:1;margin-bottom:8px;">40%</div><div style="font-family:var(--mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--dim);">Strong emotional response</div></div>
+          <div style="background:var(--bg);padding:24px;"><div style="font-family:var(--serif);font-size:38px;font-weight:400;color:var(--fg);line-height:1;margin-bottom:8px;">50%</div><div style="font-family:var(--mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--dim);">Overall positive</div></div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);">
+          <div style="background:var(--bg);padding:28px 24px;"><div style="font-family:var(--mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--dim);margin-bottom:12px;">Finding 01</div><div style="font-family:var(--serif);font-size:15px;font-weight:500;color:var(--fg);margin-bottom:8px;line-height:1.3;">Users wanted reflection. Not another daily habit.</div><div style="font-family:var(--serif);font-size:13px;color:var(--mid);line-height:1.7;">The concept resonated immediately. The friction was the required behavior &#8212; not the goal.</div></div>
+          <div style="background:var(--bg);padding:28px 24px;"><div style="font-family:var(--mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--dim);margin-bottom:12px;">Finding 02</div><div style="font-family:var(--serif);font-size:15px;font-weight:500;color:var(--fg);margin-bottom:8px;line-height:1.3;">Blank-page journaling caused abandonment.</div><div style="font-family:var(--serif);font-size:13px;color:var(--mid);line-height:1.7;">Users swiped out of open-ended UI with no immediate payoff. A starting point changed everything.</div></div>
+          <div style="background:var(--bg);padding:28px 24px;"><div style="font-family:var(--mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--dim);margin-bottom:12px;">Finding 03</div><div style="font-family:var(--serif);font-size:15px;font-weight:500;color:var(--fg);margin-bottom:8px;line-height:1.3;">Guided prompts unlocked natural reflection.</div><div style="font-family:var(--serif);font-size:13px;color:var(--mid);line-height:1.7;">"Therapeutic," "meaningful," "alive" &#8212; said unprompted. One participant returned for three loops voluntarily.</div></div>
+          <div style="background:var(--bg);padding:28px 24px;"><div style="font-family:var(--mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--dim);margin-bottom:12px;">Finding 04</div><div style="font-family:var(--serif);font-size:15px;font-weight:500;color:var(--fg);margin-bottom:8px;line-height:1.3;">The loop landed. The return trigger didn&#8217;t.</div><div style="font-family:var(--serif);font-size:13px;color:var(--mid);line-height:1.7;">8 of 20 testers said unprompted: "I&#8217;d need reminders to come back." Capture worked. Re-engagement needed a system.</div></div>
+        </div>
+      </div>
+
+      <!-- 04. BEHAVIORAL STRATEGY -->
+      <div class="content-block">
+        <div class="block-label">04 &#8212; Behavioral Strategy</div>
+        <h2 class="block-title">Designing around existing behavior.</h2>
+        <p class="block-body" style="margin-top:24px;">Most memory products ask users to build a new habit. "Open the app every day and journal" competes with rest, routine, and everything else &#8212; and loses almost every time. The problem isn&#8217;t motivation. It&#8217;s activation energy at the wrong moment.</p>
+        <p class="block-body" style="margin-top:18px;">Recallia stacks onto something that already happens: taking photos. A nudge surfaces while the context is still fresh &#8212; not hours later when the feeling has been replaced by whatever mood the user is in now. The product doesn&#8217;t ask users to remember to reflect. It meets them at the moment.</p>
+        <div style="margin-top:40px;overflow:hidden;border:1px solid var(--border);border-radius:6px;">
+          <div style="display:grid;grid-template-columns:1.2fr 1fr 1fr;background:var(--fg);">
+            <div style="padding:18px 24px;border-right:1px solid rgba(255,255,255,0.08);"><div style="font-family:var(--mono);font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.4);">Dimension</div></div>
+            <div style="padding:18px 24px;border-right:1px solid rgba(255,255,255,0.08);"><div style="font-family:var(--mono);font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.4);">Traditional Journaling</div></div>
+            <div style="padding:18px 24px;"><div style="font-family:var(--mono);font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);">Recallia</div></div>
+          </div>
+          <div style="display:grid;grid-template-columns:1.2fr 1fr 1fr;background:var(--bg);border-top:1px solid var(--border);"><div style="padding:20px 24px;border-right:1px solid var(--border);"><div style="font-family:var(--serif);font-size:14px;font-weight:500;color:var(--fg);">Entry point</div></div><div style="padding:20px 24px;border-right:1px solid var(--border);display:flex;align-items:flex-start;gap:10px;"><div style="font-family:var(--mono);font-size:11px;color:#C4826A;flex-shrink:0;margin-top:2px;">&#8212;</div><div style="font-family:var(--serif);font-size:14px;color:var(--mid);line-height:1.65;">Open the app and start from nothing</div></div><div style="padding:20px 24px;display:flex;align-items:flex-start;gap:10px;"><div style="font-family:var(--mono);font-size:11px;color:var(--accent);flex-shrink:0;margin-top:2px;">&#10003;</div><div style="font-family:var(--serif);font-size:14px;color:var(--fg);line-height:1.65;">A photo already taken &#8212; the entry point exists before the app opens</div></div></div>
+          <div style="display:grid;grid-template-columns:1.2fr 1fr 1fr;background:var(--bg2);border-top:1px solid var(--border);"><div style="padding:20px 24px;border-right:1px solid var(--border);"><div style="font-family:var(--serif);font-size:14px;font-weight:500;color:var(--fg);">When it happens</div></div><div style="padding:20px 24px;border-right:1px solid var(--border);display:flex;align-items:flex-start;gap:10px;"><div style="font-family:var(--mono);font-size:11px;color:#C4826A;flex-shrink:0;margin-top:2px;">&#8212;</div><div style="font-family:var(--serif);font-size:14px;color:var(--mid);line-height:1.65;">End of day, after emotion has already faded</div></div><div style="padding:20px 24px;display:flex;align-items:flex-start;gap:10px;"><div style="font-family:var(--mono);font-size:11px;color:var(--accent);flex-shrink:0;margin-top:2px;">&#10003;</div><div style="font-family:var(--serif);font-size:14px;color:var(--fg);line-height:1.65;">While the feeling is still live &#8212; not hours later</div></div></div>
+          <div style="display:grid;grid-template-columns:1.2fr 1fr 1fr;background:var(--bg);border-top:1px solid var(--border);"><div style="padding:20px 24px;border-right:1px solid var(--border);"><div style="font-family:var(--serif);font-size:14px;font-weight:500;color:var(--fg);">Activation energy</div></div><div style="padding:20px 24px;border-right:1px solid var(--border);display:flex;align-items:flex-start;gap:10px;"><div style="font-family:var(--mono);font-size:11px;color:#C4826A;flex-shrink:0;margin-top:2px;">&#8212;</div><div style="font-family:var(--serif);font-size:14px;color:var(--mid);line-height:1.65;">New habit required, competes with rest and routine</div></div><div style="padding:20px 24px;display:flex;align-items:flex-start;gap:10px;"><div style="font-family:var(--mono);font-size:11px;color:var(--accent);flex-shrink:0;margin-top:2px;">&#10003;</div><div style="font-family:var(--serif);font-size:14px;color:var(--fg);line-height:1.65;">Stacks onto taking photos &#8212; a behavior that already exists</div></div></div>
+          <div style="display:grid;grid-template-columns:1.2fr 1fr 1fr;background:var(--bg2);border-top:1px solid var(--border);"><div style="padding:20px 24px;border-right:1px solid var(--border);"><div style="font-family:var(--serif);font-size:14px;font-weight:500;color:var(--fg);">Cognitive load</div></div><div style="padding:20px 24px;border-right:1px solid var(--border);display:flex;align-items:flex-start;gap:10px;"><div style="font-family:var(--mono);font-size:11px;color:#C4826A;flex-shrink:0;margin-top:2px;">&#8212;</div><div style="font-family:var(--serif);font-size:14px;color:var(--mid);line-height:1.65;">"What do I write? How much? In what format?"</div></div><div style="padding:20px 24px;display:flex;align-items:flex-start;gap:10px;"><div style="font-family:var(--mono);font-size:11px;color:var(--accent);flex-shrink:0;margin-top:2px;">&#10003;</div><div style="font-family:var(--serif);font-size:14px;color:var(--fg);line-height:1.65;">"Do I agree with this?" &#8212; reaction, not construction</div></div></div>
+          <div style="display:grid;grid-template-columns:1.2fr 1fr 1fr;background:var(--bg);border-top:1px solid var(--border);"><div style="padding:20px 24px;border-right:1px solid var(--border);"><div style="font-family:var(--serif);font-size:14px;font-weight:500;color:var(--fg);">Failure mode</div></div><div style="padding:20px 24px;border-right:1px solid var(--border);display:flex;align-items:flex-start;gap:10px;"><div style="font-family:var(--mono);font-size:11px;color:#C4826A;flex-shrink:0;margin-top:2px;">&#8212;</div><div style="font-family:var(--serif);font-size:14px;color:var(--mid);line-height:1.65;">Guilt for missed days, streaks broken, habit abandoned</div></div><div style="padding:20px 24px;display:flex;align-items:flex-start;gap:10px;"><div style="font-family:var(--mono);font-size:11px;color:var(--accent);flex-shrink:0;margin-top:2px;">&#10003;</div><div style="font-family:var(--serif);font-size:14px;color:var(--fg);line-height:1.65;">No streaks &#8212; even light weeks produce something</div></div></div>
+        </div>
+      </div>
+
+      <!-- 05. KEY PRODUCT DECISIONS -->
+      <div class="content-block">
+        <div class="block-label">05 &#8212; Key Product Decisions</div>
+        <h2 class="block-title">Every decision traces back to one principle.</h2>
+        <p class="block-body" style="margin-top:16px;margin-bottom:36px;">Reduce friction. Reflection without pressure. Capture context over content. If a decision couldn&#8217;t be justified by one of these, it was cut.</p>
+        <div style="display:flex;flex-direction:column;gap:1px;background:var(--border);">
+          <div style="background:var(--bg);padding:32px;"><div style="display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:32px;"><div><div style="font-family:var(--serif);font-size:16px;font-weight:500;color:var(--fg);line-height:1.2;margin-bottom:8px;">Photo-first capture</div><div style="font-family:var(--mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;">Reduces friction</div><div style="font-family:var(--serif);font-size:13px;color:var(--mid);line-height:1.65;">Users already take photos daily. The entry point exists before the app opens.</div></div><div><div style="font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--dim);margin-bottom:8px;">Alternative considered</div><div style="font-family:var(--serif);font-size:13px;color:var(--mid);line-height:1.7;">Text-first journaling. Voice memos. Open canvas.</div></div><div><div style="font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--dim);margin-bottom:8px;">Why this won</div><div style="font-family:var(--serif);font-size:13px;color:var(--mid);line-height:1.7;">Every added step between moment and capture is a dropout point. Starting from an existing photo removes the highest abandonment risk.</div></div></div></div>
+          <div style="background:var(--bg);padding:32px;"><div style="display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:32px;"><div><div style="font-family:var(--serif);font-size:16px;font-weight:500;color:var(--fg);line-height:1.2;margin-bottom:8px;">Statement over blank field</div><div style="font-family:var(--mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;">Reflection without pressure</div><div style="font-family:var(--serif);font-size:13px;color:var(--mid);line-height:1.65;">A pre-populated observation removes the hardest part: beginning. Disagreement is still engagement.</div></div><div><div style="font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--dim);margin-bottom:8px;">Alternative considered</div><div style="font-family:var(--serif);font-size:13px;color:var(--mid);line-height:1.7;">Open text prompts. Structured question sequences. Required mood selection.</div></div><div><div style="font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--dim);margin-bottom:8px;">Why this won</div><div style="font-family:var(--serif);font-size:13px;color:var(--mid);line-height:1.7;">Research confirmed users expand naturally once given a starting point. Reacting to a statement is a lower bar than generating one from nothing.</div></div></div></div>
+          <div style="background:var(--bg);padding:32px;"><div style="display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:32px;"><div><div style="font-family:var(--serif);font-size:16px;font-weight:500;color:var(--fg);line-height:1.2;margin-bottom:8px;">All context fields optional</div><div style="font-family:var(--mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;">Reflection without pressure</div><div style="font-family:var(--serif);font-size:13px;color:var(--mid);line-height:1.65;">Required fields reframe reflection as homework. The floor matters more than the ceiling.</div></div><div><div style="font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--dim);margin-bottom:8px;">Alternative considered</div><div style="font-family:var(--serif);font-size:13px;color:var(--mid);line-height:1.7;">Minimum character counts. Mandatory mood tags. Gated progression.</div></div><div><div style="font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--dim);margin-bottom:8px;">Why this won</div><div style="font-family:var(--serif);font-size:13px;color:var(--mid);line-height:1.7;">A user who taps once still creates a structured memory. A user blocked by a required field creates nothing &#8212; and likely doesn&#8217;t return.</div></div></div></div>
+          <div style="background:var(--bg);padding:32px;"><div style="display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:32px;"><div><div style="font-family:var(--serif);font-size:16px;font-weight:500;color:var(--fg);line-height:1.2;margin-bottom:8px;">Privacy before commitment</div><div style="font-family:var(--mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;">Reflection without pressure</div><div style="font-family:var(--serif);font-size:13px;color:var(--mid);line-height:1.65;">"100% Private &#8212; Nothing leaves your device" is the first copy users read.</div></div><div><div style="font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--dim);margin-bottom:8px;">Alternative considered</div><div style="font-family:var(--serif);font-size:13px;color:var(--mid);line-height:1.7;">Social sharing. Public timelines. Collaborative memory.</div></div><div><div style="font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--dim);margin-bottom:8px;">Why this won</div><div style="font-family:var(--serif);font-size:13px;color:var(--mid);line-height:1.7;">Testing showed writing felt "too sanitized" when users imagined a future audience. Private-by-default removed that anxiety entirely.</div></div></div></div>
+        </div>
+      </div>
+
+      <!-- 06. RESEARCH → DECISIONS -->
+      <div class="content-block">
+        <div class="block-label">06 &#8212; Research &#8594; Decisions</div>
+        <h2 class="block-title">How observations became product choices.</h2>
+        <p class="block-body" style="margin-top:16px;margin-bottom:36px;">Each finding maps directly to a decision. Nothing in the flow was added without a behavioral reason to exist.</p>
+        <div style="display:flex;flex-direction:column;gap:1px;background:var(--border);">
+          <div style="background:var(--bg);padding:24px 32px;"><div style="display:grid;grid-template-columns:1fr 40px 1fr;gap:20px;align-items:center;"><div><div style="font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--dim);margin-bottom:8px;">Finding</div><div style="font-family:var(--serif);font-size:14px;font-style:italic;color:var(--mid);line-height:1.6;">"By bedtime the emotion has already been replaced by how I feel now."</div><a href="https://www.reddit.com/r/Journaling/" target="_blank" rel="noopener" style="font-family:var(--mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--dim);text-decoration:none;border-bottom:1px solid var(--border);padding-bottom:1px;margin-top:10px;display:inline-block;">r/Journaling &#8599;</a></div><div style="text-align:center;font-size:16px;color:var(--dim);">&#8594;</div><div><div style="font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--dim);margin-bottom:8px;">Decision</div><div style="font-family:var(--serif);font-size:14px;color:var(--fg);line-height:1.6;font-weight:500;">Notification fires while the feeling is still live &#8212; not at the end of the day.</div></div></div></div>
+          <div style="background:var(--bg);padding:24px 32px;"><div style="display:grid;grid-template-columns:1fr 40px 1fr;gap:20px;align-items:center;"><div><div style="font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--dim);margin-bottom:8px;">Finding</div><div style="font-family:var(--serif);font-size:14px;font-style:italic;color:var(--mid);line-height:1.6;">"Writing felt like performing for a future audience &#8212; too sanitized."</div><a href="https://www.reddit.com/r/Journaling/" target="_blank" rel="noopener" style="font-family:var(--mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--dim);text-decoration:none;border-bottom:1px solid var(--border);padding-bottom:1px;margin-top:10px;display:inline-block;">r/Journaling &#8599;</a></div><div style="text-align:center;font-size:16px;color:var(--dim);">&#8594;</div><div><div style="font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--dim);margin-bottom:8px;">Decision</div><div style="font-family:var(--serif);font-size:14px;color:var(--fg);line-height:1.6;font-weight:500;">"100% Private" is the first copy users read. Moments are framed as notes to self, not records.</div></div></div></div>
+          <div style="background:var(--bg);padding:24px 32px;"><div style="display:grid;grid-template-columns:1fr 40px 1fr;gap:20px;align-items:center;"><div><div style="font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--dim);margin-bottom:8px;">Finding</div><div style="font-family:var(--serif);font-size:14px;font-style:italic;color:var(--mid);line-height:1.6;">"Even on days where nothing happened, once you start it just flows out."</div><a href="https://www.reddit.com/r/Journaling/" target="_blank" rel="noopener" style="font-family:var(--mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--dim);text-decoration:none;border-bottom:1px solid var(--border);padding-bottom:1px;margin-top:10px;display:inline-block;">r/Journaling &#8599;</a></div><div style="text-align:center;font-size:16px;color:var(--dim);">&#8594;</div><div><div style="font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--dim);margin-bottom:8px;">Decision</div><div style="font-family:var(--serif);font-size:14px;color:var(--fg);line-height:1.6;font-weight:500;">Pre-populated framing removes the blank page. One statement is enough to unlock natural reflection.</div></div></div></div>
+          <div style="background:var(--bg);padding:24px 32px;"><div style="display:grid;grid-template-columns:1fr 40px 1fr;gap:20px;align-items:center;"><div><div style="font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--dim);margin-bottom:8px;">Finding</div><div style="font-family:var(--serif);font-size:14px;font-style:italic;color:var(--mid);line-height:1.6;">Users swiped out of open-ended UI immediately &#8212; no payoff visible.</div><span style="font-family:var(--mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--dim);display:inline-block;margin-top:10px;">Round 1 field testing</span></div><div style="text-align:center;font-size:16px;color:var(--dim);">&#8594;</div><div><div style="font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--dim);margin-bottom:8px;">Decision</div><div style="font-family:var(--serif);font-size:14px;color:var(--fg);line-height:1.6;font-weight:500;">Every screen has a visible next step. Forward momentum is never in question.</div></div></div></div>
+          <div style="background:var(--bg);padding:24px 32px;"><div style="display:grid;grid-template-columns:1fr 40px 1fr;gap:20px;align-items:center;"><div><div style="font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--dim);margin-bottom:8px;">Finding</div><div style="font-family:var(--serif);font-size:14px;font-style:italic;color:var(--mid);line-height:1.6;">"I would need reminders to do it." &#8212; 8 of 20 testers, unprompted.</div><span style="font-family:var(--mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--dim);display:inline-block;margin-top:10px;">Round 2 field testing</span></div><div style="text-align:center;font-size:16px;color:var(--dim);">&#8594;</div><div><div style="font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--dim);margin-bottom:8px;">Decision</div><div style="font-family:var(--serif);font-size:14px;color:var(--fg);line-height:1.6;font-weight:500;">Notification cadence is set during onboarding. The return trigger is built into the system, not left to the user.</div></div></div></div>
+          <div style="background:var(--bg);padding:24px 32px;"><div style="display:grid;grid-template-columns:1fr 40px 1fr;gap:20px;align-items:center;"><div><div style="font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--dim);margin-bottom:8px;">Finding</div><div style="font-family:var(--serif);font-size:14px;font-style:italic;color:var(--mid);line-height:1.6;">One participant completed three loops voluntarily, noticing different prompts each time.</div><span style="font-family:var(--mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--dim);display:inline-block;margin-top:10px;">Strongest engagement observed</span></div><div style="text-align:center;font-size:16px;color:var(--dim);">&#8594;</div><div><div style="font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--dim);margin-bottom:8px;">Decision</div><div style="font-family:var(--serif);font-size:14px;color:var(--fg);line-height:1.6;font-weight:500;">Keep the loop short and repeatable. Prompts vary by context so the experience doesn&#8217;t go stale.</div></div></div></div>
+        </div>
+      </div>
+
+      <!-- 07. FINAL SCREENS -->
+      <div class="content-block" style="padding-right:0;overflow:hidden;">
+        <div style="padding-right:64px;">
+          <div class="block-label">07 &#8212; Final Screens</div>
+          <h2 class="block-title">The capture loop, step by step.</h2>
+          <p class="block-body" style="margin-top:16px;max-width:500px;">The sequence is designed so reflection never feels like work. Each step removes one barrier before the next begins.</p>
+        </div>
+        <div style="margin-top:48px;overflow-x:auto;overflow-y:visible;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:32px;">
+          <div style="display:flex;gap:24px;padding:0 64px;width:max-content;align-items:flex-start;">
+            <div style="width:240px;flex-shrink:0;">
+              <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--dim);margin-bottom:16px;display:flex;align-items:center;gap:10px;"><span style="display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:var(--fg);color:var(--bg);font-size:9px;font-weight:500;flex-shrink:0;">1</span>Pick a Moment</div>
+              <img src="../assets/images/moment-screen-01-pick.png" alt="Pick a Moment" style="width:100%;display:block;border-radius:14px;box-shadow:0 12px 40px rgba(26,24,20,0.11);" />
+              <p style="margin-top:18px;font-family:var(--serif);font-size:13px;color:var(--mid);line-height:1.75;">Starting from existing photos removes the hardest step: figuring out where to begin. Trust is established before any commitment is asked.</p>
+            </div>
+            <div style="flex-shrink:0;display:flex;align-items:center;padding-top:36px;"><div style="width:24px;height:1px;background:var(--border);"></div><span style="font-size:10px;color:var(--dim);margin:0 4px;">&#8594;</span><div style="width:24px;height:1px;background:var(--border);"></div></div>
+            <div style="width:240px;flex-shrink:0;">
+              <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--dim);margin-bottom:16px;display:flex;align-items:center;gap:10px;"><span style="display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:var(--fg);color:var(--bg);font-size:9px;font-weight:500;flex-shrink:0;">2</span>Reaction Before Reflection</div>
+              <img src="../assets/images/moment-screen-02-react.png" alt="Reaction Before Reflection" style="width:100%;display:block;border-radius:14px;box-shadow:0 12px 40px rgba(26,24,20,0.11);" />
+              <p style="margin-top:18px;font-family:var(--serif);font-size:13px;color:var(--mid);line-height:1.75;">A statement is surfaced based on prior selections. One tap to agree or correct. People react faster than they write &#8212; so the system leads with reaction, not composition.</p>
+            </div>
+            <div style="flex-shrink:0;display:flex;align-items:center;padding-top:36px;"><div style="width:24px;height:1px;background:var(--border);"></div><span style="font-size:10px;color:var(--dim);margin:0 4px;">&#8594;</span><div style="width:24px;height:1px;background:var(--border);"></div></div>
+            <div style="width:240px;flex-shrink:0;">
+              <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--dim);margin-bottom:16px;display:flex;align-items:center;gap:10px;"><span style="display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:var(--fg);color:var(--bg);font-size:9px;font-weight:500;flex-shrink:0;">3</span>Depth Without Pressure</div>
+              <img src="../assets/images/moment-screen-03-context.png" alt="Depth Without Pressure" style="width:100%;display:block;border-radius:14px;box-shadow:0 12px 40px rgba(26,24,20,0.11);" />
+              <p style="margin-top:18px;font-family:var(--serif);font-size:13px;color:var(--mid);line-height:1.75;">Context is invited, never required. A short memory is better than no memory. The floor matters more than the ceiling.</p>
+            </div>
+            <div style="flex-shrink:0;display:flex;align-items:center;padding-top:36px;"><div style="width:24px;height:1px;background:var(--border);"></div><span style="font-size:10px;color:var(--dim);margin:0 4px;">&#8594;</span><div style="width:24px;height:1px;background:var(--border);"></div></div>
+            <div style="width:240px;flex-shrink:0;">
+              <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--dim);margin-bottom:16px;display:flex;align-items:center;gap:10px;"><span style="display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:var(--accent);color:white;font-size:9px;font-weight:500;flex-shrink:0;">4</span>Memory Created</div>
+              <img src="../assets/images/moment-screen-04-saved.png" alt="Memory Created" style="width:100%;display:block;border-radius:14px;box-shadow:0 12px 40px rgba(26,24,20,0.11);" />
+              <p style="margin-top:18px;font-family:var(--serif);font-size:13px;color:var(--mid);line-height:1.75;">The user&#8217;s own words become the memory title. This moment enters the ecosystem &#8212; surfacing in the gallery, timeline, and Sunday Reveal. Capture is only the beginning.</p>
+            </div>
+            <div style="width:40px;flex-shrink:0;"></div>
+          </div>
+        </div>
+        <div style="padding:16px 64px 0;"><div style="font-family:var(--mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--dim);display:flex;align-items:center;gap:6px;"><span>Scroll to follow the loop</span><span style="font-size:10px;">&#8594;</span></div></div>
+      </div>
+
+      <!-- 08. REFLECTION -->
+      <div class="content-block">
+        <div class="block-label">08 &#8212; Reflection</div>
+        <h2 class="block-title" style="max-width:580px;">The problem wasn&#8217;t getting people to save more memories.<br>They were already doing that.</h2>
+        <p class="block-body" style="margin-top:24px;">The problem was preserving context before it disappeared. A photo proves something happened. Context is what makes it worth returning to &#8212; and context has a half-life measured in hours, not days.</p>
+        <p class="block-body" style="margin-top:18px;">Testing on strangers with zero explanation produced "therapeutic" and "this makes it feel more alive" without prompting. The loop worked. The open question was always re-engagement &#8212; whether captured moments would pull people back on their own. That became the brief for Sunday Reveal.</p>
+        <p class="block-body" style="margin-top:18px;">Moment Creation is an exercise in minimum viable reflection. The behavior was already there. The product just needed to meet it at the right moment, with the lowest possible ask.</p>
+      </div>
+
+    </div>
+<!-- MODULE 3: SUNDAY REVEAL -->
+    <div class="module-pane" id="pane-sunday">
+
+      <!-- HERO + SUMMARY -->
+      <div class="mod-hero">
+        <p class="mod-hero-eyebrow">Module 03 &#8212; Weekly Reflection</p>
+        <h1 class="mod-hero-title">Sunday Reveal</h1>
+        <div style="margin-top:20px;padding:28px 32px;background:rgba(26,24,20,0.04);border-left:3px solid var(--fg);border-radius:0 4px 4px 0;">
+          <p style="font-family:var(--serif);font-size:17px;color:var(--fg);line-height:1.7;">Sunday Reveal turns captured moments into a weekly reflection ritual. As users create moments throughout the week, the timeline slowly fills, building anticipation toward a personalized Sunday Letter. The system transforms scattered memories into a coherent story users have a reason to return to.</p>
+        </div>
+        <div class="mod-hero-tags" style="margin-top:24px;">
+          <span class="mod-tag">Return Loop Design</span>
+          <span class="mod-tag">AI Synthesis</span>
+          <span class="mod-tag">Anticipation Design</span>
+          <span class="mod-tag">Personalization</span>
+          <span class="mod-tag">Longitudinal Engagement</span>
+        </div>
+      </div>
+
+      <!-- 02 — SUNDAY REVEAL WALKTHROUGH -->
+      <div class="content-block">
+        <div class="block-label">02 &#8212; Sunday Reveal Walkthrough</div>
+        <h2 class="block-title">From moments to meaning, once a week.</h2>
+        <p class="block-body" style="margin-top:16px;margin-bottom:36px;">Timeline growth &#8594; anticipation &#8594; Sunday unlock &#8594; personalized reflection.</p>
+        <div style="display:grid;grid-template-columns:1fr 1.8fr;gap:48px;align-items:center;">
+          <div style="display:flex;justify-content:center;">
+            <video autoplay loop muted playsinline style="width:100%;max-width:280px;display:block;border-radius:4px;">
+              <source src="../assets/video/sunday-reveal-walkthrough.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <div>
+            <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--dim);margin-bottom:20px;">What you&#8217;re seeing</div>
+            <div style="display:flex;flex-direction:column;gap:1px;background:var(--border);">
+              <div style="display:flex;gap:20px;align-items:flex-start;padding:16px 22px;background:var(--bg);"><div style="font-family:var(--mono);font-size:10px;color:var(--dim);flex-shrink:0;min-width:20px;padding-top:2px;">01</div><div><div style="font-family:var(--serif);font-size:14px;font-weight:500;color:var(--fg);margin-bottom:3px;">Timeline growth</div><div style="font-family:var(--serif);font-size:13px;color:var(--mid);line-height:1.6;">Moments surfaced throughout the week slowly populate the vine. Progress builds anticipation rather than pressure.</div></div></div>
+              <div style="display:flex;gap:20px;align-items:flex-start;padding:16px 22px;background:var(--bg);"><div style="font-family:var(--mono);font-size:10px;color:var(--dim);flex-shrink:0;min-width:20px;padding-top:2px;">02</div><div><div style="font-family:var(--serif);font-size:14px;font-weight:500;color:var(--fg);margin-bottom:3px;">Countdown</div><div style="font-family:var(--serif);font-size:13px;color:var(--mid);line-height:1.6;">The Sunday card changes as the week progresses, shifting attention toward the upcoming reflection.</div></div></div>
+              <div style="display:flex;gap:20px;align-items:flex-start;padding:16px 22px;background:var(--bg);"><div style="font-family:var(--mono);font-size:10px;color:var(--dim);flex-shrink:0;min-width:20px;padding-top:2px;">03</div><div><div style="font-family:var(--serif);font-size:14px;font-weight:500;color:var(--fg);margin-bottom:3px;">Letter unlock</div><div style="font-family:var(--serif);font-size:13px;color:var(--mid);line-height:1.6;">At 5 PM on Sunday, the experience transitions from collecting memories to revisiting them.</div></div></div>
+              <div style="display:flex;gap:20px;align-items:flex-start;padding:16px 22px;background:var(--bg);"><div style="font-family:var(--mono);font-size:10px;color:var(--dim);flex-shrink:0;min-width:20px;padding-top:2px;">04</div><div><div style="font-family:var(--serif);font-size:14px;font-weight:500;color:var(--fg);margin-bottom:3px;">Opening ritual</div><div style="font-family:var(--serif);font-size:13px;color:var(--mid);line-height:1.6;">An envelope interaction introduces the letter and turns reflection into an event rather than another screen.</div></div></div>
+              <div style="display:flex;gap:20px;align-items:flex-start;padding:16px 22px;background:var(--bg);"><div style="font-family:var(--mono);font-size:10px;color:var(--dim);flex-shrink:0;min-width:20px;padding-top:2px;">05</div><div><div style="font-family:var(--serif);font-size:14px;font-weight:500;color:var(--fg);margin-bottom:3px;">Weekly reflection</div><div style="font-family:var(--serif);font-size:13px;color:var(--mid);line-height:1.6;">Five pages transform scattered moments into a coherent story about the week.</div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================================================================ -->
+      <!-- EXPERIENCE 01 — SUNDAY TIMELINE -->
+      <!-- ================================================================ -->
+      <div style="padding:64px 72px 8px;">
+        <div style="font-family:var(--mono);font-size:10px;font-weight:300;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;">Experience 01</div>
+        <div style="font-family:var(--serif);font-size:clamp(26px,3vw,36px);font-weight:500;color:var(--fg);letter-spacing:-0.01em;line-height:1.15;">Sunday Timeline</div>
+        <p style="font-family:var(--serif);font-size:17px;font-style:italic;color:var(--mid);line-height:1.6;margin-top:16px;max-width:600px;">How do we make reflection something users look forward to?</p>
+      </div>
+
+      <!-- 01 — Problem -->
+      <div class="content-block">
+        <div class="block-label">01 &#8212; Problem</div>
+        <h2 class="block-title">Reflection is delayed gratification.</h2>
+        <p class="block-body" style="margin-top:16px;margin-bottom:8px;max-width:640px;">Same starting point, two different systems. One fades by Wednesday. One compounds toward Sunday.</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);margin-top:32px;border:1px solid var(--border);border-radius:6px;overflow:hidden;">
+          <div style="background:var(--bg);padding:32px 28px;">
+            <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:#C4826A;margin-bottom:22px;">Without Timeline</div>
+            <div style="display:flex;flex-direction:column;align-items:center;">
+              <div style="font-family:var(--mono);font-size:11px;color:var(--fg);background:var(--bg2);border:1px solid var(--border);border-radius:5px;padding:9px 14px;text-align:center;">Moment</div>
+              <div style="color:var(--dim);font-size:13px;line-height:1;padding:7px 0;">&#8595;</div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--fg);background:var(--bg2);border:1px solid var(--border);border-radius:5px;padding:9px 14px;text-align:center;">Delayed value</div>
+              <div style="color:var(--dim);font-size:13px;line-height:1;padding:7px 0;">&#8595;</div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--fg);background:var(--bg2);border:1px solid var(--border);border-radius:5px;padding:9px 14px;text-align:center;">No visible progress</div>
+              <div style="color:var(--dim);font-size:13px;line-height:1;padding:7px 0;">&#8595;</div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--dim);background:transparent;border:1px dashed var(--border);border-radius:5px;padding:9px 14px;text-align:center;">Motivation fades</div>
+            </div>
+          </div>
+          <div style="background:var(--bg);padding:32px 28px;">
+            <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:22px;">With Timeline</div>
+            <div style="display:flex;flex-direction:column;align-items:center;">
+              <div style="font-family:var(--mono);font-size:11px;color:var(--fg);background:rgba(196,168,130,0.14);border:1px solid var(--accent);border-radius:5px;padding:9px 14px;text-align:center;">Moment</div>
+              <div style="color:var(--dim);font-size:13px;line-height:1;padding:6px 0;">&#8595;</div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--fg);background:rgba(196,168,130,0.14);border:1px solid var(--accent);border-radius:5px;padding:9px 14px;text-align:center;">Visible growth</div>
+              <div style="color:var(--dim);font-size:13px;line-height:1;padding:6px 0;">&#8595;</div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--fg);background:rgba(196,168,130,0.14);border:1px solid var(--accent);border-radius:5px;padding:9px 14px;text-align:center;">Anticipation</div>
+              <div style="color:var(--dim);font-size:13px;line-height:1;padding:6px 0;">&#8595;</div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--fg);background:rgba(196,168,130,0.14);border:1px solid var(--accent);border-radius:5px;padding:9px 14px;text-align:center;">Sunday reward</div>
+              <div style="color:var(--dim);font-size:13px;line-height:1;padding:6px 0;">&#8595;</div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--fg);background:rgba(196,168,130,0.14);border:1px solid var(--accent);border-radius:5px;padding:9px 14px;text-align:center;">Reflection</div>
+              <div style="color:var(--dim);font-size:13px;line-height:1;padding:6px 0;">&#8595;</div>
+              <div style="font-family:var(--mono);font-size:11px;font-weight:500;color:var(--bg);background:var(--accent);border:1px solid var(--accent);border-radius:5px;padding:9px 14px;text-align:center;">Repeat</div>
+              <div style="font-family:var(--mono);font-size:9px;color:var(--dim);margin-top:8px;">&#8635; loops back to Moment</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 02 — Insight -->
+      <div class="content-block">
+        <div class="block-label">02 &#8212; Insight</div>
+        <h2 class="block-title">Visual progress creates motivation.</h2>
+        <p class="block-body" style="margin-top:16px;margin-bottom:32px;">Feedback doesn&#8217;t need to be numerical. It needs to feel alive &#8212; four sources, one direction.</p>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;">
+          <div style="background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:18px 16px;">
+            <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--dim);margin-bottom:8px;">Founder Observations</div>
+            <div style="font-family:var(--serif);font-size:12.5px;color:var(--mid);line-height:1.55;">Direct observation during early testing.</div>
+          </div>
+          <div style="background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:18px 16px;">
+            <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--dim);margin-bottom:8px;">Spotlight Event</div>
+            <div style="font-family:var(--serif);font-size:12.5px;color:var(--mid);line-height:1.55;">Attendee reactions to the prototype.</div>
+          </div>
+          <div style="background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:18px 16px;">
+            <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--dim);margin-bottom:8px;">UX Communities</div>
+            <div style="font-family:var(--serif);font-size:12.5px;color:var(--mid);line-height:1.55;">A recurring theme across journaling &amp; habit forums.</div>
+          </div>
+          <div style="background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:18px 16px;">
+            <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--dim);margin-bottom:8px;">Finch Inspiration</div>
+            <div style="font-family:var(--serif);font-size:12.5px;color:var(--mid);line-height:1.55;">Pet-growth mechanics as a reference point.</div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);">
+          <div style="grid-column:1/-1;text-align:center;color:var(--dim);font-size:13px;padding:10px 0;">&#8600;&#8595;&#8595;&#8601;</div>
+        </div>
+        <div style="padding:32px;background:var(--bg2);border:1px solid var(--border);border-radius:6px;">
+          <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--dim);margin-bottom:20px;">The Insight &#8212; What All Four Pointed To</div>
+          <p style="font-family:var(--serif);font-size:clamp(18px,1.8vw,24px);color:var(--fg);line-height:1.6;">People don&#8217;t need productivity metrics. They need something to look forward to.</p>
+        </div>
+      </div>
+
+      <!-- 03 — Design Principles -->
+      <div class="content-block">
+        <div class="block-label">03 &#8212; Design Principles</div>
+        <h2 class="block-title">Designing for anticipation, not obligation.</h2>
+        <p class="block-body" style="margin-top:16px;margin-bottom:32px;">One operating principle. Five rules that protect it.</p>
+        <div style="display:flex;justify-content:center;">
+          <div style="background:var(--fg);color:var(--bg);border-radius:8px;padding:16px 32px;text-align:center;">
+            <div style="font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:0.08em;">ANTICIPATION <span style="color:var(--accent);">&gt;</span> OBLIGATION</div>
+          </div>
+        </div>
+        <svg viewBox="0 0 500 60" preserveAspectRatio="none" style="width:100%;height:44px;display:block;">
+          <line x1="250" y1="0" x2="250" y2="24" style="stroke:var(--border);stroke-width:1.5;" />
+          <line x1="50" y1="24" x2="450" y2="24" style="stroke:var(--border);stroke-width:1.5;" />
+          <line x1="50" y1="24" x2="50" y2="58" style="stroke:var(--border);stroke-width:1.5;" />
+          <line x1="150" y1="24" x2="150" y2="58" style="stroke:var(--border);stroke-width:1.5;" />
+          <line x1="250" y1="24" x2="250" y2="58" style="stroke:var(--border);stroke-width:1.5;" />
+          <line x1="350" y1="24" x2="350" y2="58" style="stroke:var(--border);stroke-width:1.5;" />
+          <line x1="450" y1="24" x2="450" y2="58" style="stroke:var(--border);stroke-width:1.5;" />
+          <circle cx="250" cy="24" r="3" style="fill:var(--accent);" />
+          <circle cx="50" cy="58" r="2.5" style="fill:var(--accent);" />
+          <circle cx="150" cy="58" r="2.5" style="fill:var(--accent);" />
+          <circle cx="250" cy="58" r="2.5" style="fill:var(--accent);" />
+          <circle cx="350" cy="58" r="2.5" style="fill:var(--accent);" />
+          <circle cx="450" cy="58" r="2.5" style="fill:var(--accent);" />
+        </svg>
+        <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:14px;">
+          <div style="background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:16px 10px;text-align:center;">
+            <div style="font-family:var(--serif);font-size:13px;font-weight:500;color:var(--fg);margin-bottom:4px;">No streaks</div>
+            <div style="font-family:var(--mono);font-size:10px;color:var(--dim);">no guilt for gaps</div>
+          </div>
+          <div style="background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:16px 10px;text-align:center;">
+            <div style="font-family:var(--serif);font-size:13px;font-weight:500;color:var(--fg);margin-bottom:4px;">Visible progress</div>
+            <div style="font-family:var(--mono);font-size:10px;color:var(--dim);">small changes, felt</div>
+          </div>
+          <div style="background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:16px 10px;text-align:center;">
+            <div style="font-family:var(--serif);font-size:13px;font-weight:500;color:var(--fg);margin-bottom:4px;">Never punish</div>
+            <div style="font-family:var(--mono);font-size:10px;color:var(--dim);">missed days cost nothing</div>
+          </div>
+          <div style="background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:16px 10px;text-align:center;">
+            <div style="font-family:var(--serif);font-size:13px;font-weight:500;color:var(--fg);margin-bottom:4px;">No empty placeholders</div>
+            <div style="font-family:var(--mono);font-size:10px;color:var(--dim);">never reads as incomplete</div>
+          </div>
+          <div style="background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:16px 10px;text-align:center;">
+            <div style="font-family:var(--serif);font-size:13px;font-weight:500;color:var(--fg);margin-bottom:4px;">Natural cultivation</div>
+            <div style="font-family:var(--mono);font-size:10px;color:var(--dim);">grown, not collected</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 04 — Retention Signals -->
+      <div class="content-block">
+        <div class="block-label">04 &#8212; Retention Signals</div>
+        <h2 class="block-title">Directional signal from early testers, not a study.</h2>
+        <div style="margin-top:14px;margin-bottom:28px;">
+          <span style="display:inline-flex;align-items:center;font-family:var(--mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--dim);background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:5px 12px;">Founder-led testing &#8212; directional, not formal research</span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);margin-bottom:32px;">
+          <div style="background:var(--bg);padding:24px;"><div style="font-family:var(--serif);font-size:38px;font-weight:400;color:var(--fg);line-height:1;margin-bottom:8px;">18</div><div style="font-family:var(--mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--dim);">Early testers exposed</div></div>
+          <div style="background:var(--bg);padding:24px;"><div style="font-family:var(--serif);font-size:38px;font-weight:400;color:var(--fg);line-height:1;margin-bottom:8px;">72%</div><div style="font-family:var(--mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--dim);">Noticed growth immediately</div></div>
+          <div style="background:var(--bg);padding:24px;"><div style="font-family:var(--serif);font-size:38px;font-weight:400;color:var(--fg);line-height:1;margin-bottom:8px;">8/10</div><div style="font-family:var(--mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--dim);">Checked the timeline before creating another moment</div></div>
+        </div>
+        <div style="margin-bottom:32px;">
+          <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--dim);margin-bottom:14px;">Engagement Across the Week</div>
+          <div style="display:flex;align-items:flex-end;justify-content:space-between;background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:24px 20px 16px;">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:10px;"><div style="font-size:11px;color:var(--fg);letter-spacing:1px;">&#9679;</div><div style="font-family:var(--mono);font-size:9px;color:var(--dim);text-transform:uppercase;">Mon</div></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:10px;"><div style="font-size:11px;color:var(--fg);letter-spacing:1px;">&#9679;&#9679;</div><div style="font-family:var(--mono);font-size:9px;color:var(--dim);text-transform:uppercase;">Tue</div></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:10px;"><div style="font-size:11px;color:var(--fg);letter-spacing:1px;">&#9679;&#9679;&#9679;</div><div style="font-family:var(--mono);font-size:9px;color:var(--dim);text-transform:uppercase;">Wed</div></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:10px;"><div style="font-size:11px;color:var(--fg);letter-spacing:1px;">&#9679;&#9679;&#9679;&#9679;</div><div style="font-family:var(--mono);font-size:9px;color:var(--dim);text-transform:uppercase;">Thu</div></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:10px;"><div style="font-size:11px;color:var(--fg);letter-spacing:1px;">&#9679;&#9679;&#9679;&#9679;&#9679;</div><div style="font-family:var(--mono);font-size:9px;color:var(--dim);text-transform:uppercase;">Fri</div></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:10px;"><div style="font-size:11px;color:var(--fg);letter-spacing:1px;">&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;</div><div style="font-family:var(--mono);font-size:9px;color:var(--dim);text-transform:uppercase;">Sat</div></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:10px;"><div style="font-size:18px;color:var(--accent);">&#9733;</div><div style="font-family:var(--mono);font-size:9px;color:var(--accent);text-transform:uppercase;font-weight:500;">Sun</div></div>
+          </div>
+        </div>
+        <div class="quote-block">
+          <div class="quote-text">&ldquo;I wanted to see what Sunday looked like.&rdquo;</div>
+          <div class="quote-source">Founder testing &#8212; returning tester</div>
+        </div>
+      </div>
+
+      <!-- 05 — Goal-Gradient Effect -->
+      <div class="content-block">
+        <div class="block-label">05 &#8212; Goal-Gradient Effect</div>
+        <h2 class="block-title">People work harder the closer they get to the reward.</h2>
+        <div style="margin-top:24px;padding:28px 28px 14px;background:var(--bg2);border:1px solid var(--border);border-radius:6px;">
+          <svg viewBox="0 0 600 200" style="width:100%;height:auto;display:block;">
+            <path d="M 40,180 L 40,155 L 126.7,150 L 213.3,140 L 300,120 L 386.7,85 L 473.3,50 L 560,25 L 560,180 Z" style="fill:rgba(196,168,130,0.12);stroke:none;" />
+            <path d="M 40,155 L 126.7,150 L 213.3,140 L 300,120 L 386.7,85 L 473.3,50 L 560,25" style="fill:none;stroke:var(--accent);stroke-width:2.5;stroke-linejoin:round;stroke-linecap:round;" />
+            <circle cx="40" cy="155" r="3.5" style="fill:var(--fg);" />
+            <circle cx="126.7" cy="150" r="3.5" style="fill:var(--fg);" />
+            <circle cx="213.3" cy="140" r="3.5" style="fill:var(--fg);" />
+            <circle cx="300" cy="120" r="3.5" style="fill:var(--fg);" />
+            <circle cx="386.7" cy="85" r="3.5" style="fill:var(--fg);" />
+            <circle cx="473.3" cy="50" r="3.5" style="fill:var(--fg);" />
+            <circle cx="560" cy="25" r="5" style="fill:var(--accent);" />
+            <text x="40" y="194" text-anchor="middle" style="font-family:var(--mono);font-size:10px;fill:var(--dim);">Mon</text>
+            <text x="126.7" y="194" text-anchor="middle" style="font-family:var(--mono);font-size:10px;fill:var(--dim);">Tue</text>
+            <text x="213.3" y="194" text-anchor="middle" style="font-family:var(--mono);font-size:10px;fill:var(--dim);">Wed</text>
+            <text x="300" y="194" text-anchor="middle" style="font-family:var(--mono);font-size:10px;fill:var(--dim);">Thu</text>
+            <text x="386.7" y="194" text-anchor="middle" style="font-family:var(--mono);font-size:10px;fill:var(--dim);">Fri</text>
+            <text x="473.3" y="194" text-anchor="middle" style="font-family:var(--mono);font-size:10px;fill:var(--dim);">Sat</text>
+            <text x="560" y="194" text-anchor="middle" style="font-family:var(--mono);font-size:10px;font-weight:500;fill:var(--accent);">Sun</text>
+          </svg>
+        </div>
+        <p class="block-body" style="margin-top:20px;">Same behavior, just visible. Sunday Timeline doesn&#8217;t manufacture urgency &#8212; it surfaces the curve that was already there.</p>
+      </div>
+
+      <!-- 06 — System Loop -->
+      <div class="content-block">
+        <div class="block-label">06 &#8212; System Loop</div>
+        <h2 class="block-title">Not a journey map. A loop that compounds.</h2>
+        <p class="block-body" style="margin-top:16px;margin-bottom:8px;">Six stages, no exit. Memory Value feeds directly back into the next Moment Creation.</p>
+        <div style="position:relative;width:100%;max-width:520px;aspect-ratio:1/1;margin:24px auto 0;">
+          <svg viewBox="0 0 600 600" style="position:absolute;inset:0;width:100%;height:100%;">
+            <circle cx="300" cy="300" r="220" style="fill:none;stroke:var(--border);stroke-width:1.5;" />
+            <path d="M -7,-6 L 7,0 L -7,6 Z" transform="translate(410,109.5) rotate(30)" style="fill:var(--dim);" />
+            <path d="M -7,-6 L 7,0 L -7,6 Z" transform="translate(520,300) rotate(90)" style="fill:var(--dim);" />
+            <path d="M -7,-6 L 7,0 L -7,6 Z" transform="translate(410,490.5) rotate(150)" style="fill:var(--dim);" />
+            <path d="M -7,-6 L 7,0 L -7,6 Z" transform="translate(190,490.5) rotate(210)" style="fill:var(--dim);" />
+            <path d="M -7,-6 L 7,0 L -7,6 Z" transform="translate(80,300) rotate(270)" style="fill:var(--dim);" />
+            <path d="M -7,-6 L 7,0 L -7,6 Z" transform="translate(190,109.5) rotate(300)" style="fill:var(--dim);" />
+          </svg>
+          <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:130px;text-align:center;font-family:var(--serif);font-size:12.5px;font-style:italic;color:var(--mid);line-height:1.4;">Each pass adds to the last.</div>
+          <div style="position:absolute;left:50%;top:13.3%;transform:translate(-50%,-50%);background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:10px 16px;text-align:center;box-shadow:0 4px 14px rgba(26,24,20,0.06);white-space:nowrap;"><div style="font-family:var(--mono);font-size:9px;color:var(--dim);margin-bottom:2px;">01</div><div style="font-family:var(--serif);font-size:13px;font-weight:500;color:var(--fg);">Moment Creation</div></div>
+          <div style="position:absolute;left:81.75%;top:31.7%;transform:translate(-50%,-50%);background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:10px 16px;text-align:center;box-shadow:0 4px 14px rgba(26,24,20,0.06);white-space:nowrap;"><div style="font-family:var(--mono);font-size:9px;color:var(--dim);margin-bottom:2px;">02</div><div style="font-family:var(--serif);font-size:13px;font-weight:500;color:var(--fg);">Timeline Growth</div></div>
+          <div style="position:absolute;left:81.75%;top:68.3%;transform:translate(-50%,-50%);background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:10px 16px;text-align:center;box-shadow:0 4px 14px rgba(26,24,20,0.06);white-space:nowrap;"><div style="font-family:var(--mono);font-size:9px;color:var(--dim);margin-bottom:2px;">03</div><div style="font-family:var(--serif);font-size:13px;font-weight:500;color:var(--fg);">Anticipation</div></div>
+          <div style="position:absolute;left:50%;top:86.7%;transform:translate(-50%,-50%);background:rgba(196,168,130,0.14);border:1px solid var(--accent);border-radius:6px;padding:10px 16px;text-align:center;box-shadow:0 4px 14px rgba(26,24,20,0.06);white-space:nowrap;"><div style="font-family:var(--mono);font-size:9px;color:var(--accent);margin-bottom:2px;">04</div><div style="font-family:var(--serif);font-size:13px;font-weight:500;color:var(--fg);">Sunday Unlock</div></div>
+          <div style="position:absolute;left:18.25%;top:68.3%;transform:translate(-50%,-50%);background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:10px 16px;text-align:center;box-shadow:0 4px 14px rgba(26,24,20,0.06);white-space:nowrap;"><div style="font-family:var(--mono);font-size:9px;color:var(--dim);margin-bottom:2px;">05</div><div style="font-family:var(--serif);font-size:13px;font-weight:500;color:var(--fg);">Reflection</div></div>
+          <div style="position:absolute;left:18.25%;top:31.7%;transform:translate(-50%,-50%);background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:10px 16px;text-align:center;box-shadow:0 4px 14px rgba(26,24,20,0.06);white-space:nowrap;"><div style="font-family:var(--mono);font-size:9px;color:var(--dim);margin-bottom:2px;">06</div><div style="font-family:var(--serif);font-size:13px;font-weight:500;color:var(--fg);">Memory Value</div></div>
+        </div>
+      </div>
+
+      <!-- 07 — Timeline Evolution -->
+      <div class="content-block" style="padding-right:0;overflow:hidden;">
+        <div style="padding-right:64px;">
+          <div class="block-label">07 &#8212; Timeline Evolution</div>
+          <h2 class="block-title">The same screen, three moments in its life.</h2>
+          <p class="block-body" style="margin-top:16px;max-width:560px;">The vine grows in one place all week. What changes is how full it is &#8212; and whether the letter is waiting or ready.</p>
+        </div>
+        <div style="margin-top:48px;overflow-x:auto;overflow-y:visible;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:8px;">
+          <div style="display:flex;gap:24px;padding:0 64px;width:max-content;align-items:flex-start;">
+            <div style="width:240px;flex-shrink:0;">
+              <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--dim);margin-bottom:16px;display:flex;align-items:center;gap:10px;"><span style="display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:var(--fg);color:var(--bg);font-size:9px;font-weight:500;flex-shrink:0;">1</span>Early Week</div>
+              <img src="../assets/images/sunday-timeline-evo-early-week.png" alt="Sunday Timeline — Early Week, one moment captured, vine nearly empty" style="width:100%;display:block;border-radius:14px;box-shadow:0 12px 40px rgba(26,24,20,0.11);" />
+              <p style="margin-top:18px;font-family:var(--serif);font-size:13px;color:var(--mid);line-height:1.75;">The timeline begins nearly empty. Users are never pressured to fill every branch.</p>
+            </div>
+            <div style="flex-shrink:0;display:flex;align-items:center;padding-top:36px;"><div style="width:24px;height:1px;background:var(--border);"></div><span style="font-size:10px;color:var(--dim);margin:0 4px;">&#8594;</span><div style="width:24px;height:1px;background:var(--border);"></div></div>
+            <div style="width:240px;flex-shrink:0;">
+              <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--dim);margin-bottom:16px;display:flex;align-items:center;gap:10px;"><span style="display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:var(--fg);color:var(--bg);font-size:9px;font-weight:500;flex-shrink:0;">2</span>Midweek</div>
+              <img src="../assets/images/sunday-timeline-evo-midweek.png" alt="Sunday Timeline — Midweek, five moments populating the vine, countdown running" style="width:100%;display:block;border-radius:14px;box-shadow:0 12px 40px rgba(26,24,20,0.11);" />
+              <p style="margin-top:18px;font-family:var(--serif);font-size:13px;color:var(--mid);line-height:1.75;">Selected moments slowly populate the vine. Attention shifts from individual memories toward the upcoming reveal.</p>
+            </div>
+            <div style="flex-shrink:0;display:flex;align-items:center;padding-top:36px;"><div style="width:24px;height:1px;background:var(--border);"></div><span style="font-size:10px;color:var(--dim);margin:0 4px;">&#8594;</span><div style="width:24px;height:1px;background:var(--border);"></div></div>
+            <div style="width:240px;flex-shrink:0;">
+              <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--dim);margin-bottom:16px;display:flex;align-items:center;gap:10px;"><span style="display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:var(--accent);color:white;font-size:9px;font-weight:500;flex-shrink:0;">3</span>Sunday 5PM</div>
+              <img src="../assets/images/sunday-timeline-evo-sunday-5pm.png" alt="Sunday Timeline — Sunday 5PM, letter unlocked and ready to open" style="width:100%;display:block;border-radius:14px;box-shadow:0 12px 40px rgba(26,24,20,0.11);" />
+              <p style="margin-top:18px;font-family:var(--serif);font-size:13px;color:var(--mid);line-height:1.75;">Growth stops and the letter becomes available. The timeline&#8217;s purpose is anticipation, not completion.</p>
+            </div>
+            <div style="width:40px;flex-shrink:0;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 08 — Constraints -->
+      <div class="content-block">
+        <div class="block-label">08 &#8212; Constraints</div>
+        <h2 class="block-title">Six memories, a countdown, and a reveal card. One screen, no scroll.</h2>
+        <p class="block-body" style="margin-top:16px;">This screen was harder to design than it looks. A title, six memory cards, a countdown, and the Sunday reveal card all needed to fit on one screen &#8212; without scrolling. Multiple layouts were explored before arriving at the current composition.</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:40px;margin-bottom:8px;">
+          <div>
+            <div style="border-radius:8px;overflow:hidden;border:1px solid var(--border);margin-bottom:12px;">
+              <img src="../assets/images/sunday-large-01.jpg" alt="Sunday Timeline lo-fi — six countdown formats" style="width:100%;display:block;" />
+            </div>
+            <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--dim);">Lo-fi &#8212; six ways to format the countdown</div>
+            <div style="font-family:var(--serif);font-size:13px;color:var(--mid);line-height:1.65;margin-top:6px;">Day/hour/minute counters, bracketed timers, a progress bar, two &#8216;ready to open&#8217; treatments. Each explored how much urgency the reveal card should communicate without tipping into pressure.</div>
+          </div>
+          <div>
+            <div style="border-radius:8px;overflow:hidden;border:1px solid var(--border);margin-bottom:12px;">
+              <img src="../assets/images/sunday-large-02.jpg" alt="Sunday Timeline lo-fi — how much to reveal before Sunday" style="width:100%;display:block;" />
+            </div>
+            <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--dim);">Lo-fi &#8212; how much to reveal before Sunday</div>
+            <div style="font-family:var(--serif);font-size:13px;color:var(--mid);line-height:1.65;margin-top:6px;">Left surfaces moment tags &#8212; a preview of what&#8217;s been captured. Right keeps it blurred, withholding everything until the reveal. Both test the same question: how much should the system show before the reward arrives?</div>
+          </div>
+        </div>
+        <div style="margin-top:32px;padding:32px;background:var(--bg2);border:1px solid var(--border);border-radius:6px;">
+          <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--dim);margin-bottom:20px;">The Real Constraint</div>
+          <p style="font-family:var(--serif);font-size:clamp(18px,1.8vw,24px);color:var(--fg);line-height:1.6;">The challenge wasn&#8217;t adding elements. It was deciding what deserved space.</p>
+        </div>
+      </div>
+
+      <!-- 09 — Reflection -->
+      <div class="content-block">
+        <div class="block-label">09 &#8212; Reflection</div>
+        <h2 class="block-title" style="max-width:580px;">Sunday Timeline wasn&#8217;t designed to archive memories.</h2>
+        <p class="block-body" style="margin-top:24px;">It was designed to make meaning visible before the reward arrives. Instead of asking users to remember why they should come back, the product gives them something to anticipate.</p>
+      </div>
+
+      <!-- ================================================================ -->
+      <!-- EXPERIENCE 02 — SUNDAY LETTER -->
+      <!-- ================================================================ -->
+      <div style="padding:64px 72px 8px;">
+        <div style="font-family:var(--mono);font-size:10px;font-weight:300;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;">Experience 02</div>
+        <div style="font-family:var(--serif);font-size:clamp(26px,3vw,36px);font-weight:500;color:var(--fg);letter-spacing:-0.01em;line-height:1.15;">Sunday Letter</div>
+        <p style="font-family:var(--serif);font-size:17px;font-style:italic;color:var(--mid);line-height:1.6;margin-top:16px;max-width:600px;">Once someone returns, how do we make the reward feel meaningful?</p>
+      </div>
+
+      <!-- Sunday Letter preview -->
+      <div class="content-block">
+        <div style="display:grid;grid-template-columns:1fr 1.8fr;gap:48px;align-items:center;">
+          <div style="display:flex;justify-content:center;">
+            <video autoplay loop muted playsinline style="width:100%;max-width:280px;display:block;border-radius:4px;">
+              <source src="../assets/video/sunday-letter-walkthrough.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <div>
+            <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--dim);margin-bottom:20px;">What you&#8217;re seeing</div>
+            <div style="display:flex;flex-direction:column;gap:1px;background:var(--border);">
+              <div style="display:flex;gap:20px;align-items:flex-start;padding:16px 22px;background:var(--bg);"><div style="font-family:var(--mono);font-size:10px;color:var(--dim);flex-shrink:0;min-width:20px;padding-top:2px;">01</div><div><div style="font-family:var(--serif);font-size:14px;font-weight:500;color:var(--fg);margin-bottom:3px;">Opening Ritual</div><div style="font-family:var(--serif);font-size:13px;color:var(--mid);line-height:1.6;">The envelope appears and unfolds into the week&#8217;s story. A little ceremony before reflection begins.</div></div></div>
+              <div style="display:flex;gap:20px;align-items:flex-start;padding:16px 22px;background:var(--bg);"><div style="font-family:var(--mono);font-size:10px;color:var(--dim);flex-shrink:0;min-width:20px;padding-top:2px;">02</div><div><div style="font-family:var(--serif);font-size:14px;font-weight:500;color:var(--fg);margin-bottom:3px;">Your Week</div><div style="font-family:var(--serif);font-size:13px;color:var(--mid);line-height:1.6;">AI titles the week based on patterns across moments. Curiosity before meaning.</div></div></div>
+              <div style="display:flex;gap:20px;align-items:flex-start;padding:16px 22px;background:var(--bg);"><div style="font-family:var(--mono);font-size:10px;color:var(--dim);flex-shrink:0;min-width:20px;padding-top:2px;">03</div><div><div style="font-family:var(--serif);font-size:14px;font-weight:500;color:var(--fg);margin-bottom:3px;">Setting the Scene</div><div style="font-family:var(--serif);font-size:13px;color:var(--mid);line-height:1.6;">The emotional tone of the week is summarized. Optimistic without forcing significance.</div></div></div>
+              <div style="display:flex;gap:20px;align-items:flex-start;padding:16px 22px;background:var(--bg);"><div style="font-family:var(--mono);font-size:10px;color:var(--dim);flex-shrink:0;min-width:20px;padding-top:2px;">04</div><div><div style="font-family:var(--serif);font-size:14px;font-weight:500;color:var(--fg);margin-bottom:3px;">Moment of the Week</div><div style="font-family:var(--serif);font-size:13px;color:var(--mid);line-height:1.6;">One memory becomes the centerpiece. Quotes and details are surfaced when they matter.</div></div></div>
+              <div style="display:flex;gap:20px;align-items:flex-start;padding:16px 22px;background:var(--bg);"><div style="font-family:var(--mono);font-size:10px;color:var(--dim);flex-shrink:0;min-width:20px;padding-top:2px;">05</div><div><div style="font-family:var(--serif);font-size:14px;font-weight:500;color:var(--fg);margin-bottom:3px;">Putting It Together</div><div style="font-family:var(--serif);font-size:13px;color:var(--mid);line-height:1.6;">The rest of the week is woven into a narrative. The letter ends with closure, not conclusions.</div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 09 — Problem -->
+      <div class="content-block">
+        <div class="block-label">09 &#8212; Problem</div>
+        <h2 class="block-title">Reflection isn&#8217;t automatic.</h2>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:28px;">
+          <div>
+            <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--dim);margin-bottom:18px;">What usually happens</div>
+            <div style="display:flex;flex-direction:column;gap:14px;">
+              <div style="display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:12px;color:var(--dim);"><span>Photos</span><span style="opacity:0.5;">&#8594;</span><span style="font-style:italic;">Archive</span></div>
+              <div style="display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:12px;color:var(--dim);"><span>Journals</span><span style="opacity:0.5;">&#8594;</span><span style="font-style:italic;">Forgotten</span></div>
+              <div style="display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:12px;color:var(--dim);"><span>Memories</span><span style="opacity:0.5;">&#8594;</span><span style="font-style:italic;">Decay</span></div>
+            </div>
+          </div>
+          <div>
+            <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--dim);margin-bottom:18px;">What we know</div>
+            <div style="display:flex;flex-direction:column;gap:14px;">
+              <div style="display:flex;gap:11px;align-items:baseline;"><span style="color:var(--accent);font-family:var(--mono);font-size:10px;">&#9679;</span><span style="font-family:var(--serif);font-size:15px;color:var(--fg);">Memories matter.</span></div>
+              <div style="display:flex;gap:11px;align-items:baseline;"><span style="color:var(--accent);font-family:var(--mono);font-size:10px;">&#9679;</span><span style="font-family:var(--serif);font-size:15px;color:var(--fg);">Revisiting rarely happens.</span></div>
+              <div style="display:flex;gap:11px;align-items:baseline;"><span style="color:var(--accent);font-family:var(--mono);font-size:10px;">&#9679;</span><span style="font-family:var(--serif);font-size:15px;color:var(--fg);">Value arrives later.</span></div>
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:18px;margin-top:32px;padding:20px 26px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;">
+          <div style="font-family:var(--serif);font-size:26px;color:var(--accent);line-height:1;flex-shrink:0;">&ldquo;</div>
+          <p style="font-family:var(--serif);font-size:15px;font-style:italic;color:var(--fg);line-height:1.5;">Memories don&#8217;t become meaningful because they&#8217;re stored. They become meaningful when they&#8217;re revisited.</p>
+        </div>
+      </div>
+
+      <!-- 10 — Opening Ritual -->
+      <div class="content-block">
+        <div class="block-label">10 &#8212; Opening Ritual</div>
+        <h2 class="block-title">The goal wasn&#8217;t efficiency. It was ceremony.</h2>
+        <p class="block-body" style="margin-top:16px;margin-bottom:8px;max-width:600px;">Opening the letter should feel like opening mail &#8212; not loading a screen.</p>
+        <div style="display:flex;gap:0;align-items:stretch;margin-top:32px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:4px;">
+          <div style="width:152px;flex-shrink:0;border:1px solid var(--border);border-radius:8px;padding:18px 16px;background:var(--bg2);">
+            <svg viewBox="0 0 32 32" width="26" height="26" style="margin-bottom:12px;"><circle cx="16" cy="16" r="11" style="fill:none;stroke:var(--fg);stroke-width:1.5;" /><line x1="16" y1="16" x2="16" y2="9" style="stroke:var(--fg);stroke-width:1.5;stroke-linecap:round;" /><line x1="16" y1="16" x2="21" y2="18" style="stroke:var(--fg);stroke-width:1.5;stroke-linecap:round;" /></svg>
+            <div style="font-family:var(--serif);font-size:13.5px;font-weight:500;color:var(--fg);margin-bottom:6px;">Countdown Ends</div>
+            <div style="font-family:var(--serif);font-size:12px;color:var(--mid);line-height:1.5;">The card that waited all week is finally tappable.</div>
+          </div>
+          <div style="flex-shrink:0;display:flex;align-items:center;padding:0 10px;color:var(--dim);font-size:12px;">&#8594;</div>
+          <div style="width:152px;flex-shrink:0;border:1px solid var(--border);border-radius:8px;padding:18px 16px;background:var(--bg2);">
+            <svg viewBox="0 0 32 32" width="26" height="26" style="margin-bottom:12px;"><rect x="5" y="9" width="22" height="15" rx="1.5" style="fill:none;stroke:var(--fg);stroke-width:1.5;" /><path d="M6 10 L16 18 L26 10" style="fill:none;stroke:var(--fg);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;" /></svg>
+            <div style="font-family:var(--serif);font-size:13.5px;font-weight:500;color:var(--fg);margin-bottom:6px;">Envelope Appears</div>
+            <div style="font-family:var(--serif);font-size:12px;color:var(--mid);line-height:1.5;">A physical metaphor, not a loading state.</div>
+          </div>
+          <div style="flex-shrink:0;display:flex;align-items:center;padding:0 10px;color:var(--dim);font-size:12px;">&#8594;</div>
+          <div style="width:152px;flex-shrink:0;border:1px solid var(--border);border-radius:8px;padding:18px 16px;background:var(--bg2);">
+            <svg viewBox="0 0 32 32" width="26" height="26" style="margin-bottom:12px;"><rect x="5" y="13" width="22" height="11" rx="1.5" style="fill:none;stroke:var(--fg);stroke-width:1.5;" /><path d="M5 14 L16 7 L27 14" style="fill:none;stroke:var(--accent);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;" /></svg>
+            <div style="font-family:var(--serif);font-size:13.5px;font-weight:500;color:var(--fg);margin-bottom:6px;">Envelope Animation</div>
+            <div style="font-family:var(--serif);font-size:12px;color:var(--mid);line-height:1.5;">Long enough to register, short enough to never feel slow.</div>
+          </div>
+          <div style="flex-shrink:0;display:flex;align-items:center;padding:0 10px;color:var(--dim);font-size:12px;">&#8594;</div>
+          <div style="width:152px;flex-shrink:0;border:1px solid var(--border);border-radius:8px;padding:18px 16px;background:var(--bg2);">
+            <svg viewBox="0 0 32 32" width="26" height="26" style="margin-bottom:12px;"><rect x="7" y="5" width="18" height="22" rx="1" style="fill:none;stroke:var(--fg);stroke-width:1.5;" /><line x1="7" y1="13" x2="25" y2="13" style="stroke:var(--border);stroke-width:1.5;" /><line x1="7" y1="20" x2="25" y2="20" style="stroke:var(--border);stroke-width:1.5;" /></svg>
+            <div style="font-family:var(--serif);font-size:13.5px;font-weight:500;color:var(--fg);margin-bottom:6px;">Letter Unfolds</div>
+            <div style="font-family:var(--serif);font-size:12px;color:var(--mid);line-height:1.5;">The way a real letter would &#8212; not all at once.</div>
+          </div>
+          <div style="flex-shrink:0;display:flex;align-items:center;padding:0 10px;color:var(--dim);font-size:12px;">&#8594;</div>
+          <div style="width:152px;flex-shrink:0;border:1px solid var(--accent);border-radius:8px;padding:18px 16px;background:rgba(196,168,130,0.1);">
+            <svg viewBox="0 0 32 32" width="26" height="26" style="margin-bottom:12px;"><path d="M4 8 Q4 7 5 7 L15 9 L15 25 L5 23 Q4 23 4 22 Z" style="fill:none;stroke:var(--fg);stroke-width:1.5;stroke-linejoin:round;" /><path d="M28 8 Q28 7 27 7 L17 9 L17 25 L27 23 Q28 23 28 22 Z" style="fill:none;stroke:var(--fg);stroke-width:1.5;stroke-linejoin:round;" /></svg>
+            <div style="font-family:var(--serif);font-size:13.5px;font-weight:500;color:var(--fg);margin-bottom:6px;">Reading Begins</div>
+            <div style="font-family:var(--serif);font-size:12px;color:var(--mid);line-height:1.5;">A sequence to move through, not a feed to scroll past.</div>
+          </div>
+        </div>
+        <p class="block-body" style="margin-top:24px;">Friction wasn&#8217;t removed here. Tiny moments of slowness were preserved on purpose &#8212; rituals are remembered, instant content isn&#8217;t.</p>
+      </div>
+
+      <!-- 11 — Letter Architecture -->
+      <div class="content-block">
+        <div class="block-label">11 &#8212; Letter Architecture</div>
+        <h2 class="block-title">Five pages. Each one earns the next.</h2>
+        <p class="block-body" style="margin-top:16px;margin-bottom:8px;">Information architecture, not layout &#8212; what each page is for, what it&#8217;s trying to make the reader feel, and what it&#8217;s built from.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:24px;">
+          <div style="border:1px solid var(--border);border-radius:8px;padding:20px 22px;background:var(--bg);">
+            <div style="font-family:var(--mono);font-size:9px;color:var(--dim);margin-bottom:4px;">PAGE 01</div>
+            <div style="font-family:var(--serif);font-size:16px;font-weight:500;color:var(--fg);margin-bottom:14px;">Your Week</div>
+            <div style="display:flex;flex-direction:column;gap:7px;">
+              <div><span style="font-family:var(--mono);font-size:9px;color:var(--dim);text-transform:uppercase;">Purpose &#8212; </span><span style="font-family:var(--serif);font-size:12.5px;color:var(--mid);">Set tone.</span></div>
+              <div><span style="font-family:var(--mono);font-size:9px;color:var(--dim);text-transform:uppercase;">Goal &#8212; </span><span style="font-family:var(--serif);font-size:12.5px;color:var(--mid);">Curiosity.</span></div>
+              <div><span style="font-family:var(--mono);font-size:9px;color:var(--dim);text-transform:uppercase;">Input &#8212; </span><span style="font-family:var(--serif);font-size:12.5px;color:var(--mid);">Weekly moments.</span></div>
+            </div>
+          </div>
+          <div style="border:1px solid var(--border);border-radius:8px;padding:20px 22px;background:var(--bg);">
+            <div style="font-family:var(--mono);font-size:9px;color:var(--dim);margin-bottom:4px;">PAGE 02</div>
+            <div style="font-family:var(--serif);font-size:16px;font-weight:500;color:var(--fg);margin-bottom:14px;">Setting the Scene</div>
+            <div style="display:flex;flex-direction:column;gap:7px;">
+              <div><span style="font-family:var(--mono);font-size:9px;color:var(--dim);text-transform:uppercase;">Purpose &#8212; </span><span style="font-family:var(--serif);font-size:12.5px;color:var(--mid);">Summarize the energy.</span></div>
+              <div><span style="font-family:var(--mono);font-size:9px;color:var(--dim);text-transform:uppercase;">Goal &#8212; </span><span style="font-family:var(--serif);font-size:12.5px;color:var(--mid);">Recognition.</span></div>
+              <div><span style="font-family:var(--mono);font-size:9px;color:var(--dim);text-transform:uppercase;">Input &#8212; </span><span style="font-family:var(--serif);font-size:12.5px;color:var(--mid);">Moment context, tone.</span></div>
+            </div>
+          </div>
+          <div style="border:1px solid var(--border);border-radius:8px;padding:20px 22px;background:var(--bg);">
+            <div style="font-family:var(--mono);font-size:9px;color:var(--dim);margin-bottom:4px;">PAGE 03</div>
+            <div style="font-family:var(--serif);font-size:16px;font-weight:500;color:var(--fg);margin-bottom:14px;">Moment of the Week</div>
+            <div style="display:flex;flex-direction:column;gap:7px;">
+              <div><span style="font-family:var(--mono);font-size:9px;color:var(--dim);text-transform:uppercase;">Purpose &#8212; </span><span style="font-family:var(--serif);font-size:12.5px;color:var(--mid);">Create a centerpiece.</span></div>
+              <div><span style="font-family:var(--mono);font-size:9px;color:var(--dim);text-transform:uppercase;">Goal &#8212; </span><span style="font-family:var(--serif);font-size:12.5px;color:var(--mid);">Nostalgia.</span></div>
+              <div><span style="font-family:var(--mono);font-size:9px;color:var(--dim);text-transform:uppercase;">Input &#8212; </span><span style="font-family:var(--serif);font-size:12.5px;color:var(--mid);">Hero image, quotes.</span></div>
+            </div>
+          </div>
+          <div style="border:1px solid var(--border);border-radius:8px;padding:20px 22px;background:var(--bg);">
+            <div style="font-family:var(--mono);font-size:9px;color:var(--dim);margin-bottom:4px;">PAGE 04</div>
+            <div style="font-family:var(--serif);font-size:16px;font-weight:500;color:var(--fg);margin-bottom:14px;">Putting It Together</div>
+            <div style="display:flex;flex-direction:column;gap:7px;">
+              <div><span style="font-family:var(--mono);font-size:9px;color:var(--dim);text-transform:uppercase;">Purpose &#8212; </span><span style="font-family:var(--serif);font-size:12.5px;color:var(--mid);">Connect moments.</span></div>
+              <div><span style="font-family:var(--mono);font-size:9px;color:var(--dim);text-transform:uppercase;">Goal &#8212; </span><span style="font-family:var(--serif);font-size:12.5px;color:var(--mid);">Meaning.</span></div>
+              <div><span style="font-family:var(--mono);font-size:9px;color:var(--dim);text-transform:uppercase;">Input &#8212; </span><span style="font-family:var(--serif);font-size:12.5px;color:var(--mid);">Entire week.</span></div>
+            </div>
+          </div>
+          <div style="border:1px solid var(--accent);border-radius:8px;padding:20px 22px;background:rgba(196,168,130,0.1);">
+            <div style="font-family:var(--mono);font-size:9px;color:var(--accent);margin-bottom:4px;">PAGE 05</div>
+            <div style="font-family:var(--serif);font-size:16px;font-weight:500;color:var(--fg);margin-bottom:14px;">Signing Off</div>
+            <div style="display:flex;flex-direction:column;gap:7px;">
+              <div><span style="font-family:var(--mono);font-size:9px;color:var(--dim);text-transform:uppercase;">Purpose &#8212; </span><span style="font-family:var(--serif);font-size:12.5px;color:var(--mid);">Closure.</span></div>
+              <div><span style="font-family:var(--mono);font-size:9px;color:var(--dim);text-transform:uppercase;">Goal &#8212; </span><span style="font-family:var(--serif);font-size:12.5px;color:var(--mid);">Warmth.</span></div>
+              <div><span style="font-family:var(--mono);font-size:9px;color:var(--dim);text-transform:uppercase;">Input &#8212; </span><span style="font-family:var(--serif);font-size:12.5px;color:var(--mid);">Overall narrative.</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 12 — AI Synthesis System -->
+      <div class="content-block">
+        <div class="block-label">12 &#8212; AI Synthesis System</div>
+        <h2 class="block-title">Orchestration, not generation.</h2>
+        <p class="block-body" style="margin-top:16px;margin-bottom:32px;max-width:600px;">Five pages of the Sunday Letter are assembled from a fixed pipeline &#8212; not a single prompt asked to improvise.</p>
+        <div style="display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:16px;align-items:start;">
+          <div style="border:1px solid var(--border);border-radius:8px;padding:18px;background:var(--bg2);">
+            <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--dim);margin-bottom:14px;">Input</div>
+            <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:10px;">
+              <div style="font-family:var(--mono);font-size:11px;color:var(--fg);background:var(--bg);border:1px solid var(--border);border-radius:5px;padding:8px 10px;text-align:center;">Weekly Moments</div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--fg);background:var(--bg);border:1px solid var(--border);border-radius:5px;padding:8px 10px;text-align:center;">Photo Analysis</div>
+            </div>
+            <div style="display:flex;gap:5px;flex-wrap:wrap;">
+              <span style="font-family:var(--mono);font-size:9px;color:var(--mid);border:1px solid var(--border);border-radius:12px;padding:3px 8px;">Tags</span>
+              <span style="font-family:var(--mono);font-size:9px;color:var(--mid);border:1px solid var(--border);border-radius:12px;padding:3px 8px;">People</span>
+              <span style="font-family:var(--mono);font-size:9px;color:var(--mid);border:1px solid var(--border);border-radius:12px;padding:3px 8px;">Feelings</span>
+              <span style="font-family:var(--mono);font-size:9px;color:var(--mid);border:1px solid var(--border);border-radius:12px;padding:3px 8px;">Activities</span>
+              <span style="font-family:var(--mono);font-size:9px;color:var(--mid);border:1px solid var(--border);border-radius:12px;padding:3px 8px;">Captions</span>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;height:100%;color:var(--dim);font-size:15px;padding-top:60px;">&#8594;</div>
+          <div style="border:1px solid var(--border);border-radius:8px;padding:18px;background:var(--bg2);">
+            <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--dim);margin-bottom:14px;">Orchestration</div>
+            <div style="display:flex;flex-direction:column;gap:6px;">
+              <div style="font-family:var(--mono);font-size:11px;color:var(--fg);background:var(--bg);border:1px solid var(--border);border-radius:5px;padding:8px 10px;text-align:center;">Context Assembly</div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--fg);background:var(--bg);border:1px solid var(--border);border-radius:5px;padding:8px 10px;text-align:center;">Prompt Structure</div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--fg);background:var(--bg);border:1px solid var(--border);border-radius:5px;padding:8px 10px;text-align:center;">Tone Selection</div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--fg);background:var(--bg);border:1px solid var(--border);border-radius:5px;padding:8px 10px;text-align:center;">Narrative Assembly</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;height:100%;color:var(--dim);font-size:15px;padding-top:60px;">&#8594;</div>
+          <div style="border:1px solid var(--accent);border-radius:8px;padding:18px;background:rgba(196,168,130,0.1);">
+            <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;">Output</div>
+            <div style="font-family:var(--mono);font-size:11px;font-weight:500;color:var(--bg);background:var(--accent);border-radius:5px;padding:9px 10px;text-align:center;margin-bottom:10px;">Five-Page Letter</div>
+            <div style="display:flex;gap:5px;flex-wrap:wrap;">
+              <span style="font-family:var(--mono);font-size:9px;color:var(--mid);border:1px solid var(--border);border-radius:12px;padding:3px 8px;">Funny</span>
+              <span style="font-family:var(--mono);font-size:9px;color:var(--mid);border:1px solid var(--border);border-radius:12px;padding:3px 8px;">Serious</span>
+              <span style="font-family:var(--mono);font-size:9px;color:var(--mid);border:1px solid var(--border);border-radius:12px;padding:3px 8px;">Quiet</span>
+              <span style="font-family:var(--mono);font-size:9px;color:var(--mid);border:1px solid var(--border);border-radius:12px;padding:3px 8px;">Celebratory</span>
+            </div>
+          </div>
+        </div>
+        <p class="block-body" style="margin-top:28px;margin-bottom:20px;">AI doesn&#8217;t invent meaning here. It synthesizes existing context &#8212; the system adapts tone instead of manufacturing depth.</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+          <div style="border:1px solid var(--border);border-radius:8px;padding:22px 24px;background:var(--bg);">
+            <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:#C4826A;margin-bottom:10px;">Funny week &#8212; playful tone</div>
+            <div style="font-family:var(--serif);font-style:italic;font-size:14px;color:var(--fg);margin-bottom:8px;">&ldquo;Surviving Group Project Hell&rdquo;</div>
+            <div style="font-family:var(--serif);font-size:12.5px;color:var(--mid);line-height:1.6;">This week had main character energy &#8212; three deadlines, one all-nighter, and a group chat that never slept.</div>
+          </div>
+          <div style="border:1px solid var(--border);border-radius:8px;padding:22px 24px;background:var(--bg);">
+            <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;">Serious week &#8212; reflective tone</div>
+            <div style="font-family:var(--serif);font-style:italic;font-size:14px;color:var(--fg);margin-bottom:8px;">&ldquo;The Week That Asked for Patience&rdquo;</div>
+            <div style="font-family:var(--serif);font-size:12.5px;color:var(--mid);line-height:1.6;">This week moved slower than usual &#8212; long pauses, harder conversations. Nothing was urgent. Everything still mattered.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 13 — Personalization -->
+      <div class="content-block">
+        <div class="block-label">13 &#8212; Personalization</div>
+        <h2 class="block-title">No two letters should feel identical.</h2>
+        <p class="block-body" style="margin-top:16px;margin-bottom:32px;max-width:600px;">The same six inputs shape six different decisions in how the letter gets written.</p>
+        <div style="display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:18px;align-items:center;">
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--dim);margin-bottom:4px;text-align:center;">Inputs</div>
+            <span style="font-family:var(--serif);font-size:12.5px;color:var(--mid);background:var(--bg2);border:1px solid var(--border);border-radius:5px;padding:7px 10px;text-align:center;">Photo</span>
+            <span style="font-family:var(--serif);font-size:12.5px;color:var(--mid);background:var(--bg2);border:1px solid var(--border);border-radius:5px;padding:7px 10px;text-align:center;">Caption</span>
+            <span style="font-family:var(--serif);font-size:12.5px;color:var(--mid);background:var(--bg2);border:1px solid var(--border);border-radius:5px;padding:7px 10px;text-align:center;">People</span>
+            <span style="font-family:var(--serif);font-size:12.5px;color:var(--mid);background:var(--bg2);border:1px solid var(--border);border-radius:5px;padding:7px 10px;text-align:center;">Activities</span>
+            <span style="font-family:var(--serif);font-size:12.5px;color:var(--mid);background:var(--bg2);border:1px solid var(--border);border-radius:5px;padding:7px 10px;text-align:center;">Emotions</span>
+            <span style="font-family:var(--serif);font-size:12.5px;color:var(--mid);background:var(--bg2);border:1px solid var(--border);border-radius:5px;padding:7px 10px;text-align:center;">Intensity</span>
+          </div>
+          <div style="color:var(--dim);font-size:16px;text-align:center;">&#8594;</div>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--dim);margin-bottom:4px;text-align:center;">Influences</div>
+            <span style="font-family:var(--serif);font-size:12.5px;color:var(--mid);background:var(--bg2);border:1px solid var(--border);border-radius:5px;padding:7px 10px;text-align:center;">Title</span>
+            <span style="font-family:var(--serif);font-size:12.5px;color:var(--mid);background:var(--bg2);border:1px solid var(--border);border-radius:5px;padding:7px 10px;text-align:center;">Writing style</span>
+            <span style="font-family:var(--serif);font-size:12.5px;color:var(--mid);background:var(--bg2);border:1px solid var(--border);border-radius:5px;padding:7px 10px;text-align:center;">Hero moment</span>
+            <span style="font-family:var(--serif);font-size:12.5px;color:var(--mid);background:var(--bg2);border:1px solid var(--border);border-radius:5px;padding:7px 10px;text-align:center;">Quotes</span>
+            <span style="font-family:var(--serif);font-size:12.5px;color:var(--mid);background:var(--bg2);border:1px solid var(--border);border-radius:5px;padding:7px 10px;text-align:center;">Order</span>
+            <span style="font-family:var(--serif);font-size:12.5px;color:var(--mid);background:var(--bg2);border:1px solid var(--border);border-radius:5px;padding:7px 10px;text-align:center;">Tone</span>
+          </div>
+          <div style="color:var(--dim);font-size:16px;text-align:center;">&#8594;</div>
+          <div style="display:flex;align-items:center;justify-content:center;height:100%;">
+            <div style="font-family:var(--mono);font-size:12px;font-weight:500;color:var(--bg);background:var(--accent);border-radius:6px;padding:18px 16px;text-align:center;line-height:1.4;">Unique<br>Sunday Letter</div>
+          </div>
+        </div>
+        <div style="margin-top:40px;">
+          <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--dim);margin-bottom:14px;">Five weeks, five different letters</div>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;">
+            <span style="font-family:var(--serif);font-style:italic;font-size:13px;color:var(--fg);background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:8px 16px;">&ldquo;Destroying Midterms&rdquo;</span>
+            <span style="font-family:var(--serif);font-style:italic;font-size:13px;color:var(--fg);background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:8px 16px;">&ldquo;Comfort in Tennis&rdquo;</span>
+            <span style="font-family:var(--serif);font-style:italic;font-size:13px;color:var(--fg);background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:8px 16px;">&ldquo;The Week I Needed&rdquo;</span>
+            <span style="font-family:var(--serif);font-style:italic;font-size:13px;color:var(--fg);background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:8px 16px;">&ldquo;Small Wins&rdquo;</span>
+            <span style="font-family:var(--serif);font-style:italic;font-size:13px;color:var(--fg);background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:8px 16px;">&ldquo;The Long Weekend&rdquo;</span>
+          </div>
+        </div>
+        <p class="block-body" style="margin-top:24px;">The goal isn&#8217;t perfect accuracy. It&#8217;s recognition &#8212; the reader thinking &#8220;this sounds like my week,&#8221; not auditing it for facts.</p>
+      </div>
+
+      <!-- 14 — Design Evolution -->
+      <div class="content-block">
+        <div class="block-label">14 &#8212; Design Evolution</div>
+        <h2 class="block-title">Finding the right medium.</h2>
+        <p class="block-body" style="margin-top:16px;margin-bottom:28px;">Three explorations, each closer to the final feeling than the last.</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1.6fr;gap:18px;align-items:start;">
+          <div>
+            <div style="border-radius:6px;overflow:hidden;border:1px solid var(--border);margin-bottom:10px;">
+              <img src="../assets/images/sunday-letter-lofi-01-scroll-concept-v1.png" alt="V1 — single page, one continuous scroll" style="width:100%;display:block;" />
+            </div>
+            <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--dim);margin-bottom:4px;">V1 &#8212; Single Page</div>
+            <div style="font-family:var(--serif);font-size:12px;color:var(--mid);line-height:1.5;">One long scroll. Everything on a single page.</div>
+          </div>
+          <div>
+            <div style="border-radius:6px;overflow:hidden;border:1px solid var(--border);margin-bottom:10px;">
+              <img src="../assets/images/sunday-letter-lofi-02-scroll-concept-v2.png" alt="V2 — single page, refined inside a phone frame" style="width:100%;display:block;" />
+            </div>
+            <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--dim);margin-bottom:4px;">V2 &#8212; Refined</div>
+            <div style="font-family:var(--serif);font-size:12px;color:var(--mid);line-height:1.5;">Same scroll idea, tightened inside a real frame.</div>
+          </div>
+          <div>
+            <div style="border-radius:6px;overflow:hidden;border:1px solid var(--accent);margin-bottom:10px;">
+              <img src="../assets/images/sunday-letter-lofi-03-final-paginated.png" alt="V3 — letter system, final paginated direction, won" style="width:100%;display:block;" />
+            </div>
+            <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:4px;">V3 &#8212; Letter System &#8212; Won</div>
+            <div style="font-family:var(--serif);font-size:12px;color:var(--mid);line-height:1.5;">Broken into discrete pages with Back/Continue &#8212; a sequence to move through, not a feed to scroll past.</div>
+          </div>
+        </div>
+        <div style="margin-top:28px;padding:28px 32px;background:var(--bg2);border:1px solid var(--border);border-radius:6px;">
+          <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--dim);margin-bottom:16px;">Why It Won</div>
+          <ul style="font-family:var(--serif);font-size:14px;color:var(--mid);line-height:1.8;margin:0;padding-left:18px;">
+            <li>Books, newspapers, and handwritten letters inspired the final direction.</li>
+            <li>Large typography and dividers created rhythm and breathing room.</li>
+            <li>Pink and deep purple were chosen intentionally to evoke warmth and calm.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 15 — Final Screens -->
+      <div class="content-block" style="padding-right:0;overflow:hidden;">
+        <div style="padding-right:64px;">
+          <div class="block-label">15 &#8212; Final Screens</div>
+          <h2 class="block-title">Five pages, read in order.</h2>
+          <p class="block-body" style="margin-top:16px;max-width:560px;">Editorial spreads, not dashboard screens &#8212; meant to be read, not scanned.</p>
+        </div>
+        <div style="margin-top:48px;overflow-x:auto;overflow-y:visible;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:8px;">
+          <div style="display:flex;gap:40px;padding:0 64px;width:max-content;align-items:flex-start;">
+            <div style="width:230px;flex-shrink:0;">
+              <div style="border-radius:28px;overflow:hidden;border:1px solid var(--border);box-shadow:0 16px 44px rgba(26,24,20,0.12);margin-bottom:16px;">
+                <img src="../assets/images/sunday-letter-final-01-your-week.png" alt="Sunday Letter — Your Week, cover page" style="width:100%;display:block;" />
+              </div>
+              <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--dim);margin-bottom:6px;">Page 01 &#8212; Your Week</div>
+              <p style="font-family:var(--serif);font-size:13px;color:var(--mid);line-height:1.7;">AI titles the week and establishes tone.</p>
+            </div>
+            <div style="width:230px;flex-shrink:0;">
+              <div style="border-radius:28px;overflow:hidden;border:1px solid var(--border);box-shadow:0 16px 44px rgba(26,24,20,0.12);margin-bottom:16px;">
+                <img src="../assets/images/sunday-letter-final-02-setting-the-scene.png" alt="Sunday Letter — Setting the Scene" style="width:100%;display:block;" />
+              </div>
+              <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--dim);margin-bottom:6px;">Page 02 &#8212; Setting the Scene</div>
+              <p style="font-family:var(--serif);font-size:13px;color:var(--mid);line-height:1.7;">Summarizes the emotional energy of the week.</p>
+            </div>
+            <div style="width:230px;flex-shrink:0;">
+              <div style="border-radius:28px;overflow:hidden;border:1px solid var(--border);box-shadow:0 16px 44px rgba(26,24,20,0.12);margin-bottom:16px;">
+                <img src="../assets/images/sunday-letter-final-03-moment-of-the-week.png" alt="Sunday Letter — Moment of the Week" style="width:100%;display:block;" />
+              </div>
+              <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--dim);margin-bottom:6px;">Page 03 &#8212; Moment of the Week</div>
+              <p style="font-family:var(--serif);font-size:13px;color:var(--mid);line-height:1.7;">The hero memory becomes the center of the story. A quote surfaces if one exists.</p>
+            </div>
+            <div style="width:230px;flex-shrink:0;">
+              <div style="border-radius:28px;overflow:hidden;border:1px solid var(--border);box-shadow:0 16px 44px rgba(26,24,20,0.12);margin-bottom:16px;">
+                <img src="../assets/images/sunday-letter-final-04-putting-it-together.png" alt="Sunday Letter — Putting It Together" style="width:100%;display:block;" />
+              </div>
+              <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--dim);margin-bottom:6px;">Page 04 &#8212; Putting It Together</div>
+              <p style="font-family:var(--serif);font-size:13px;color:var(--mid);line-height:1.7;">Smaller moments become a narrative.</p>
+            </div>
+            <div style="width:230px;flex-shrink:0;">
+              <div style="border-radius:28px;overflow:hidden;border:1px solid var(--accent);box-shadow:0 16px 44px rgba(26,24,20,0.12);margin-bottom:16px;">
+                <img src="../assets/images/sunday-letter-final-05-signing-off.png" alt="Sunday Letter — Signing Off" style="width:100%;display:block;" />
+              </div>
+              <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;">Page 05 &#8212; Signing Off</div>
+              <p style="font-family:var(--serif);font-size:13px;color:var(--mid);line-height:1.7;">Provides closure rather than conclusions.</p>
+            </div>
+            <div style="width:40px;flex-shrink:0;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 16 — What This Changed -->
+      <div class="content-block">
+        <div class="block-label">16 &#8212; What This Changed</div>
+        <h2 class="block-title" style="max-width:560px;">Designing meaning taught me more than designing AI.</h2>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--border);margin-top:28px;">
+          <div style="background:var(--bg);padding:26px 24px;">
+            <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:#C4826A;margin-bottom:10px;">Before</div>
+            <div style="font-family:var(--serif);font-size:14.5px;color:var(--mid);line-height:1.6;">I thought AI quality mattered most.</div>
+          </div>
+          <div style="background:var(--bg);padding:26px 24px;">
+            <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--dim);margin-bottom:10px;">After</div>
+            <div style="font-family:var(--serif);font-size:14.5px;color:var(--mid);line-height:1.6;">Structure mattered more than generation.</div>
+          </div>
+          <div style="background:var(--bg);padding:26px 24px;">
+            <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;">Realization</div>
+            <div style="font-family:var(--serif);font-size:14.5px;color:var(--fg);line-height:1.6;">People don&#8217;t remember outputs. They remember rituals.</div>
+          </div>
+        </div>
+        <div style="text-align:center;margin-top:64px;padding:0 20px;">
+          <p style="font-family:var(--serif);font-size:clamp(22px,2.6vw,32px);font-style:italic;color:var(--fg);line-height:1.5;max-width:620px;margin:0 auto;">The most meaningful products don&#8217;t create memories.<br>They create reasons to revisit them.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- MODULE 1: ROAD TO MVP -->
+    <div class="module-pane" id="pane-onboarding">
+
+      <div class="mod-hero">
+        <p class="mod-hero-eyebrow">Module 01</p>
+        <h1 class="mod-hero-title">Road to MVP</h1>
+        <p class="mod-hero-sub">Building a product meant designing more than screens.</p>
+        <div class="mod-hero-tags">
+          <span class="mod-tag">Business Thinking</span>
+          <span class="mod-tag">Execution</span>
+          <span class="mod-tag">Validation</span>
+          <span class="mod-tag">Product Evolution</span>
+        </div>
+      </div>
+
+      <!-- 01 — Timeline -->
+      <div class="content-block">
+        <div class="block-label">01 &#8212; Timeline</div>
+        <h2 class="block-title">From an idea between friends to a shipped product.</h2>
+        <p class="block-body" style="margin-top:16px;max-width:640px;">Recallia started on May 1, 2025. Five months later, Joshua Jenkins and I launched on the App Store.</p>
+        <div class="mvp-timeline">
+          <div class="mvp-timeline-track"></div>
+          <div class="mvp-timeline-item">
+            <div class="mvp-timeline-dot"></div>
+            <div class="mvp-timeline-date">May 1, 2025</div>
+            <div class="mvp-timeline-title">Beginning</div>
+            <div class="mvp-timeline-desc">Joshua Jenkins and I started Recallia after realizing we wanted a more spontaneous way to capture and reflect on life.</div>
+          </div>
+          <div class="mvp-timeline-item">
+            <div class="mvp-timeline-dot"></div>
+            <div class="mvp-timeline-date">June 2025</div>
+            <div class="mvp-timeline-title">Early Prototypes</div>
+            <div class="mvp-timeline-desc">Built and tested multiple versions centered around moments, reflection, and lightweight journaling.</div>
+          </div>
+          <div class="mvp-timeline-item">
+            <div class="mvp-timeline-dot"></div>
+            <div class="mvp-timeline-date">July 2025</div>
+            <div class="mvp-timeline-title">User Conversations</div>
+            <div class="mvp-timeline-desc">Shared concepts with friends and people of different ages. Strong initial validation, but low retention revealed deeper problems.</div>
+          </div>
+          <div class="mvp-timeline-item">
+            <div class="mvp-timeline-dot"></div>
+            <div class="mvp-timeline-date">August 2025</div>
+            <div class="mvp-timeline-title">First Pivot</div>
+            <div class="mvp-timeline-desc">Realized features weren&#8217;t the problem. Human behavior was.</div>
+          </div>
+          <div class="mvp-timeline-item">
+            <div class="mvp-timeline-dot"></div>
+            <div class="mvp-timeline-date">September 2025</div>
+            <div class="mvp-timeline-title">Sunday Reveal System</div>
+            <div class="mvp-timeline-desc">Designed the gamified weekly loop that connected capturing moments with reflection.</div>
+          </div>
+          <div class="mvp-timeline-item is-launch">
+            <div class="mvp-timeline-dot"></div>
+            <div class="mvp-timeline-date">October 22, 2025</div>
+            <div class="mvp-timeline-title">App Store Launch</div>
+            <div class="mvp-timeline-desc">Shipped Recallia to iOS.</div>
+            <div class="mvp-timeline-stats">
+              <span>~100 USERS</span>
+              <span>MULTIPLE ITERATIONS</span>
+              <span>STILL LEARNING</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 02 — Why Build Recallia -->
+      <div class="content-block">
+        <div class="block-label">02 &#8212; Why Build Recallia</div>
+        <h2 class="block-title">People wanted to remember more. Journaling made that feel like work.</h2>
+        <p class="block-body" style="margin-top:20px;">Recallia started with a simple observation: people want to remember their lives more intentionally, but the tools for doing that feel like homework. Journaling asks for a discipline most people don&#8217;t have on a given Tuesday night. Photos pile up by the thousands and get revisited by almost no one.</p>
+        <p class="block-body" style="margin-top:18px;">Charlie Wang and Joshua Jenkins had been friends for over a decade &#8212; through Berkeley, USC, and the years between &#8212; before either of them thought of Recallia as more than a shared curiosity. Started in May 2025, it began less as a startup idea and more as a question two friends kept circling back to: why does something almost everyone says they value get abandoned so easily?</p>
+        <p class="block-body" style="margin-top:18px;">The early hypothesis was narrow on purpose. If capturing a moment could happen in the same instant someone was already taking a photo, reflection might not need its own habit &#8212; just a lower bar to clear.</p>
+        <div style="margin-top:28px;padding:28px 32px;background:rgba(26,24,20,0.04);border-left:3px solid var(--fg);border-radius:0 4px 4px 0;">
+          <div style="margin-bottom:20px;">
+            <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--dim);margin-bottom:8px;">Mission</div>
+            <p style="font-family:var(--serif);font-size:15px;color:var(--fg);line-height:1.7;">Recallia helps people capture and reflect on moments in a way that&#8217;s effortless, fun, and rewarding.</p>
+          </div>
+          <div>
+            <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--dim);margin-bottom:8px;">Vision</div>
+            <p style="font-family:var(--serif);font-size:15px;color:var(--fg);line-height:1.7;">Recallia envisions a world where everyday moments, big or small, are captured so people never forget the feelings, insights, and experiences that shape who they are.</p>
+          </div>
+        </div>
+        <p class="block-body" style="margin-top:24px;">Neither was a guarantee. Both were a direction worth testing.</p>
+      </div>
+
+      <!-- 02 — Early Experiments -->
+      <div class="content-block">
+        <div class="block-label">03 &#8212; Early Experiments</div>
+        <h2 class="block-title">What people say and what people do are different signals.</h2>
+        <p class="block-body" style="margin-top:20px;">The first version of Recallia was built on one assumption: if capturing a moment was easy enough, people would do it. Reduce the friction, and the habit takes care of itself.</p>
+        <p class="block-body" style="margin-top:18px;">In conversations, that assumption held up well. People nodded. People said they wanted exactly this &#8212; a way to hold onto the small stuff before it disappeared. It was easy to mistake that enthusiasm for validation.</p>
+        <p class="block-body" style="margin-top:18px;">Behavior said something else. Users downloaded the app, created a handful of moments in the first sitting, and quietly stopped. Not because anything broke &#8212; because nothing was pulling them back. What people say in an interview and what they actually do a week later turned out not to be the same signal, and the gap between them was where the real product question lived.</p>
+        <p class="block-body" style="margin-top:18px;">A few problems surfaced once we looked past the interviews: Recallia was hard to explain in one sentence, it didn&#8217;t sit cleanly in a category people already understood, and there was no mechanism creating a habit &#8212; capture depended entirely on a user&#8217;s own discipline, in a category already crowded with apps asking for exactly that.</p>
+      </div>
+
+      <!-- 03 — Events & User Feedback -->
+      <div class="content-block">
+        <div class="block-label">04 &#8212; Events &amp; User Feedback</div>
+        <h2 class="block-title">We stopped explaining Recallia and started watching people use it.</h2>
+        <div class="featured-photo" style="border-radius:8px;overflow:hidden;border:1px solid var(--border);box-shadow:0 16px 40px rgba(26,24,20,0.12);">
+          <img src="../assets/images/mvp-spotlight-booth-josh-charlie.jpg" alt="Charlie and Joshua at the Recallia booth, Spotlight Card Show" style="width:100%;display:block;" />
+        </div>
+        <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--dim);text-align:center;">At the booth &#8212; Spotlight Card Show</div>
+        <p class="block-body" style="margin-top:36px;max-width:640px;">No download, no account &#8212; just a QR code and thirty seconds with a stranger. We said as little as possible going in. We cared more about what someone&#8217;s face did than what they told us afterward.</p>
+        <div style="margin-top:32px;">
+          <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--dim);margin-bottom:14px;">What we heard &#8212; unprompted, in the moment</div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;">
+            <div style="background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:18px 20px;transform:rotate(-1.2deg);box-shadow:0 6px 16px rgba(26,24,20,0.06);"><p style="font-family:var(--serif);font-style:italic;font-size:14px;color:var(--fg);line-height:1.5;margin:0;">&ldquo;This is cute.&rdquo;</p></div>
+            <div style="background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:18px 20px;transform:rotate(1deg);box-shadow:0 6px 16px rgba(26,24,20,0.06);"><p style="font-family:var(--serif);font-style:italic;font-size:14px;color:var(--fg);line-height:1.5;margin:0;">&ldquo;I love the animation.&rdquo;</p></div>
+            <div style="background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:18px 20px;transform:rotate(-0.8deg);box-shadow:0 6px 16px rgba(26,24,20,0.06);"><p style="font-family:var(--serif);font-style:italic;font-size:14px;color:var(--fg);line-height:1.5;margin:0;">&ldquo;It&#8217;s surprisingly intuitive.&rdquo;</p></div>
+            <div style="background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:18px 20px;transform:rotate(1.3deg);box-shadow:0 6px 16px rgba(26,24,20,0.06);"><p style="font-family:var(--serif);font-style:italic;font-size:14px;color:var(--fg);line-height:1.5;margin:0;">&ldquo;I usually journal at night, but journaling throughout the day feels different.&rdquo;</p></div>
+            <div style="background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:18px 20px;transform:rotate(-1deg);box-shadow:0 6px 16px rgba(26,24,20,0.06);"><p style="font-family:var(--serif);font-style:italic;font-size:14px;color:var(--fg);line-height:1.5;margin:0;">&ldquo;It makes memories feel more intentional.&rdquo;</p></div>
+            <div style="background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:18px 20px;transform:rotate(0.9deg);box-shadow:0 6px 16px rgba(26,24,20,0.06);"><p style="font-family:var(--serif);font-style:italic;font-size:14px;color:var(--fg);line-height:1.5;margin:0;">&ldquo;It feels therapeutic.&rdquo;</p></div>
+          </div>
+          <p style="font-family:var(--mono);font-size:9px;letter-spacing:0.05em;color:var(--dim);margin-top:12px;">Signals, not testimonials &#8212; read for pattern, not praise.</p>
+        </div>
+        <div style="margin-top:40px;">
+          <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--dim);margin-bottom:14px;">Questions we heard, just as often</div>
+          <div style="display:flex;gap:24px;flex-wrap:wrap;">
+            <div style="background:var(--bg3);border-radius:4px;padding:20px 22px;width:190px;transform:rotate(-2deg);box-shadow:0 8px 18px rgba(26,24,20,0.1);"><p style="font-family:var(--serif);font-size:13.5px;color:var(--fg);line-height:1.5;margin:0;">&ldquo;When would I use this?&rdquo;</p></div>
+            <div style="background:var(--bg3);border-radius:4px;padding:20px 22px;width:190px;transform:rotate(1.5deg);box-shadow:0 8px 18px rgba(26,24,20,0.1);"><p style="font-family:var(--serif);font-size:13.5px;color:var(--fg);line-height:1.5;margin:0;">&ldquo;How do I remember to do it?&rdquo;</p></div>
+            <div style="background:var(--bg3);border-radius:4px;padding:20px 22px;width:190px;transform:rotate(-1deg);box-shadow:0 8px 18px rgba(26,24,20,0.1);"><p style="font-family:var(--serif);font-size:13.5px;color:var(--fg);line-height:1.5;margin:0;">&ldquo;What makes this different from photos?&rdquo;</p></div>
+          </div>
+        </div>
+        <p class="block-body" style="margin-top:36px;max-width:640px;">A strong reaction in the moment, and no evidence yet of a reason to come back. That distinction &#8212; not the praise, not the confusion alone &#8212; became the question the rest of the product had to answer.</p>
+      </div>
+
+      <!-- 04 — Product Evolution -->
+      <div class="content-block">
+        <div class="block-label">05 &#8212; Product Evolution</div>
+        <h2 class="block-title">The reward can&#8217;t be the reason someone captures a moment.</h2>
+        <p class="block-body" style="margin-top:20px;">The original loop was simple: capture a moment, save it. It made sense on a whiteboard and fell apart in practice. Capturing took effort, and saving gave nothing back. There was no transformation between the two &#8212; no sense that the moment had become something more than a record. Without that, there was nothing to close the loop, and nothing to make someone want to open the app again.</p>
+        <p class="block-body" style="margin-top:18px;">The first realization was that reflection wasn&#8217;t a feature people were missing. It was already something they wanted &#8212; they just didn&#8217;t want the effort traditionally attached to it. People weren&#8217;t rejecting journaling because the idea was bad. They were rejecting the work.</p>
+        <p class="block-body" style="margin-top:18px;">The second was that a photo alone couldn&#8217;t carry that weight. A photo proves something happened. It doesn&#8217;t say why it mattered, and without that, there was nothing for the system to reflect back.</p>
+        <p class="block-body" style="margin-top:18px;">The realization that reordered everything was about sequence, not features: the reward couldn&#8217;t be the reason someone captured a moment, or capture would feel like a transaction. The reward had to arrive later, separated from the effort, so it could feel like a gift instead of a receipt. That&#8217;s the realization Sunday Reveal came from &#8212; not a feature to add, but the answer to where the missing payoff in the loop needed to live.</p>
+      </div>
+
+      <!-- 05 — Marketing & Growth -->
+      <div class="content-block">
+        <div class="block-label">06 &#8212; Marketing &amp; Growth</div>
+        <h2 class="block-title">Every card has a story.</h2>
+        <p class="block-body" style="margin-top:20px;max-width:640px;">Marketing, for us, was curiosity first: where do memories already matter to people, in a way we could learn from? One answer was a trading card show &#8212; collectors already understand that a card&#8217;s value is rarely about the card. It&#8217;s the memory attached to it.</p>
+        <div style="display:flex;align-items:center;gap:0;margin-top:32px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:4px;">
+          <div style="font-family:var(--mono);font-size:11px;color:var(--fg);background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:10px 16px;text-align:center;flex-shrink:0;">Poster</div>
+          <div style="color:var(--dim);font-size:13px;padding:0 8px;flex-shrink:0;">&#8594;</div>
+          <div style="font-family:var(--mono);font-size:11px;color:var(--fg);background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:10px 16px;text-align:center;flex-shrink:0;">Spotlight Event</div>
+          <div style="color:var(--dim);font-size:13px;padding:0 8px;flex-shrink:0;">&#8594;</div>
+          <div style="font-family:var(--mono);font-size:11px;color:var(--fg);background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:10px 16px;text-align:center;flex-shrink:0;">Conversations</div>
+          <div style="color:var(--dim);font-size:13px;padding:0 8px;flex-shrink:0;">&#8594;</div>
+          <div style="font-family:var(--mono);font-size:11px;color:var(--fg);background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:10px 16px;text-align:center;flex-shrink:0;">Downloads</div>
+          <div style="color:var(--dim);font-size:13px;padding:0 8px;flex-shrink:0;">&#8594;</div>
+          <div style="font-family:var(--mono);font-size:11px;font-weight:500;color:var(--bg);background:var(--accent);border-radius:6px;padding:10px 16px;text-align:center;flex-shrink:0;">User Interviews</div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:40px;">
+          <div>
+            <div style="border-radius:8px;overflow:hidden;border:1px solid var(--border);box-shadow:0 16px 40px rgba(26,24,20,0.12);margin-bottom:12px;">
+              <img src="../assets/images/mvp-spotlight-every-card-story-poster.png" alt="Every Card Has a Story — Spotlight Card Show campaign poster" style="width:100%;display:block;" />
+            </div>
+            <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--dim);">The line that carried the booth</div>
+          </div>
+          <div>
+            <div style="border-radius:8px;overflow:hidden;border:1px solid var(--border);box-shadow:0 16px 40px rgba(26,24,20,0.12);margin-bottom:12px;">
+              <img src="../assets/images/mvp-spotlight-raffle-poster-01.png" alt="Spotlight Card Show raffle poster — entry mechanic" style="width:100%;display:block;" />
+            </div>
+            <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--dim);">The raffle &#8212; reason enough to stop walking</div>
+          </div>
+        </div>
+
+        <p class="block-body" style="margin-top:32px;max-width:640px;">The booth stayed deliberately small: a raffle to get people to stop, a QR code to skip the download, and someone walking each person through it live instead of handing over a phone and stepping back. The reactions echoed what we&#8217;d already heard &#8212; warmth, and the same unanswered question of when someone would use it on their own. Two different rooms, the same open question.</p>
+
+        <div style="margin-top:40px;padding:28px 32px;background:var(--bg2);border:1px solid var(--border);border-radius:6px;">
+          <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--dim);margin-bottom:18px;">Recallia existed outside Figma, too</div>
+          <div style="display:flex;align-items:center;gap:16px;margin-bottom:24px;">
+            <span style="font-family:var(--serif);font-size:16px;font-weight:500;color:var(--fg);">USC</span>
+            <span style="color:var(--dim);font-size:13px;">&#8595;</span>
+            <span style="font-family:var(--serif);font-size:16px;font-weight:500;color:var(--fg);">Berkeley</span>
+            <span style="font-family:var(--serif);font-size:13px;color:var(--mid);margin-left:8px;">&#8212; posters went up at both, by hand.</span>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+            <div style="border-radius:8px;overflow:hidden;border:1px solid var(--border);">
+              <img src="../assets/images/mvp-campus-poster-howto.png" alt="Recallia campus poster — how it works" style="width:100%;display:block;" />
+            </div>
+            <div style="border-radius:8px;overflow:hidden;border:1px solid var(--border);">
+              <img src="../assets/images/mvp-campus-poster-live-for-yourself.png" alt="Recallia campus poster — Live for Yourself" style="width:100%;display:block;" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 06 — Building the MVP -->
+      <div class="content-block">
+        <div class="block-label">07 &#8212; Building the MVP</div>
+        <h2 class="block-title">Shipping was permission to start learning, not a finish line.</h2>
+        <p class="block-body" style="margin-top:20px;max-width:640px;">We avoided accounts, downloads, and onboarding for as long as we could. Each one adds a step between an idea and finding out if it&#8217;s true &#8212; and a QR code can test a concept on a stranger faster than an app store listing ever could.</p>
+        <div style="display:flex;gap:0;align-items:stretch;margin-top:36px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:4px;">
+          <div style="width:168px;flex-shrink:0;border:1px solid var(--border);border-radius:8px;padding:18px 18px;background:var(--bg2);">
+            <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;">May 1, 2025</div>
+            <div style="font-family:var(--serif);font-size:14px;font-weight:500;color:var(--fg);margin-bottom:8px;">Initial Idea</div>
+            <div style="font-family:var(--serif);font-size:12px;color:var(--mid);line-height:1.55;">Two friends, one shared question. No product yet.</div>
+          </div>
+          <div style="flex-shrink:0;display:flex;align-items:center;padding:0 10px;color:var(--dim);font-size:12px;">&#8594;</div>
+          <div style="width:168px;flex-shrink:0;border:1px solid var(--border);border-radius:8px;padding:18px 18px;background:var(--bg2);">
+            <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.08em;text-transform:uppercase;color:var(--dim);margin-bottom:8px;">&nbsp;</div>
+            <div style="font-family:var(--serif);font-size:14px;font-weight:500;color:var(--fg);margin-bottom:8px;">Early Prototype</div>
+            <div style="font-family:var(--serif);font-size:12px;color:var(--mid);line-height:1.55;">Built to be thrown away &#8212; just enough to test if the idea was true.</div>
+          </div>
+          <div style="flex-shrink:0;display:flex;align-items:center;padding:0 10px;color:var(--dim);font-size:12px;">&#8594;</div>
+          <div style="width:168px;flex-shrink:0;border:1px solid var(--border);border-radius:8px;padding:18px 18px;background:var(--bg2);">
+            <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.08em;text-transform:uppercase;color:var(--dim);margin-bottom:8px;">&nbsp;</div>
+            <div style="font-family:var(--serif);font-size:14px;font-weight:500;color:var(--fg);margin-bottom:8px;">Iterations</div>
+            <div style="font-family:var(--serif);font-size:12px;color:var(--mid);line-height:1.55;">Every version forced us to revisit an assumption. Some held up. Others quietly disappeared.</div>
+          </div>
+          <div style="flex-shrink:0;display:flex;align-items:center;padding:0 10px;color:var(--dim);font-size:12px;">&#8594;</div>
+          <div style="width:168px;flex-shrink:0;border:1px solid var(--border);border-radius:8px;padding:18px 18px;background:var(--bg2);">
+            <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;">Oct 22, 2025</div>
+            <div style="font-family:var(--serif);font-size:14px;font-weight:500;color:var(--fg);margin-bottom:8px;">App Store Launch</div>
+            <div style="font-family:var(--serif);font-size:12px;color:var(--mid);line-height:1.55;">Not a finish line &#8212; permission to learn from people with no one standing next to them.</div>
+          </div>
+          <div style="flex-shrink:0;display:flex;align-items:center;padding:0 10px;color:var(--dim);font-size:12px;">&#8594;</div>
+          <div style="width:168px;flex-shrink:0;border:1px solid var(--accent);border-radius:8px;padding:18px 18px;background:rgba(196,168,130,0.1);">
+            <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;">Today</div>
+            <div style="font-family:var(--serif);font-size:14px;font-weight:500;color:var(--fg);margin-bottom:8px;">~100 Users</div>
+            <div style="font-family:var(--serif);font-size:12px;color:var(--mid);line-height:1.55;">Still rebuilding the vision, one version at a time.</div>
+          </div>
+        </div>
+        <p class="block-body" style="margin-top:32px;max-width:640px;">The product didn&#8217;t change because we ran out of ideas. It changed because our understanding of the problem kept changing underneath it.</p>
+      </div>
+
+      <!-- 07 — Roadblocks -->
+      <div class="content-block">
+        <div class="block-label">08 &#8212; Roadblocks</div>
+        <h2 class="block-title">Liking something and building a habit are different problems.</h2>
+        <p class="block-body" style="margin-top:20px;max-width:640px;">The hardest realization wasn&#8217;t a failure. It was closer to a contradiction &#8212; and the same sessions kept producing both halves of it.</p>
+        <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:28px;align-items:center;margin-top:36px;">
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--dim);margin-bottom:4px;">People liked Recallia</div>
+            <div style="background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:14px 18px;"><p style="font-family:var(--serif);font-style:italic;font-size:13.5px;color:var(--fg);margin:0;">&ldquo;This is cute.&rdquo;</p></div>
+            <div style="background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:14px 18px;"><p style="font-family:var(--serif);font-style:italic;font-size:13.5px;color:var(--fg);margin:0;">&ldquo;It feels therapeutic.&rdquo;</p></div>
+            <div style="background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:14px 18px;"><p style="font-family:var(--serif);font-style:italic;font-size:13.5px;color:var(--fg);margin:0;">&ldquo;I love the animation.&rdquo;</p></div>
+          </div>
+          <div style="text-align:center;padding:0 8px;">
+            <div style="font-family:var(--mono);font-size:clamp(15px,2vw,20px);font-weight:500;letter-spacing:0.02em;color:var(--fg);white-space:nowrap;">LIKING<br /><span style="color:#C4826A;font-size:1.3em;">&#8800;</span><br />RETURNING</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--dim);margin-bottom:4px;">People struggled to form habits</div>
+            <div style="background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:14px 18px;"><p style="font-family:var(--serif);font-style:italic;font-size:13.5px;color:var(--fg);margin:0;">&ldquo;I forget.&rdquo;</p></div>
+            <div style="background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:14px 18px;"><p style="font-family:var(--serif);font-style:italic;font-size:13.5px;color:var(--fg);margin:0;">&ldquo;I need reminders.&rdquo;</p></div>
+            <div style="background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:14px 18px;"><p style="font-family:var(--serif);font-style:italic;font-size:13.5px;color:var(--fg);margin:0;">&ldquo;I use it after trips.&rdquo;</p></div>
+          </div>
+        </div>
+        <p class="block-body" style="margin-top:36px;max-width:640px;">We had real evidence the emotional experience worked. We had no evidence it would find its own way into someone&#8217;s ordinary week without us standing there. That gap moved the question &#8212; less &#8220;what should we add,&#8221; more &#8220;what makes someone come back.&#8221; Features couldn&#8217;t answer a behavior problem.</p>
+        <p class="block-body" style="margin-top:18px;max-width:640px;">Underneath that was a bigger one we couldn&#8217;t engineer around: people procrastinate, emotion fades within hours, and reflection is one of those things almost everyone agrees is good for them and almost no one sustains without help. So the questions got more basic, not less &#8212; were we solving a problem people actually had? Was a photo even enough to anchor a memory worth revisiting? We didn&#8217;t have clean answers. We treated that as information, not a setback.</p>
+      </div>
+
+      <!-- 08 — Current State -->
+      <div class="content-block">
+        <div class="block-label">09 &#8212; Current State</div>
+        <h2 class="block-title">Small enough to know our users. Large enough to keep learning.</h2>
+        <div style="margin-top:24px;padding:32px 36px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;">
+          <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--dim);margin-bottom:14px;">Current State &#8212; October 2025 &#8212; Present</div>
+          <div style="font-family:var(--serif);font-size:clamp(32px,4vw,48px);color:var(--fg);line-height:1;margin-bottom:12px;">~100 <span style="font-size:0.4em;color:var(--mid);font-weight:400;">users</span></div>
+          <p style="font-family:var(--serif);font-size:15px;font-style:italic;color:var(--mid);line-height:1.6;max-width:480px;margin:0;">Small enough to know our users. Large enough to continually learn from them.</p>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--border);margin-top:1px;">
+          <div style="background:var(--bg);padding:22px 20px;"><div style="font-family:var(--serif);font-size:14px;font-weight:500;color:var(--fg);">Fast Iteration</div></div>
+          <div style="background:var(--bg);padding:22px 20px;"><div style="font-family:var(--serif);font-size:14px;font-weight:500;color:var(--fg);">Direct Conversations</div></div>
+          <div style="background:var(--bg);padding:22px 20px;"><div style="font-family:var(--serif);font-size:14px;font-weight:500;color:var(--fg);">High Clarity</div></div>
+        </div>
+        <p class="block-body" style="margin-top:32px;max-width:640px;">We don&#8217;t have a dashboard to optimize. We have conversations and behavior we can watch directly &#8212; and the ability to make a meaningful change quickly instead of waiting on a sample size.</p>
+        <p class="block-body" style="margin-top:18px;max-width:640px;">People don&#8217;t talk about Recallia in terms of capturing moments. They reach for meaningful, therapeutic, appreciation &#8212; language that pointed to a sharper framing: simple reflections that make everyday photos more meaningful. Not a new place to put photos. A layer on top of a habit that already exists.</p>
+        <div style="margin-top:24px;">
+          <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--dim);margin-bottom:12px;">Possibilities, not commitments</div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;">
+            <span style="font-family:var(--mono);font-size:10px;color:var(--mid);border:1px solid var(--border);border-radius:14px;padding:6px 13px;">AI-assisted reflection</span>
+            <span style="font-family:var(--mono);font-size:10px;color:var(--mid);border:1px solid var(--border);border-radius:14px;padding:6px 13px;">Sunday letters</span>
+            <span style="font-family:var(--mono);font-size:10px;color:var(--mid);border:1px solid var(--border);border-radius:14px;padding:6px 13px;">Categorization</span>
+            <span style="font-family:var(--mono);font-size:10px;color:var(--mid);border:1px solid var(--border);border-radius:14px;padding:6px 13px;">Reflection threads</span>
+            <span style="font-family:var(--mono);font-size:10px;color:var(--mid);border:1px solid var(--border);border-radius:14px;padding:6px 13px;">Privacy-first social layer</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 09 — Looking Forward -->
+      <div class="content-block">
+        <div class="block-label">10 &#8212; Looking Forward</div>
+        <h2 class="block-title">Memories aren&#8217;t meaningful because they&#8217;re rare.</h2>
+        <p class="block-body" style="margin-top:20px;">Most of what&#8217;s next is still a question rather than a roadmap.</p>
+        <p class="block-body" style="margin-top:18px;">Can appreciation become a habit the way productivity or fitness has? What actually triggers someone to reflect without being asked to? Is there a version of reward that encourages consistency without turning reflection into another metric to chase? Can AI help someone understand themselves a little better without quietly writing the self-understanding for them? And underneath all of it: who is this actually for &#8212; the person already inclined to look back, or someone who&#8217;s never had a reason to until now?</p>
+        <p class="block-body" style="margin-top:18px;">We don&#8217;t have settled answers to any of these, and we&#8217;re not in a hurry to manufacture them.</p>
+        <p class="block-body" style="margin-top:24px;font-size:17px;color:var(--fg);">If there&#8217;s a single idea underneath all of Recallia, it&#8217;s this: memories don&#8217;t become meaningful because they&#8217;re rare. They become meaningful because we return to them.</p>
+      </div>
+
+    </div>
+
+
+  </main>
+  </main>
+</div>
+
+<script src="../assets/script.js"></script>
+
+</body>
+</html>
