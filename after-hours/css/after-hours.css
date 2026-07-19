@@ -1,0 +1,891 @@
+/* ============================================================
+   AFTER HOURS — visual system
+   Tokens first. No raw values below :root except structural
+   zeros, percentages, and per-seed cover art recipes.
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  /* color — matte black, graphite, off-white, chrome, one light */
+  --void:        #0c0d10;
+  --void-deep:   #08090b;
+  --graphite-1:  #16181d;
+  --graphite-2:  #1e2127;
+  --graphite-3:  #282c33;
+  --ink:         #edebe6;
+  --chrome:      #9aa1a9;
+  --dim:         #5d6269;
+  --hairline:    rgba(237, 235, 230, 0.1);
+  --led:         #aec4d4;
+  --led-glow:    rgba(174, 196, 212, 0.28);
+
+  /* type — grotesk for interface, serif display for headers,
+     mono for whispers (kinship with daylight portfolio) */
+  --grotesk: 'Inter', 'Helvetica Neue', sans-serif;
+  --display: 'Fraunces', Georgia, serif;
+  --mono: 'DM Mono', monospace;
+  --type-whisper: 11px;
+  --type-voice: clamp(15px, 1.6vw, 17px);
+  --type-statement: clamp(24px, 3.4vw, 40px);
+  --type-title: clamp(34px, 5vw, 72px);
+  --type-monument: clamp(44px, 8vw, 110px);
+
+  /* motion — slow, asymmetric, nothing bounces */
+  --dur-breath: 600ms;
+  --dur-drift: 1200ms;
+  --dur-arrival: 2000ms;
+  --ease-settle: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* light */
+  --grain-opacity: 0.05;
+  --glow-x: 22%;
+  --glow-y: 18%;
+
+  /* layout */
+  --gutter: clamp(24px, 7vw, 96px);
+}
+
+html { scroll-behavior: smooth; }
+
+html, body {
+  background: var(--void);
+  color: var(--ink);
+  font-family: var(--grotesk);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection { background: var(--led); color: var(--void-deep); }
+[hidden] { display: none !important; }
+:focus-visible { outline: 1px solid var(--led); outline-offset: 4px; }
+
+/* ---------- voices ---------- */
+
+.mono { font-family: var(--mono); font-weight: 300; }
+
+.whisper {
+  font-size: var(--type-whisper);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+
+.voice {
+  font-size: var(--type-voice);
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--chrome);
+  max-width: 34em;
+}
+
+.statement {
+  font-family: var(--display);
+  font-size: var(--type-statement);
+  font-weight: 480;
+  font-variation-settings: 'opsz' 60, 'SOFT' 30;
+  letter-spacing: -0.005em;
+  line-height: 1.2;
+  color: var(--ink);
+}
+
+.monument {
+  font-family: var(--display);
+  font-size: var(--type-monument);
+  font-weight: 460;
+  font-variation-settings: 'opsz' 144, 'SOFT' 40;
+  letter-spacing: -0.015em;
+  line-height: 1.02;
+  color: var(--ink);
+}
+
+/* ============================================================
+   THE AIR — glow position follows the active track (JS sets
+   --glow-x / --glow-y). Grain breathes regardless of input.
+   ============================================================ */
+
+/* arrival veil — pure black over everything, only when crossing
+   from daylight; lifts to reveal the entry sequence */
+.veil {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  background: var(--void-deep);
+  opacity: 0;
+  pointer-events: none;
+  display: none;
+}
+
+body.arriving .veil {
+  display: block;
+  opacity: 1;
+  transition: opacity 1100ms var(--ease-settle);
+}
+
+body.arriving.veil-lift .veil { opacity: 0; }
+
+.air { position: fixed; inset: 0; pointer-events: none; z-index: 5; }
+
+.fog {
+  position: absolute;
+  inset: -20%;
+  background:
+    radial-gradient(55% 45% at var(--glow-x) var(--glow-y), rgba(174,196,212,0.06), transparent 70%),
+    radial-gradient(50% 45% at 85% 85%, rgba(237,235,230,0.03), transparent 70%);
+  animation: fog-drift 46s ease-in-out infinite alternate;
+  transition: background var(--dur-arrival) var(--ease-settle);
+}
+
+@keyframes fog-drift {
+  from { transform: translate3d(-2%, -1%, 0); }
+  to   { transform: translate3d(2%, 2%, 0); }
+}
+
+.grain {
+  position: absolute;
+  inset: -100px;
+  opacity: var(--grain-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain-shift 0.9s steps(8) infinite;
+}
+
+@keyframes grain-shift {
+  0%   { transform: translate(0, 0); }
+  25%  { transform: translate(-38px, 22px); }
+  50%  { transform: translate(24px, -30px); }
+  75%  { transform: translate(-16px, -42px); }
+  100% { transform: translate(0, 0); }
+}
+
+/* ---------- the LED line ---------- */
+
+.led-track {
+  position: fixed;
+  top: 0; left: clamp(12px, 3vw, 40px);
+  width: 1px; height: 100vh;
+  background: var(--hairline);
+  z-index: 4;
+}
+
+.led-line {
+  width: 100%; height: 100%;
+  background: var(--led);
+  box-shadow: 0 0 12px var(--led-glow), 0 0 32px var(--led-glow);
+  transform-origin: top;
+  transform: scaleY(0);
+  transition: transform var(--dur-breath) var(--ease-settle);
+}
+
+body.is-playing .led-line { animation: led-breathe 4s ease-in-out infinite; }
+
+@keyframes led-breathe {
+  0%, 100% { box-shadow: 0 0 12px var(--led-glow), 0 0 32px var(--led-glow); }
+  50%      { box-shadow: 0 0 18px var(--led-glow), 0 0 48px var(--led-glow); }
+}
+
+/* ============================================================
+   HERO — the player. Full viewport, editorial split:
+   artwork left, oversized track type + controls + queue right.
+   ============================================================ */
+
+.hero {
+  padding: clamp(64px, 11vh, 112px) var(--gutter) clamp(20px, 3.5vh, 40px);
+  position: relative;
+  z-index: 2;
+}
+
+/* the clock — a fixed fixture in the corner, like the LED */
+/* corner fixture — sun + clock, fixed, same top-right spot as
+   the moon toggle on the daylight page */
+.corner-toggle {
+  position: fixed;
+  top: clamp(20px, 3vh, 32px);
+  right: clamp(20px, 3.5vw, 44px);
+  z-index: 6;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.sun-link {
+  display: inline-flex;
+  line-height: 0;
+  color: var(--chrome);
+  opacity: 0.55;
+  transition: opacity 0.3s, color 0.3s, filter 0.3s, transform 0.6s ease;
+}
+
+.sun-link:hover,
+.sun-link:focus-visible {
+  opacity: 1;
+  color: var(--led);
+  filter: drop-shadow(0 0 8px var(--led-glow));
+  transform: rotate(90deg);
+}
+
+body.departing .sun-link {
+  color: var(--led);
+  filter: drop-shadow(0 0 12px var(--led-glow));
+}
+
+/* departure veil — the reverse of arrival, fading to black
+   before the browser navigates back to daylight */
+body.departing .veil {
+  display: block;
+  opacity: 1;
+  transition: opacity 900ms var(--ease-settle);
+}
+
+/* hero intro — what After Hours is */
+.hero-intro {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 3.5vh, 34px);
+}
+
+.hero-desc {
+  max-width: 44em;
+  color: var(--chrome);
+}
+
+/* sticky section nav — fixed, never scrolls */
+.side-nav {
+  position: fixed;
+  left: clamp(28px, 4.5vw, 64px);
+  top: 50%;
+  transform: translateY(-50%);
+  display: none;
+  flex-direction: column;
+  gap: 16px;
+  z-index: 6;
+}
+
+.side-link {
+  font-family: var(--mono);
+  font-weight: 300;
+  font-size: var(--type-whisper);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--dim);
+  text-decoration: none;
+  transition: color var(--dur-breath) var(--ease-settle);
+}
+
+.side-link:hover { color: var(--chrome); }
+
+.side-link.is-active {
+  color: var(--ink);
+  text-shadow: 0 0 12px var(--led-glow);
+}
+
+.player {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.9fr) 1.1fr;
+  gap: clamp(32px, 6vw, 88px);
+  align-items: center;
+  padding-top: clamp(28px, 6vh, 64px);
+}
+
+/* ---------- artwork / generated covers ---------- */
+
+.artwork { position: relative; }
+
+.cover {
+  width: 100%;
+  aspect-ratio: 1;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--hairline);
+  background:
+    radial-gradient(70% 60% at var(--seed-x, 25%) var(--seed-y, 20%), rgba(174,196,212,0.1), transparent 65%),
+    linear-gradient(var(--seed-a, 155deg), var(--graphite-3), var(--graphite-1) 70%);
+  transition: opacity var(--dur-breath) var(--ease-settle);
+}
+
+.cover.is-swapping { opacity: 0; }
+
+/* playback-reactive: a slow light sheen crosses the artwork while playing */
+.cover::after {
+  content: '';
+  position: absolute;
+  inset: -40%;
+  background: linear-gradient(115deg, transparent 42%, rgba(237,235,230,0.05) 50%, transparent 58%);
+  transform: translateX(-60%);
+  opacity: 0;
+}
+
+body.is-playing .cover::after {
+  opacity: 1;
+  animation: sheen 7s ease-in-out infinite;
+}
+
+@keyframes sheen {
+  from { transform: translateX(-60%); }
+  to   { transform: translateX(60%); }
+}
+
+/* per-track cover recipes — replaced by <img> when real art lands */
+.cover[data-seed="1"] { --seed-a: 155deg; --seed-x: 22%; --seed-y: 16%; }
+.cover[data-seed="2"] { --seed-a: 210deg; --seed-x: 76%; --seed-y: 24%; }
+.cover[data-seed="3"] { --seed-a: 130deg; --seed-x: 30%; --seed-y: 78%; }
+.cover[data-seed="4"] { --seed-a: 250deg; --seed-x: 70%; --seed-y: 70%; }
+.cover[data-seed="5"] { --seed-a: 180deg; --seed-x: 50%; --seed-y: 12%; }
+.cover[data-seed="6"] { --seed-a: 110deg; --seed-x: 14%; --seed-y: 52%; }
+.cover[data-seed="7"] { --seed-a: 200deg; --seed-x: 84%; --seed-y: 46%; }
+
+/* real artwork sits above the generated recipe, below the numeral */
+.cover-art {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cover.has-art .cover-num { display: none; }
+
+.cover-num {
+  position: absolute;
+  right: 6%;
+  bottom: 2%;
+  font-family: var(--grotesk);
+  font-size: clamp(80px, 12vw, 180px);
+  font-weight: 600;
+  letter-spacing: -0.05em;
+  color: rgba(237, 235, 230, 0.09);
+  line-height: 1;
+}
+
+/* liner notes — surface only while the song plays */
+.liner {
+  margin-top: clamp(20px, 3vh, 32px);
+  padding-top: clamp(16px, 2.5vh, 24px);
+  border-top: 1px solid var(--hairline);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity var(--dur-arrival) var(--ease-settle),
+              transform var(--dur-arrival) var(--ease-settle);
+}
+
+body.is-playing .liner { opacity: 1; transform: translateY(0); }
+
+.liner-label { margin-bottom: 12px; }
+
+.liner-text {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--chrome);
+  max-width: 38em;
+}
+
+/* LED underglow beneath the artwork, brighter while playing */
+.artwork::after {
+  content: '';
+  position: absolute;
+  left: 10%; right: 10%; bottom: -1px;
+  height: 1px;
+  background: var(--led);
+  opacity: 0.25;
+  box-shadow: 0 0 16px var(--led-glow), 0 0 48px var(--led-glow);
+  transition: opacity var(--dur-arrival) var(--ease-settle);
+}
+
+body.is-playing .artwork::after { opacity: 0.9; }
+
+/* ---------- track console ---------- */
+
+.console { display: flex; flex-direction: column; min-width: 0; }
+
+.now-label { margin-bottom: clamp(14px, 2.5vh, 24px); }
+
+.track-title {
+  font-family: var(--display);
+  font-size: var(--type-title);
+  font-weight: 500;
+  font-variation-settings: 'opsz' 120, 'SOFT' 30;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+  margin-bottom: 12px;
+  overflow-wrap: anywhere;
+}
+
+.track-artist {
+  font-size: var(--type-voice);
+  color: var(--chrome);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: clamp(24px, 4.5vh, 48px);
+}
+
+.explicit {
+  font-family: var(--mono);
+  font-size: 9px;
+  line-height: 1;
+  color: var(--dim);
+  border: 1px solid var(--hairline);
+  padding: 3px 5px;
+}
+
+/* transport */
+.transport {
+  display: flex;
+  align-items: center;
+  gap: clamp(6px, 1.2vw, 14px);
+  margin-bottom: 18px;
+}
+
+.tbtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px; height: 44px;
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  color: var(--chrome);
+  cursor: pointer;
+  transition: color var(--dur-breath) var(--ease-settle),
+              border-color var(--dur-breath) var(--ease-settle);
+}
+
+.tbtn:hover { color: var(--ink); }
+
+.tbtn-play {
+  width: 56px; height: 56px;
+  border: 1px solid var(--hairline);
+  color: var(--ink);
+}
+
+.tbtn-play:hover { border-color: var(--led); }
+
+.tbtn[aria-pressed="true"] {
+  color: var(--led);
+  filter: drop-shadow(0 0 6px var(--led-glow));
+}
+
+.volume {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+  color: var(--dim);
+}
+
+/* ranges — seek + volume, LED fill painted by JS via --fill */
+.range {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 2px;
+  background: linear-gradient(to right, var(--led) var(--fill, 0%), var(--hairline) var(--fill, 0%));
+  cursor: pointer;
+}
+
+.range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--ink);
+  border: none;
+  box-shadow: 0 0 8px var(--led-glow);
+}
+
+.range::-moz-range-thumb {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--ink);
+  border: none;
+  box-shadow: 0 0 8px var(--led-glow);
+}
+
+.volume .range { width: clamp(64px, 8vw, 110px); }
+
+.seek {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: clamp(28px, 5vh, 52px);
+}
+
+.time { min-width: 4ch; letter-spacing: 0.1em; }
+
+/* seek track — a plain LED line until real audio provides a
+   waveform, then the canvas fades in behind the same input */
+.seek-track {
+  flex: 1;
+  position: relative;
+  height: 36px;
+  display: flex;
+  align-items: center;
+}
+
+.range-seek { width: 100%; }
+
+.wave {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur-arrival) var(--ease-settle);
+}
+
+.seek-track.has-wave .wave { opacity: 1; }
+.seek-track.has-wave .range-seek { background: transparent; }
+
+/* ---------- queue ---------- */
+
+.queue {
+  list-style: none;
+  border-top: 1px solid var(--hairline);
+}
+
+.queue li { border-bottom: 1px solid var(--hairline); }
+
+.q-row {
+  display: grid;
+  grid-template-columns: 28px 1fr auto auto;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 12px 4px;
+  background: transparent;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  color: var(--dim);
+  transition: color var(--dur-breath) var(--ease-settle);
+}
+
+.q-row:hover { color: var(--chrome); }
+
+.q-num { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; }
+
+.q-title {
+  font-family: var(--grotesk);
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.q-e {
+  font-family: var(--mono);
+  font-size: 8px;
+  border: 1px solid var(--hairline);
+  padding: 2px 4px;
+}
+
+.q-dur { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; }
+
+.q-row[aria-current="true"] { color: var(--ink); }
+
+.q-row[aria-current="true"] .q-num {
+  color: var(--led);
+  text-shadow: 0 0 8px var(--led-glow);
+}
+
+/* ============================================================
+   THE GALLERY — varied scale and rhythm. Present on arrival,
+   depth notes earned by staying.
+   ============================================================ */
+
+.movement {
+  padding: clamp(54px, 12vh, 136px) var(--gutter);
+  position: relative;
+  z-index: 2;
+}
+
+/* module header — tight to its content, one holistic block */
+.module-head { margin-bottom: clamp(22px, 3.5vh, 36px); }
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity var(--dur-arrival) var(--ease-settle),
+              transform var(--dur-arrival) var(--ease-settle);
+}
+
+.movement.is-present .reveal { opacity: 1; transform: translateY(0); }
+
+.depth {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity var(--dur-arrival) var(--ease-settle),
+              transform var(--dur-arrival) var(--ease-settle);
+}
+
+.movement.is-deepened .depth { opacity: 1; transform: translateY(0); }
+
+/* module labels */
+.strip-label { margin-bottom: 16px; }
+
+/* photo grid — 9 visible, the rest arrive via "view more" */
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.photo-grid:not(.is-expanded) .cell-btn[data-more] { display: none; }
+
+.photo-grid.is-expanded .cell-btn[data-more] {
+  animation: more-in var(--dur-arrival) var(--ease-settle) both;
+}
+
+@keyframes more-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.view-more {
+  margin-top: 20px;
+  padding: 0 0 8px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--hairline);
+  color: var(--chrome);
+  cursor: pointer;
+  transition: color var(--dur-breath) var(--ease-settle),
+              border-color var(--dur-breath) var(--ease-settle);
+}
+
+.view-more:hover,
+.view-more:focus-visible {
+  color: var(--ink);
+  border-color: var(--led);
+}
+
+/* cluster — overlap, asymmetry */
+.cluster {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  align-items: start;
+}
+
+/* featured garment plates — real photographs, click to enlarge */
+.plate-btn {
+  display: block;
+  width: 100%;
+  padding: 0;
+  background: var(--void-deep);
+  border: 1px solid var(--hairline);
+  cursor: pointer;
+  overflow: hidden;
+  transition: border-color var(--dur-breath) var(--ease-settle),
+              box-shadow var(--dur-breath) var(--ease-settle);
+}
+
+.plate-btn img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.plate-btn:hover,
+.plate-btn:focus-visible {
+  border-color: var(--led);
+  box-shadow: 0 0 20px var(--led-glow);
+}
+
+.plate-tall-btn { aspect-ratio: 4 / 5; max-width: 70%; }
+.plate-wide-btn { aspect-ratio: 4 / 3; }
+
+.garment-extra { margin-top: clamp(32px, 6vh, 56px); }
+.garment-extra .photo-grid { margin-top: 20px; }
+
+.cluster-a { grid-column: 1 / 8; grid-row: 1; }
+
+.cluster-b {
+  grid-column: 7 / 13;
+  grid-row: 1;
+  margin-top: clamp(48px, 14vh, 160px);
+  position: relative;
+  z-index: 1;
+}
+
+.cluster figcaption { margin-top: 12px; }
+
+.cluster-note {
+  grid-column: 1 / 8;
+  grid-row: 2;
+  margin-top: clamp(24px, 5vh, 48px);
+  max-width: 26em;
+}
+
+/* contact sheet — every drawing shown whole, matted on near-black */
+.sheet {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.cell-btn {
+  aspect-ratio: 1;
+  padding: 0;
+  background: var(--void-deep);
+  border: 1px solid var(--hairline);
+  cursor: pointer;
+  overflow: hidden;
+  transition: border-color var(--dur-breath) var(--ease-settle),
+              box-shadow var(--dur-breath) var(--ease-settle);
+}
+
+.cell-btn img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* the whole drawing, never cropped */
+  display: block;
+}
+
+.cell-btn:hover,
+.cell-btn:focus-visible {
+  border-color: var(--led);
+  box-shadow: 0 0 20px var(--led-glow);
+}
+
+/* ---------- lightbox: one drawing, enlarged ---------- */
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 10; /* above the air — detail viewing, no grain */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(20px, 4vw, 56px);
+  background: rgba(8, 9, 11, 0.94);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur-drift) var(--ease-settle);
+}
+
+.lightbox.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.lightbox-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  transform: scale(0.985);
+  transition: transform var(--dur-drift) var(--ease-settle);
+}
+
+.lightbox.is-open .lightbox-img { transform: scale(1); }
+
+.lightbox-close {
+  position: absolute;
+  top: clamp(16px, 3vh, 28px);
+  right: clamp(16px, 3vw, 32px);
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid var(--hairline);
+  border-radius: 50%;
+  color: var(--chrome);
+  cursor: pointer;
+  transition: color var(--dur-breath) var(--ease-settle),
+              border-color var(--dur-breath) var(--ease-settle);
+}
+
+.lightbox-close:hover,
+.lightbox-close:focus-visible {
+  color: var(--ink);
+  border-color: var(--led);
+}
+
+/* ---------- ending ---------- */
+
+.ending {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+}
+
+.exit {
+  display: inline-block;
+  margin-top: clamp(24px, 5vh, 44px);
+  color: var(--chrome);
+  text-decoration: none;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--hairline);
+  transition: color var(--dur-breath) var(--ease-settle),
+              border-color var(--dur-breath) var(--ease-settle);
+}
+
+.exit:hover { color: var(--ink); border-color: var(--led); }
+
+/* ============================================================
+   ENTRY — quick staged arrival. No forced pause.
+   ============================================================ */
+
+.r0 .r1, .r0 .r2, .r0 .r3, .r0 .r4 {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity var(--dur-arrival) var(--ease-settle),
+              transform var(--dur-arrival) var(--ease-settle);
+}
+
+.r0 .r2 { transition-delay: 150ms; }
+.r0 .r3 { transition-delay: 300ms; }
+.r0 .r4 { transition-delay: 450ms; }
+
+body.entered .r1, body.entered .r2,
+body.entered .r3, body.entered .r4 {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 900px) {
+  .player {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    align-items: start;
+    padding-top: 28px;
+  }
+
+  .artwork { width: min(70vw, 320px); }
+
+  .cluster-a { grid-column: 1 / 9; }
+  .cluster-b { grid-column: 6 / 13; margin-top: clamp(32px, 8vh, 64px); }
+  .cluster-note { grid-column: 1 / 13; }
+
+  .sheet { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .photo-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+
+  .volume { display: none; } /* phones own the volume */
+}
+
+/* ---------- wide screens: room for the sticky nav ---------- */
+
+@media (min-width: 1100px) {
+  .side-nav { display: flex; }
+  .hero, .movement { padding-left: 220px; }
+}
+
+/* ---------- accessibility ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .grain, .fog, .descend, .cover::after, .led-line { animation: none; }
+  .reveal, .depth, .cover, .lightbox, .lightbox-img, .cell-btn, .view-more, .plate-btn,
+  .r0 .r1, .r0 .r2, .r0 .r3, .r0 .r4 {
+    transition-duration: 1ms;
+    transition-delay: 0ms;
+  }
+  .photo-grid.is-expanded .cell-btn[data-more] { animation: none; }
+}

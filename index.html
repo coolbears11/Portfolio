@@ -403,6 +403,42 @@ a { color: inherit; }
   .project-facts { gap: 32px; }
   .site-footer .wrap { align-items: flex-start; }
 }
+
+/* ---------- AFTER HOURS (the moon) ---------- */
+.header-actions { display: flex; align-items: center; gap: 24px; }
+
+.moon-link {
+  display: inline-flex;
+  line-height: 0;
+  color: var(--dim);
+  opacity: 0.45;
+  transition: opacity 0.3s, color 0.3s, filter 0.3s, transform 0.6s ease;
+}
+
+.moon-link:hover,
+.moon-link:focus-visible { opacity: 1; color: var(--fg); transform: rotate(-14deg); }
+
+/* nightfall — dusk radiates from the moon's corner */
+.nightfall {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(130% 130% at 6% 5%, #12151c 0%, #0c0d10 50%, #08090b 100%);
+  transition: opacity 0.95s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+body.nightfall-active .nightfall { opacity: 1; }
+
+body.nightfall-active .moon-link {
+  position: relative;
+  z-index: 95;
+  opacity: 1;
+  color: #aec4d4;
+  filter: drop-shadow(0 0 12px rgba(174, 196, 212, 0.65));
+  transform: rotate(-14deg) scale(1.2);
+}
 </style>
 </head>
 <body>
@@ -410,10 +446,13 @@ a { color: inherit; }
 <header class="site-header">
   <div class="wrap">
     <div class="site-id">Charlie Parker Wang</div>
-    <nav class="nav-links" aria-label="Primary">
-      <a href="assets/Charlie_Parker_Wang_Resume.pdf" target="_blank" rel="noopener">Resume</a>
-      <a href="https://www.linkedin.com/in/cwang005" target="_blank" rel="noopener">Contact</a>
-    </nav>
+    <div class="header-actions">
+      <nav class="nav-links" aria-label="Primary">
+        <a href="assets/Charlie_Parker_Wang_Resume.pdf" target="_blank" rel="noopener">Resume</a>
+        <a href="https://www.linkedin.com/in/cwang005" target="_blank" rel="noopener">Contact</a>
+      </nav>
+      <a href="after-hours/index.html" class="moon-link" id="moon-link" aria-label="After Hours"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.4 14.2A8.8 8.8 0 0 1 9.8 3.6a8.8 8.8 0 1 0 10.6 10.6z"/></svg></a>
+    </div>
   </div>
 </header>
 
@@ -540,6 +579,26 @@ a { color: inherit; }
     </nav>
   </div>
 </footer>
+
+<!-- nightfall overlay — the crossing into After Hours -->
+<div class="nightfall" aria-hidden="true"></div>
+
+<script>
+(function () {
+  var moon = document.getElementById('moon-link');
+  if (!moon) return;
+  moon.addEventListener('click', function (e) {
+    e.preventDefault();
+    try { sessionStorage.setItem('ah-arrive', '1'); } catch (err) {}
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      window.location.href = moon.href;
+      return;
+    }
+    document.body.classList.add('nightfall-active');
+    setTimeout(function () { window.location.href = moon.href; }, 1000);
+  });
+})();
+</script>
 
 </body>
 </html>
