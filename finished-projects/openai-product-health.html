@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>OpenAI Product Health — Charlie Wang</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=DM+Mono:wght@300;400&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #F7F4EF;
+    --bg2: #F0EDE7;
+    --bg3: #E8E4DC;
+    --fg: #1A1814;
+    --mid: #4A4642;
+    --dim: #7A7570;
+    --accent: #C4A882;
+    --accent2: #D4987A;
+    --warn: #C4826A;
+    --border: rgba(26,24,20,0.1);
+    --serif: 'Lora', Georgia, serif;
+    --mono: 'DM Mono', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  html, body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--serif);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; }
+
+  /* LAYOUT */
+  .workspace { min-height: 100vh; }
+
+  .panel {
+    position: fixed;
+    top: 0; left: 0;
+    width: 280px;
+    height: 100vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid var(--border);
+    background: var(--bg2);
+    z-index: 10;
+  }
+
+  .panel-header { padding: 36px 28px 28px; border-bottom: 1px solid var(--border); }
+
+  .back-link {
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 300;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--dim);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 24px;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--fg); }
+
+  .panel-eyebrow {
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 300;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin-bottom: 8px;
+  }
+
+  .panel-title { font-family: var(--serif); font-size: 17px; font-weight: 500; color: var(--fg); line-height: 1.25; margin-bottom: 6px; }
+  .panel-subtitle { font-family: var(--serif); font-size: 12.5px; font-style: italic; color: var(--dim); line-height: 1.4; }
+
+  .section-nav { padding: 28px; flex: 1; }
+  .section-nav-label { font-family: var(--mono); font-size: 8px; font-weight: 300; letter-spacing: 0.18em; text-transform: uppercase; color: var(--dim); margin-bottom: 18px; display: block; }
+  .section-list { display: flex; flex-direction: column; gap: 2px; }
+  .section-link {
+    display: flex; align-items: center; gap: 12px;
+    padding: 9px 10px; border-radius: 4px;
+    font-family: var(--serif); font-size: 13.5px; color: var(--mid);
+    text-decoration: none; transition: background 0.15s, color 0.15s;
+  }
+  .section-link:hover { background: rgba(26,24,20,0.05); color: var(--fg); }
+  .section-link span.n { font-family: var(--mono); font-size: 9px; color: var(--dim); flex-shrink: 0; width: 16px; }
+
+  .panel-footer { padding: 24px 28px; border-top: 1px solid var(--border); }
+  .panel-meta-row { display: flex; flex-direction: column; gap: 12px; }
+  .panel-meta-item { display: flex; flex-direction: column; gap: 4px; }
+  .panel-meta-label { font-family: var(--mono); font-size: 8px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dim); }
+  .panel-meta-value { font-family: var(--serif); font-size: 12.5px; color: var(--mid); line-height: 1.4; }
+
+  .content { margin-left: 280px; overflow-y: visible; }
+
+  .mod-hero { padding: 72px 72px 64px; border-bottom: 1px solid var(--border); position: relative; }
+  .mod-hero-eyebrow { font-family: var(--mono); font-size: 9px; font-weight: 300; letter-spacing: 0.18em; text-transform: uppercase; color: var(--dim); margin-bottom: 24px; }
+  .mod-hero-title { font-family: var(--serif); font-size: clamp(32px, 4vw, 52px); font-weight: 400; line-height: 1.15; letter-spacing: -0.01em; color: var(--fg); margin-bottom: 18px; max-width: 780px; }
+  .mod-hero-sub { font-family: var(--serif); font-style: italic; font-size: 17px; color: var(--mid); line-height: 1.6; max-width: 620px; margin-bottom: 8px; }
+
+  .content-block { padding: 64px 72px; border-bottom: 1px solid var(--border); }
+  .content-block:last-child { border-bottom: none; }
+  .block-label { font-family: var(--mono); font-size: 9px; font-weight: 300; letter-spacing: 0.18em; text-transform: uppercase; color: var(--dim); margin-bottom: 32px; display: flex; align-items: center; gap: 14px; }
+  .block-label::after { content: ''; display: block; width: 48px; height: 1px; background: var(--border); }
+  .block-title { font-family: var(--serif); font-size: clamp(22px, 2.5vw, 32px); font-weight: 400; letter-spacing: -0.01em; line-height: 1.3; color: var(--fg); margin-bottom: 20px; max-width: 760px; }
+  .sub-label { font-family: var(--mono); font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--dim); margin: 48px 0 16px; padding-top: 40px; border-top: 1px solid var(--border); }
+  .sub-title { font-family: var(--serif); font-size: clamp(19px, 2vw, 24px); font-weight: 400; letter-spacing: -0.01em; line-height: 1.35; color: var(--fg); margin-bottom: 16px; max-width: 720px; }
+  .block-body { font-family: var(--serif); font-size: 15.5px; color: var(--mid); line-height: 1.8; max-width: 660px; }
+  .block-body + .block-body { margin-top: 16px; }
+  .block-lead { font-family: var(--serif); font-size: 17px; font-style: italic; color: var(--fg); line-height: 1.6; max-width: 660px; }
+  .takeaway { font-family: var(--serif); font-size: 15px; color: var(--fg); line-height: 1.6; max-width: 620px; padding: 18px 22px; background: var(--bg2); border-radius: 6px; margin-top: 28px; }
+  .takeaway b { font-weight: 500; }
+
+  /* TAGS */
+  .tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0; }
+  .tag { font-family: var(--mono); font-size: 8.5px; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 3px; border: 1px solid var(--border); color: var(--dim); white-space: normal; line-height: 1.5; max-width: 100%; }
+  .tag-row { max-width: 660px; }
+  .tag-concept { color: var(--warn); border-color: rgba(196,130,106,0.35); background: rgba(196,130,106,0.06); }
+  .tag-hypothesis { color: var(--mid); border-color: var(--border); background: rgba(26,24,20,0.03); font-style: italic; }
+  .tag-verified { color: var(--fg); border-color: var(--border); }
+  .cite { font-family: var(--mono); font-size: 10px; color: var(--accent2); text-decoration: none; }
+  .cite:hover { text-decoration: underline; }
+
+  /* DISCLAIMER */
+  .disclaimer-card { border-left: 2px solid var(--fg); padding: 24px 30px; background: var(--bg2); border-radius: 0 6px 6px 0; margin-top: 32px; max-width: 760px; }
+  .disclaimer-text { font-family: var(--serif); font-style: italic; font-size: 15px; color: var(--fg); line-height: 1.7; margin-bottom: 16px; }
+  .disclaimer-list { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 24px; }
+  .disclaimer-list div { font-family: var(--mono); font-size: 10.5px; color: var(--dim); line-height: 1.6; display: flex; gap: 8px; }
+  .disclaimer-list div::before { content: '—'; flex-shrink: 0; }
+
+  /* META GRID */
+  .meta-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; max-width: 760px; margin-top: 36px; }
+  .meta-cell { background: var(--bg); padding: 18px 20px; }
+  .meta-cell .k { font-family: var(--mono); font-size: 8px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim); margin-bottom: 7px; }
+  .meta-cell .v { font-family: var(--serif); font-size: 13.5px; font-weight: 500; color: var(--fg); line-height: 1.3; }
+
+  /* WALKTHROUGH PLACEHOLDER */
+  .walkthrough-grid { display: grid; grid-template-columns: 2fr 3fr; gap: 48px; margin-top: 8px; align-items: center; }
+  .walkthrough-placeholder {
+    aspect-ratio: 16/10; border: 1px dashed var(--border); border-radius: 10px;
+    background: repeating-linear-gradient(135deg, rgba(26,24,20,0.025) 0 12px, transparent 12px 24px);
+    display: flex; align-items: center; justify-content: center; text-align: center; padding: 24px;
+  }
+  .walkthrough-placeholder .ph-label { font-family: var(--mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim); line-height: 1.8; }
+
+  /* GENERIC PLACEHOLDER BOX */
+  .placeholder-box {
+    border: 1px dashed var(--border); border-radius: 8px;
+    background: repeating-linear-gradient(135deg, rgba(26,24,20,0.025) 0 12px, transparent 12px 24px);
+    display: flex; align-items: center; justify-content: center; text-align: center;
+    min-height: 180px; padding: 20px;
+  }
+  .placeholder-box .ph-label { font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dim); line-height: 1.7; }
+
+  /* FLOW — vertical (boundary diagram) */
+  .vflow { display: flex; flex-direction: column; align-items: center; gap: 0; margin: 40px 0; max-width: 640px; }
+  .vflow-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+  .vflow-chip { font-family: var(--serif); font-size: 14px; font-weight: 500; color: var(--fg); background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 14px 20px; text-align: center; }
+  .vflow-chip.outcome-advance { border-color: var(--accent); background: rgba(196,168,130,0.12); }
+  .vflow-chip.outcome-hold { border-color: var(--warn); background: rgba(196,130,106,0.1); }
+  .vflow-chip.outcome-rollback { border-color: var(--border); color: var(--dim); }
+  .vflow-arrow { font-family: var(--mono); font-size: 13px; color: var(--dim); padding: 10px 0; }
+
+  /* FLOW — horizontal */
+  .flow-row { display: flex; align-items: stretch; gap: 0; margin: 40px 0; overflow-x: auto; scrollbar-width: none; padding-bottom: 6px; }
+  .flow-row::-webkit-scrollbar { display: none; }
+  .flow-step { display: flex; flex-direction: column; align-items: center; gap: 10px; flex: 1; min-width: 118px; }
+  .flow-node { font-family: var(--serif); font-size: 13px; font-weight: 500; color: var(--fg); background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 14px 12px; text-align: center; width: 100%; }
+  .flow-arrow { flex-shrink: 0; display: flex; align-items: center; height: 44px; padding: 0 6px; color: var(--dim); font-size: 13px; }
+
+  /* EVIDENCE / CARD GRIDS (hairline) */
+  .card-grid { display: grid; gap: 1px; background: var(--border); margin: 32px 0; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+  .card-grid.cols-5 { grid-template-columns: repeat(5,1fr); }
+  .card-grid.cols-4 { grid-template-columns: repeat(4,1fr); }
+  .card-grid.cols-3 { grid-template-columns: repeat(3,1fr); }
+  .card-grid.cols-2 { grid-template-columns: repeat(2,1fr); }
+  .g-card { background: var(--bg); padding: 26px 22px; }
+  .g-card .g-label { font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim); margin-bottom: 12px; display: block; }
+  .g-card .g-title { font-family: var(--serif); font-size: 14.5px; font-weight: 500; color: var(--fg); margin-bottom: 8px; line-height: 1.3; }
+  .g-card .g-body { font-family: var(--serif); font-size: 12.5px; color: var(--mid); line-height: 1.65; }
+  .g-card .g-src { margin-top: 10px; }
+
+  /* STAKEHOLDER CARDS */
+  .stakeholder-card .row { padding: 10px 0; border-top: 1px solid var(--border); }
+  .stakeholder-card .row:first-of-type { border-top: none; padding-top: 4px; }
+  .stakeholder-card .row .k { font-family: var(--mono); font-size: 8px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dim); margin-bottom: 4px; }
+  .stakeholder-card .row .v { font-family: var(--serif); font-size: 12.5px; color: var(--mid); line-height: 1.5; }
+  .stakeholder-card .row.risk .v { color: var(--warn); }
+
+  /* METRIC DOMAINS */
+  .domain-card .metric-line { padding: 10px 0; border-top: 1px solid var(--border); }
+  .domain-card .metric-line:first-of-type { border-top: none; }
+  .domain-card .metric-name { font-family: var(--serif); font-size: 13px; font-weight: 500; color: var(--fg); line-height: 1.4; }
+  .domain-card .metric-tension { font-family: var(--mono); font-size: 9.5px; color: var(--dim); margin-top: 3px; }
+  .domain-card .metric-tension b { color: var(--accent2); font-weight: 400; }
+
+  /* TENSION MAP */
+  .tension-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); margin: 32px 0; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+  .tension-card { background: var(--bg); display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 18px 24px; gap: 14px; }
+  .tension-side { font-family: var(--serif); font-size: 13.5px; color: var(--fg); line-height: 1.4; }
+  .tension-side.right { text-align: right; color: var(--mid); }
+  .tension-sym { font-family: var(--mono); font-size: 12px; color: var(--dim); }
+
+  /* EVIDENCE BADGE */
+  .badge-anatomy { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: var(--border); margin: 32px 0; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; max-width: 780px; }
+  .badge-field { background: var(--bg); padding: 16px 18px; }
+  .badge-field .k { font-family: var(--mono); font-size: 8px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dim); margin-bottom: 6px; }
+  .badge-field .v { font-family: var(--serif); font-size: 13px; color: var(--fg); font-weight: 500; line-height: 1.3; }
+  .badge-field.breach .v { color: var(--warn); }
+
+  /* HIDDEN ISSUE COMPARISON */
+  .reveal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); margin: 32px 0; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+  .reveal-col { background: var(--bg); padding: 30px 28px; }
+  .reveal-col .r-label { font-family: var(--mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim); margin-bottom: 16px; }
+  .reveal-col .r-stat { font-family: var(--serif); font-size: 30px; font-weight: 400; color: var(--fg); line-height: 1; margin-bottom: 6px; }
+  .reveal-col .r-delta { font-family: var(--mono); font-size: 11px; margin-bottom: 14px; }
+  .reveal-col.pass .r-delta { color: var(--accent2); }
+  .reveal-col.breach .r-delta { color: var(--warn); font-weight: 400; }
+  .reveal-col .r-note { font-family: var(--serif); font-size: 12.5px; color: var(--mid); line-height: 1.6; }
+  .reveal-status { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.06em; text-transform: uppercase; padding: 6px 10px; border-radius: 3px; display: inline-block; margin-top: 12px; }
+  .reveal-status.pass { color: var(--accent2); background: rgba(212,152,122,0.1); }
+  .reveal-status.breach { color: var(--warn); background: rgba(196,130,106,0.12); }
+
+  /* WORKFLOW TIMELINE */
+  .workflow-timeline { margin: 40px 0; position: relative; padding-left: 30px; max-width: 640px; }
+  .workflow-timeline::before { content: ''; position: absolute; left: 0; top: 6px; bottom: 6px; width: 1px; background: var(--border); }
+  .wf-step { position: relative; padding-bottom: 26px; }
+  .wf-step:last-child { padding-bottom: 0; }
+  .wf-dot { position: absolute; left: -30px; top: 4px; width: 8px; height: 8px; border-radius: 50%; border: 1.5px solid var(--dim); background: var(--bg); }
+  .wf-dot.hold { background: var(--warn); border-color: var(--warn); }
+  .wf-text { font-family: var(--serif); font-size: 14px; color: var(--fg); line-height: 1.4; margin-bottom: 6px; }
+  .wf-text.hold-label { font-weight: 500; color: var(--warn); }
+  .wf-roles { display: flex; flex-wrap: wrap; gap: 6px; }
+  .role-chip { font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--dim); border: 1px solid var(--border); border-radius: 10px; padding: 3px 9px; }
+
+  /* SCREEN ROWS */
+  .screen-row { display: grid; grid-template-columns: 1fr 1.3fr; gap: 40px; padding: 40px 0; border-top: 1px solid var(--border); }
+  .screen-row:first-of-type { border-top: none; padding-top: 8px; }
+  .screen-num { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 50%; background: var(--fg); color: var(--bg); font-family: var(--mono); font-size: 10px; margin-bottom: 14px; }
+  .screen-title { font-family: var(--serif); font-size: 18px; font-weight: 500; color: var(--fg); margin-bottom: 8px; }
+  .screen-q { font-family: var(--serif); font-style: italic; font-size: 14px; color: var(--mid); margin-bottom: 14px; }
+  .screen-facts { display: flex; flex-direction: column; gap: 8px; }
+  .screen-facts .f { font-family: var(--serif); font-size: 12.5px; color: var(--mid); line-height: 1.5; }
+  .screen-facts .f b { font-family: var(--mono); font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--dim); font-weight: 400; display: block; margin-bottom: 3px; }
+  .screen-placeholder-box { aspect-ratio: 4/3; }
+  .asset-name { font-family: var(--mono); font-size: 8px; color: var(--dim); opacity: 0.7; margin-top: 8px; text-align: center; }
+
+  /* AI JUDGMENT CARD */
+  .ai-card { border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin: 32px 0; max-width: 680px; }
+  .ai-card-head { background: var(--fg); color: var(--bg); padding: 16px 22px; display: flex; justify-content: space-between; align-items: center; }
+  .ai-card-head .t { font-family: var(--mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; }
+  .ai-card-body { background: var(--bg); padding: 24px 22px; }
+  .ai-summary { font-family: var(--serif); font-size: 15px; color: var(--fg); line-height: 1.6; margin-bottom: 18px; }
+  .ai-fields { display: grid; grid-template-columns: repeat(2,1fr); gap: 14px 20px; margin-bottom: 18px; }
+  .ai-field .k { font-family: var(--mono); font-size: 8px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dim); margin-bottom: 4px; }
+  .ai-field .v { font-family: var(--serif); font-size: 12.5px; color: var(--mid); line-height: 1.5; }
+  .ai-directional { font-family: var(--serif); font-style: italic; font-size: 13.5px; color: var(--warn); line-height: 1.6; padding: 14px 16px; background: rgba(196,130,106,0.07); border-radius: 4px; border-left: 2px solid var(--warn); }
+
+  /* MEASUREMENT CARDS */
+  .measure-card .m-title { font-family: var(--serif); font-size: 14.5px; font-weight: 500; color: var(--fg); margin-bottom: 10px; line-height: 1.35; }
+  .measure-card .m-row { margin-bottom: 8px; }
+  .measure-card .m-row .k { font-family: var(--mono); font-size: 8px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dim); margin-bottom: 2px; }
+  .measure-card .m-row .v { font-family: var(--serif); font-size: 12px; color: var(--mid); line-height: 1.5; }
+
+  /* ROADMAP */
+  .roadmap-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); margin: 32px 0; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+  .roadmap-card { background: var(--bg); padding: 28px 24px; }
+  .roadmap-card.mvp { background: rgba(196,168,130,0.08); }
+  .roadmap-card .r-phase { font-family: var(--mono); font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent2); margin-bottom: 14px; }
+  .roadmap-card .r-scope { font-family: var(--serif); font-size: 13px; color: var(--mid); line-height: 1.7; }
+  .exclusion-strip { margin-top: 1px; border: 1px solid var(--border); border-top: none; border-radius: 0 0 6px 6px; background: var(--bg2); padding: 20px 24px; }
+  .exclusion-strip .e-label { font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dim); margin-bottom: 10px; }
+  .exclusion-strip .e-list { display: flex; flex-wrap: wrap; gap: 8px; }
+  .exclusion-strip .e-item { font-family: var(--mono); font-size: 10px; color: var(--mid); border: 1px solid var(--border); border-radius: 3px; padding: 4px 9px; }
+
+  /* PROTOTYPE BLOCK (kept, hidden until real URL exists — see HTML comment) */
+  .prototype-block { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 32px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+  .prototype-block .p-text { font-family: var(--serif); font-size: 14px; color: var(--mid); max-width: 440px; line-height: 1.6; }
+  .btn-cta-solid { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--bg); background: var(--accent); border-radius: 20px; padding: 11px 22px; text-decoration: none; transition: background 0.2s; }
+  .btn-cta-solid:hover { background: var(--fg); }
+
+  /* SOURCES */
+  .sources-list { display: flex; flex-direction: column; gap: 10px; margin-top: 24px; max-width: 780px; }
+  .source-item { display: grid; grid-template-columns: 26px 1fr; gap: 12px; font-family: var(--mono); font-size: 10.5px; line-height: 1.6; }
+  .source-item .num { color: var(--dim); }
+  .source-item .txt { color: var(--mid); word-break: break-word; }
+  .source-item .txt .type { color: var(--dim); font-style: italic; }
+  .source-item a { color: var(--accent2); text-decoration: none; }
+  .source-item a:hover { text-decoration: underline; }
+
+  .reflection-quote { font-family: var(--serif); font-size: clamp(18px, 2vw, 23px); font-style: italic; color: var(--fg); line-height: 1.55; max-width: 640px; margin-top: 28px; }
+
+  /* PLAIN BULLET LIST (AI can / People must, etc.) */
+  .bullet-list { display: flex; flex-direction: column; gap: 9px; }
+  .bullet-list div { font-family: var(--serif); font-size: 13px; color: var(--mid); line-height: 1.5; display: flex; gap: 8px; }
+  .bullet-list div::before { content: '—'; color: var(--dim); flex-shrink: 0; }
+
+  /* COLLAPSIBLE DISCLOSURE */
+  details.disclosure { margin-top: 20px; max-width: 660px; }
+  details.disclosure summary { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent2); cursor: pointer; padding: 4px 0; list-style: none; }
+  details.disclosure summary::-webkit-details-marker { display: none; }
+  details.disclosure summary:hover { color: var(--fg); }
+  details.disclosure[open] summary { margin-bottom: 14px; color: var(--fg); }
+
+  /* DOMAIN CARD — plain question + secondary technical list */
+  .domain-card .domain-q { font-family: var(--serif); font-size: 14px; font-weight: 500; color: var(--fg); line-height: 1.45; margin-bottom: 14px; }
+  .domain-card .domain-metrics { font-family: var(--mono); font-size: 9px; color: var(--dim); line-height: 1.9; }
+
+  /* SPOTLIGHT WALKTHROUGH */
+  .spotlight-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 48px; align-items: start; margin: 8px 0 40px; }
+  .spotlight-image { aspect-ratio: 16/10; border: 1px dashed var(--border); border-radius: 10px; background: repeating-linear-gradient(135deg, rgba(26,24,20,0.025) 0 12px, transparent 12px 24px); display: flex; align-items: center; justify-content: center; text-align: center; }
+  .spotlight-image .ph-label { font-family: var(--mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim); }
+  .spotlight-eyebrow { font-family: var(--mono); font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent2); margin-bottom: 10px; }
+  .spotlight-title { font-family: var(--serif); font-size: 22px; font-weight: 500; color: var(--fg); margin-bottom: 6px; line-height: 1.25; }
+  .spotlight-sub { font-family: var(--serif); font-style: italic; font-size: 14.5px; color: var(--mid); margin-bottom: 16px; }
+  .spotlight-body { font-family: var(--serif); font-size: 14px; color: var(--mid); line-height: 1.7; }
+  .insight-card { border-left: 2px solid var(--accent2); background: var(--bg2); padding: 14px 18px; border-radius: 0 6px 6px 0; margin-top: 18px; }
+  .insight-card .i-label { font-family: var(--mono); font-size: 8px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent2); margin-bottom: 6px; }
+  .insight-card .i-text { font-family: var(--serif); font-size: 13px; color: var(--fg); line-height: 1.5; }
+  .walk-transition { font-family: var(--serif); font-style: italic; font-size: 14.5px; color: var(--mid); line-height: 1.7; max-width: 600px; margin: 8px 0 44px; padding-left: 18px; border-left: 2px solid var(--border); }
+
+  /* SUPPORTING SCREENS — compact gallery, deliberately smaller than the spotlights */
+  .support-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; margin-top: 20px; max-width: 560px; }
+  .support-img { aspect-ratio: 16/10; border: 1px dashed var(--border); border-radius: 8px; background: repeating-linear-gradient(135deg, rgba(26,24,20,0.025) 0 10px, transparent 10px 20px); display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
+  .support-img .ph-label { font-family: var(--mono); font-size: 8px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dim); }
+  .support-title { font-family: var(--serif); font-size: 13px; font-weight: 500; color: var(--fg); margin-bottom: 3px; }
+  .support-q { font-family: var(--serif); font-style: italic; font-size: 11.5px; color: var(--mid); }
+
+  /* FIVE-SCREEN SEQUENTIAL WALKTHROUGH */
+  .screen-block { padding: 48px 0; border-top: 1px solid var(--border); }
+  .screen-block:first-of-type { border-top: none; padding-top: 0; }
+  .screen-stage-label { font-family: var(--mono); font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent2); margin-bottom: 14px; }
+  .screen-head { display: flex; align-items: center; gap: 14px; margin-bottom: 10px; }
+  .screen-name { font-family: var(--serif); font-size: clamp(20px, 2.2vw, 26px); font-weight: 500; color: var(--fg); line-height: 1.3; }
+  .screen-visual-grid { display: grid; grid-template-columns: 1fr; gap: 36px; margin: 48px 0; }
+  .visual-label { font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim); margin-bottom: 8px; }
+  .visual-box { border: 1px solid var(--border); border-radius: 8px; overflow: hidden; background: var(--bg2); width: 100%; max-width: 700px; }
+  .visual-box.visual-context { max-width: 420px; }
+  .visual-box .ph-label { font-family: var(--mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dim); text-align: center; padding: 60px 20px; }
+  .visual-box img.screen-visual-img { width: 100%; height: auto; display: block; object-fit: contain; }
+
+  /* MOBILE */
+  @media (max-width: 900px) {
+    .card-grid.cols-5, .card-grid.cols-4, .card-grid.cols-3, .card-grid.cols-2 { grid-template-columns: 1fr; }
+    .reveal-grid { grid-template-columns: 1fr; }
+    .badge-anatomy { grid-template-columns: repeat(2,1fr); }
+    .roadmap-grid { grid-template-columns: 1fr; }
+    .tension-card { grid-template-columns: 1fr; text-align: left; gap: 6px; }
+    .tension-side.right { text-align: left; }
+    .tension-sym { display: none; }
+    .walkthrough-grid { grid-template-columns: 1fr; gap: 24px; }
+    .screen-row { grid-template-columns: 1fr; gap: 20px; }
+    .disclaimer-list { grid-template-columns: 1fr; }
+    .ai-fields { grid-template-columns: 1fr; }
+    .spotlight-grid { grid-template-columns: 1fr; gap: 24px; }
+    .support-grid { grid-template-columns: 1fr; max-width: 100%; }
+    .screen-visual-grid { grid-template-columns: 1fr; }
+    .visual-box, .visual-box.visual-context { max-width: 100%; }
+  }
+
+  @media (max-width: 768px) {
+    .panel { position: static; width: 100%; height: auto; border-right: none; border-bottom: 1px solid var(--border); z-index: auto; }
+    .content { margin-left: 0; }
+    .mod-hero, .content-block { padding: 44px 26px; }
+    .meta-grid { grid-template-columns: repeat(2,1fr); max-width: 100%; }
+    .badge-anatomy { grid-template-columns: 1fr; }
+    .flow-row { flex-direction: column; }
+    .flow-arrow { transform: rotate(90deg); height: auto; padding: 4px 0; }
+    .vflow-row { flex-direction: column; width: 100%; }
+    .vflow-chip { width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<div class="workspace">
+
+  <aside class="panel">
+    <div class="panel-header">
+      <a class="back-link" href="../index.html#selected-work">&#8592; Back</a>
+      <div class="panel-eyebrow">Case Study</div>
+      <div class="panel-title">OpenAI Product Health</div>
+      <div class="panel-subtitle">Deciding when a new model is ready to ship.</div>
+    </div>
+
+    <nav class="section-nav">
+      <span class="section-nav-label">Case Study Flow</span>
+      <div class="section-list">
+        <a class="section-link" href="#overview"><span class="n">00</span> Overview</a>
+        <a class="section-link" href="#context"><span class="n">01</span> The Problem</a>
+        <a class="section-link" href="#decision-system"><span class="n">02</span> How It Works</a>
+        <a class="section-link" href="#rollout-workflow"><span class="n">03</span> Rollout Story</a>
+        <a class="section-link" href="#experience"><span class="n">04</span> Product Screens</a>
+        <a class="section-link" href="#measurement"><span class="n">05</span> Measure &amp; Learn</a>
+      </div>
+    </nav>
+
+    <div class="panel-footer">
+      <div class="panel-meta-row">
+        <div class="panel-meta-item">
+          <span class="panel-meta-label">Type</span>
+          <span class="panel-meta-value">Independent Product Strategy Case Study</span>
+        </div>
+        <div class="panel-meta-item">
+          <span class="panel-meta-label">Role</span>
+          <span class="panel-meta-value">Product Strategy &amp; Design</span>
+        </div>
+        <div class="panel-meta-item">
+          <span class="panel-meta-label">Focus</span>
+          <span class="panel-meta-value">AI Product Health, Internal Tools, Rollout Systems</span>
+        </div>
+        <div class="panel-meta-item">
+          <span class="panel-meta-label">Status</span>
+          <span class="panel-meta-value">Concept / Prototype</span>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <main class="content">
+
+    <!-- ============================================================ -->
+    <!-- 00 — OVERVIEW -->
+    <!-- ============================================================ -->
+    <div class="mod-hero" id="overview">
+      <p class="mod-hero-eyebrow">Case Study — OpenAI Product Health</p>
+      <h1 class="mod-hero-title">Knowing when to ship is the hard part.</h1>
+      <p class="mod-hero-sub">AI models don't ship all at once. Teams roll them out slowly &#8212; watching quality, safety, experience, and reliability along the way.</p>
+
+      <p class="block-body" style="font-size:13px;color:var(--dim);margin-top:20px;max-width:620px;">Independent concept, based on public research &#8212; no internal OpenAI data, and every number on this page is made up for the story. <a href="#full-disclosure" style="color:var(--accent2);text-decoration:none;">Full disclosure &#8594;</a></p>
+
+      <div class="meta-grid" style="grid-template-columns:repeat(4,1fr);">
+        <div class="meta-cell"><div class="k">Type</div><div class="v">Independent Product Strategy Case Study</div></div>
+        <div class="meta-cell"><div class="k">Role</div><div class="v">Product Strategy &amp; Design</div></div>
+        <div class="meta-cell"><div class="k">Focus</div><div class="v">AI Product Health &middot; Internal Tools</div></div>
+        <div class="meta-cell"><div class="k">Status</div><div class="v">Concept / Prototype</div></div>
+      </div>
+    </div>
+
+    <div class="content-block">
+      <div class="block-label">00 &#8212; Overview</div>
+      <p class="block-body">Building a better model isn't the final decision. Deciding when it's ready for real users is.</p>
+      <p class="block-body">A team gives it a slice of traffic first &#8212; say, 25% &#8212; and watches. Then someone has to decide: keep going, hold, or pull it back.</p>
+      <p class="block-body">That call depends on four things &#8212; is it accurate, is it safe, is it usable, is it stable. I built one place to see all four together.</p>
+
+      <div class="card-grid cols-3" style="margin-top:28px;max-width:660px;">
+        <div class="g-card"><span class="g-label">Problem</span><div class="g-body">A model can improve overall while getting worse for one group.</div></div>
+        <div class="g-card"><span class="g-label">Approach</span><div class="g-body">Compare the new model to the current one, across four areas that matter.</div></div>
+        <div class="g-card"><span class="g-label">Decision</span><div class="g-body">Move forward, hold, or roll back &#8212; and write down why.</div></div>
+      </div>
+
+      <div class="vflow">
+        <div class="vflow-row"><div class="vflow-chip">New model</div></div>
+        <div class="vflow-arrow">&#8595;</div>
+        <div class="vflow-row"><div class="vflow-chip">25% of users</div></div>
+        <div class="vflow-arrow">&#8595;</div>
+        <div class="vflow-row">
+          <div class="vflow-chip">Quality</div>
+          <div class="vflow-chip">Safety</div>
+          <div class="vflow-chip">Experience</div>
+          <div class="vflow-chip">Reliability</div>
+        </div>
+        <div class="vflow-arrow">&#8595;</div>
+        <div class="vflow-row">
+          <div class="vflow-chip outcome-advance">Advance</div>
+          <div class="vflow-chip outcome-hold">Hold</div>
+          <div class="vflow-chip outcome-rollback">Roll back</div>
+        </div>
+      </div>
+
+      <div class="sub-label">What Actually Happened <span class="tag tag-concept" style="margin-left:8px;vertical-align:middle;">Fictional Data — Product Concept Illustration</span></div>
+      <p class="block-lead">Overall, the new model looked healthy. One user group told a different story.</p>
+      <div class="reveal-grid" style="margin-top:24px;">
+        <div class="reveal-col pass">
+          <div class="r-label">Across Everyone</div>
+          <div class="r-stat">3.8% &#8594; 4.1%</div>
+          <div class="r-note">Answers without enough evidence. Barely moved.</div>
+          <span class="reveal-status pass">Within limit</span>
+        </div>
+        <div class="reveal-col breach">
+          <div class="r-label">One Group: Spanish-Language Legal &amp; Financial Questions</div>
+          <div class="r-stat">5.2% &#8594; 8.9%</div>
+          <div class="r-note">Same measure. A much bigger jump.</div>
+          <span class="reveal-status breach">Limit breached</span>
+        </div>
+      </div>
+      <div class="takeaway" style="border-left:2px solid var(--warn);background:rgba(196,130,106,0.07);"><b>Decision: HOLD AT 25%.</b> The team held there. Before going further, they added the test that had been missing.</div>
+      <p class="block-body" style="font-size:12.5px;color:var(--dim);margin-top:14px;max-width:620px;">An answer "without enough evidence" just means the model made a claim it couldn't really back up.</p>
+
+      <!-- WALKTHROUGH PLACEHOLDER — asset: oph-walkthrough.mp4 -->
+      <div class="sub-label" style="margin-top:56px;">Walkthrough</div>
+      <div class="walkthrough-grid">
+        <div class="walkthrough-placeholder">
+          <div class="ph-label">Walkthrough video<br />coming soon</div>
+        </div>
+        <div>
+          <p class="block-body">A short walkthrough will show the full flow &#8212; from spotting the issue to holding the rollout.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- 01 — CONTEXT -->
+    <!-- ============================================================ -->
+    <div class="content-block" id="context">
+      <div class="block-label">01 &#8212; The Problem</div>
+      <h2 class="block-title">One decision depends on five sources of evidence.</h2>
+      <p class="block-body">Before a team expands a rollout, they have to check a lot of things: model tests, safety signals, experiments, system performance, moderation alerts.</p>
+      <p class="block-body">Those all live in different tools.</p>
+      <p class="block-body">So I asked a simple question: what if they all lived in one place instead?</p>
+
+      <div class="card-grid cols-5" style="margin-top:32px;">
+        <div class="g-card"><span class="g-label">Model Evaluation</span><div class="g-body">Tests that check answer quality and accuracy.</div><div class="g-src"><a class="cite" href="#src-1">[1]</a><a class="cite" href="#src-2">[2]</a></div></div>
+        <div class="g-card"><span class="g-label">Safety Testing</span><div class="g-body">Checks for harmful or unsafe responses.</div><div class="g-src"><a class="cite" href="#src-1">[1]</a><a class="cite" href="#src-11">[11]</a></div></div>
+        <div class="g-card"><span class="g-label">Staged Experimentation</span><div class="g-body">Tools for testing a rollout in stages.</div><div class="g-src"><a class="cite" href="#src-12">[12]</a><a class="cite" href="#src-13">[13]</a></div></div>
+        <div class="g-card"><span class="g-label">Infrastructure Reliability</span><div class="g-body">Tracks uptime, speed, and errors.</div><div class="g-src"><a class="cite" href="#src-4">[4]</a><a class="cite" href="#src-5">[5]</a></div></div>
+        <div class="g-card"><span class="g-label">Moderation Signals</span><div class="g-body">Automatic flags &#8212; a signal, not a confirmed violation.</div><div class="g-src"><a class="cite" href="#src-6">[6]</a></div></div>
+      </div>
+
+      <div class="vflow" style="margin-top:8px;">
+        <div class="vflow-arrow">&#8595;</div>
+        <div class="vflow-row"><div class="vflow-chip outcome-hold" style="max-width:420px;">Is there enough evidence to move forward?</div></div>
+        <div class="vflow-arrow">&#8595;</div>
+        <div class="vflow-row"><div class="vflow-chip outcome-advance" style="max-width:420px;">One place to make that call.</div></div>
+      </div>
+
+      <div class="takeaway"><b>Key takeaway.</b> The answer isn't more analytics. It's one workspace, built around the decision itself.</div>
+
+      <div class="sub-label" style="border-top:none;padding-top:0;margin-top:48px;">How This Took Shape</div>
+      <div class="stakeholder-card" style="max-width:600px;">
+        <div class="row"><div class="k">Question</div><div class="v">What actually helps someone decide if a model is ready?</div></div>
+        <div class="row"><div class="k">Hypothesis</div><div class="v">Maybe it's not more data. Maybe it's fewer, better-organized decisions.</div></div>
+        <div class="row"><div class="k">What changed</div><div class="v">I stopped asking how to visualize more data and started asking how people actually decide to ship something.</div></div>
+        <div class="row"><div class="k">Final reasoning</div><div class="v">A good tool doesn't remove the hard part. It just makes the hard part visible.</div></div>
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- 02 — DECISION SYSTEM  (public §02 The Decision + §03 Metric System) -->
+    <!-- ============================================================ -->
+    <div class="content-block" id="decision-system">
+      <div class="block-label">02 &#8212; How It Works</div>
+      <h2 class="block-title">Four people, one decision.</h2>
+      <p class="block-lead">Can we safely give the new model more traffic?</p>
+
+      <div class="card-grid cols-4" style="margin-top:28px;">
+        <div class="g-card stakeholder-card">
+          <span class="g-label">Product Manager</span>
+          <div class="row"><div class="k">Needs to know</div><div class="v">Can we safely increase traffic?</div></div>
+          <div class="row"><div class="k">Owns</div><div class="v">Convenes the decision and the record</div></div>
+          <div class="row risk"><div class="k">Main risk</div><div class="v">Mistaking an overall win for a full win</div></div>
+        </div>
+        <div class="g-card stakeholder-card">
+          <span class="g-label">Model Researcher</span>
+          <div class="row"><div class="k">Needs to know</div><div class="v">Did the model actually improve?</div></div>
+          <div class="row"><div class="k">Owns</div><div class="v">Recommends advance or hold, on quality grounds</div></div>
+          <div class="row risk"><div class="k">Main risk</div><div class="v">Trusting test results over real usage</div></div>
+        </div>
+        <div class="g-card stakeholder-card">
+          <span class="g-label">Safety Reviewer</span>
+          <div class="row"><div class="k">Needs to know</div><div class="v">Did harmful behavior change?</div></div>
+          <div class="row"><div class="k">Owns</div><div class="v">Can block the rollout alone</div></div>
+          <div class="row risk"><div class="k">Main risk</div><div class="v">Mistaking a flagged signal for a confirmed violation</div></div>
+        </div>
+        <div class="g-card stakeholder-card">
+          <span class="g-label">Infrastructure Engineer</span>
+          <div class="row"><div class="k">Needs to know</div><div class="v">Is the issue the model or the system?</div></div>
+          <div class="row"><div class="k">Owns</div><div class="v">Confirms system reliability is within limits</div></div>
+          <div class="row risk"><div class="k">Main risk</div><div class="v">Blaming the model for a system problem</div></div>
+        </div>
+      </div>
+
+      <div class="flow-row">
+        <div class="flow-step"><div class="flow-node">Spot a signal</div></div>
+        <div class="flow-arrow">&#8594;</div>
+        <div class="flow-step"><div class="flow-node">Compare the models</div></div>
+        <div class="flow-arrow">&#8594;</div>
+        <div class="flow-step"><div class="flow-node">Find who is affected</div></div>
+        <div class="flow-arrow">&#8594;</div>
+        <div class="flow-step"><div class="flow-node">Decide</div></div>
+        <div class="flow-arrow">&#8594;</div>
+        <div class="flow-step"><div class="flow-node">Record what happens next</div></div>
+      </div>
+
+      <div class="takeaway"><b>Key takeaway.</b> It's built around decisions. Not metric categories.</div>
+
+      <div class="sub-label" style="border-top:none;padding-top:0;margin-top:56px;">03 &#8212; Metrics</div>
+      <h2 class="block-title">Four questions, not one score.</h2>
+      <p class="block-body">Every metric comes with a tradeoff. There's no single score &#8212; just four areas, checked on their own, every time.</p>
+
+      <div class="card-grid cols-4" style="margin-top:28px;">
+        <div class="g-card domain-card">
+          <span class="g-label">Quality</span>
+          <div class="domain-q">Does the model complete tasks correctly?</div>
+          <div class="domain-metrics">Task success rate<br />Unsupported-claim rate<br />Change vs. current model<br />Test coverage</div>
+        </div>
+        <div class="g-card domain-card">
+          <span class="g-label">Safety</span>
+          <div class="domain-q">Does it avoid harmful answers without blocking safe requests?</div>
+          <div class="domain-metrics">Moderation flags (signal only)<br />Safe requests incorrectly blocked<br />Harmful requests incorrectly answered<br />Serious incidents</div>
+        </div>
+        <div class="g-card domain-card">
+          <span class="g-label">Experience</span>
+          <div class="domain-q">Can users finish their tasks without repeatedly trying again?</div>
+          <div class="domain-metrics">Task completion rate<br />Retry rate<br />Worst-affected user group</div>
+        </div>
+        <div class="g-card domain-card">
+          <span class="g-label">Reliability</span>
+          <div class="domain-q">Is the product fast and stable?</div>
+          <div class="domain-metrics">Response time (slowest 5%)<br />Errors / timeouts<br />Uptime &amp; data freshness</div>
+        </div>
+      </div>
+
+      <div class="sub-label">Every Improvement Has a Tradeoff</div>
+      <div class="tension-grid">
+        <div class="tension-card"><div class="tension-side">Better answers</div><div class="tension-sym">&#8644;</div><div class="tension-side right">Slower responses</div></div>
+        <div class="tension-card"><div class="tension-side">Fewer blocked requests</div><div class="tension-sym">&#8644;</div><div class="tension-side right">More safety risk</div></div>
+        <div class="tension-card"><div class="tension-side">Overall improvement</div><div class="tension-sym">&#8644;</div><div class="tension-side right">One group getting worse</div></div>
+        <div class="tension-card"><div class="tension-side">More alerts</div><div class="tension-sym">&#8644;</div><div class="tension-side right">More false alarms</div></div>
+        <div class="tension-card"><div class="tension-side">Faster release</div><div class="tension-sym">&#8644;</div><div class="tension-side right">Less evidence</div></div>
+      </div>
+
+      <div class="sub-label">What Makes a Metric Trustworthy?</div>
+      <p class="block-body">If a number can't answer these questions, it doesn't get shown. Here's a real example from the story above &#8212; the Spanish-language legal and financial group. <span class="tag tag-concept" style="margin-left:4px;">Fictional Data — Product Concept Illustration</span></p>
+      <div class="badge-anatomy">
+        <div class="badge-field"><div class="k">How recent is it?</div><div class="v">4 hours</div></div>
+        <div class="badge-field"><div class="k">Is there a known gap?</div><div class="v">Missing test logged</div></div>
+        <div class="badge-field"><div class="k">How much data supports it?</div><div class="v">4,820 requests</div></div>
+        <div class="badge-field"><div class="k">How certain is the result?</div><div class="v">High</div></div>
+        <div class="badge-field"><div class="k">Where did it come from?</div><div class="v">Staged experimentation</div></div>
+        <div class="badge-field"><div class="k">Which model was measured?</div><div class="v">New model (test version)</div></div>
+        <div class="badge-field breach"><div class="k">Did it cross a limit?</div><div class="v">Limit breached</div></div>
+        <div class="badge-field breach"><div class="k">How much did it change?</div><div class="v">+3.7 pts</div></div>
+      </div>
+      <p class="block-body" style="font-size:12.5px;color:var(--dim);max-width:620px;">Same regression as before. Logged as a missing test &#8212; not just a bad result.</p>
+
+      <div class="takeaway"><b>Key takeaway.</b> A number without its context and its tradeoff doesn't ship.</div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- 03 — ROLLOUT WORKFLOW -->
+    <!-- ============================================================ -->
+    <div class="content-block" id="rollout-workflow">
+      <div class="block-label">03 &#8212; Rollout Story</div>
+      <h2 class="block-title">Why the rollout paused.</h2>
+      <p class="block-body">Nothing here moves forward just because time passed. It moves when there's enough proof. <span class="tag tag-concept">Fictional Data — Product Concept Illustration</span></p>
+
+      <div class="workflow-timeline">
+        <div class="wf-step"><span class="wf-dot"></span><div class="wf-text">Test the new model with 25% of traffic</div></div>
+        <div class="wf-step"><span class="wf-dot"></span><div class="wf-text">Collect enough data</div></div>
+        <div class="wf-step"><span class="wf-dot"></span><div class="wf-text">Compare four health areas</div></div>
+        <div class="wf-step"><span class="wf-dot hold"></span><div class="wf-text hold-label">Find one user group getting worse</div></div>
+        <div class="wf-step"><span class="wf-dot hold"></span><div class="wf-text hold-label">Hold the rollout</div></div>
+        <div class="wf-step"><span class="wf-dot"></span><div class="wf-text">Add a new test and try again</div></div>
+      </div>
+
+      <div class="takeaway">Some of these comparisons are simulated &#8212; real questions run through the new model, without showing it to everyone yet. Simulations can miss context. So instead of pretending every result is exact, the dashboard shows how much to trust it.</div>
+
+      <details class="disclosure">
+        <summary>Show detailed workflow</summary>
+        <div class="workflow-timeline">
+          <div class="wf-step"><span class="wf-dot"></span><div class="wf-text">Candidate enters 25% rollout</div></div>
+          <div class="wf-step"><span class="wf-dot"></span><div class="wf-text">Required sample size (61,400 requests) + 9-day soak period reached <span style="color:var(--dim);font-family:var(--mono);font-size:10px;">(min. 7 days / 50,000 requests)</span></div></div>
+          <div class="wf-step"><span class="wf-dot"></span><div class="wf-text">Four domains evaluated</div><div class="wf-roles"><span class="role-chip">Model Researcher</span><span class="role-chip">Safety Reviewer</span><span class="role-chip">Infra Engineer</span></div></div>
+          <div class="wf-step"><span class="wf-dot"></span><div class="wf-text">Aggregate improvement detected</div></div>
+          <div class="wf-step"><span class="wf-dot hold"></span><div class="wf-text hold-label">Worst-segment regression surfaced</div></div>
+          <div class="wf-step"><span class="wf-dot"></span><div class="wf-text">Alert reviewed</div><div class="wf-roles"><span class="role-chip">Safety Reviewer</span><span class="role-chip">Model Researcher</span></div></div>
+          <div class="wf-step"><span class="wf-dot"></span><div class="wf-text">Cohort drill-down</div></div>
+          <div class="wf-step"><span class="wf-dot"></span><div class="wf-text">Evidence compared with incumbent</div></div>
+          <div class="wf-step"><span class="wf-dot"></span><div class="wf-text">Team records decision</div><div class="wf-roles"><span class="role-chip">Product Manager convenes</span></div></div>
+          <div class="wf-step"><span class="wf-dot hold"></span><div class="wf-text hold-label">HOLD AT 25%</div></div>
+          <div class="wf-step"><span class="wf-dot"></span><div class="wf-text">New evaluation / mitigation assigned</div></div>
+          <div class="wf-step"><span class="wf-dot"></span><div class="wf-text">Candidate retested</div></div>
+        </div>
+        <div class="sub-label" style="margin-top:32px;">Alert Lifecycle</div>
+        <div class="flow-row">
+          <div class="flow-step"><div class="flow-node">Detect</div></div>
+          <div class="flow-arrow">&#8594;</div>
+          <div class="flow-step"><div class="flow-node">Validate</div></div>
+          <div class="flow-arrow">&#8594;</div>
+          <div class="flow-step"><div class="flow-node">Assign</div></div>
+          <div class="flow-arrow">&#8594;</div>
+          <div class="flow-step"><div class="flow-node">Investigate</div></div>
+          <div class="flow-arrow">&#8594;</div>
+          <div class="flow-step"><div class="flow-node">Decide</div></div>
+          <div class="flow-arrow">&#8594;</div>
+          <div class="flow-step"><div class="flow-node">Monitor recovery</div></div>
+        </div>
+      </details>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- 04 — EXPERIENCE  (public §05 Experience + §06 AI Judgment) -->
+    <!-- ============================================================ -->
+    <div class="content-block" id="experience">
+      <div class="block-label">04 &#8212; Product Screens</div>
+      <h2 class="block-title">Five screens. One rollout decision.</h2>
+      <p class="block-body">The experience follows one model rollout from the first warning to the final recorded decision. Each screen answers the next question the team needs to resolve. <span class="tag tag-concept">Fictional Data — Product Concept Illustration</span></p>
+
+      <div class="flow-row" style="margin-top:32px;">
+        <div class="flow-step"><div class="flow-node">01 &#8212; Detect</div></div>
+        <div class="flow-arrow">&#8594;</div>
+        <div class="flow-step"><div class="flow-node">02 &#8212; Compare</div></div>
+        <div class="flow-arrow">&#8594;</div>
+        <div class="flow-step"><div class="flow-node">03 &#8212; Investigate</div></div>
+        <div class="flow-arrow">&#8594;</div>
+        <div class="flow-step"><div class="flow-node">04 &#8212; Prepare</div></div>
+        <div class="flow-arrow">&#8594;</div>
+        <div class="flow-step"><div class="flow-node">05 &#8212; Decide</div></div>
+      </div>
+
+      <!-- SCREEN 01 -->
+      <div class="screen-block">
+        <div class="screen-stage-label">01 &#8212; Detect</div>
+        <div class="screen-head"><span class="screen-num">01</span><h3 class="screen-name">Rollout Overview</h3></div>
+        <p class="screen-q">"What stopped the rollout?"</p>
+        <p class="block-body">The overview brings the current rollout stage, readiness requirements, health areas, and blocking issue into one place. Most signals look healthy, but one user group has crossed a quality limit.</p>
+        <p class="block-body" style="font-size:13.5px;"><b>Why it matters.</b> The screen prevents an overall improvement from hiding a meaningful group-level regression.</p>
+
+        <div class="screen-visual-grid">
+          <div>
+            <div class="visual-label">Full Interface</div>
+            <!-- SCREEN 01 FULL -->
+            <div class="visual-box visual-context"><img class="screen-visual-img" src="../assets/images/oph-screen-01-full.png" alt="Rollout Overview screen — full interface" loading="lazy" /></div>
+          </div>
+          <div>
+            <div class="visual-label">Decision Spotlight</div>
+            <!-- SCREEN 01 SPOTLIGHT -->
+            <div class="visual-box"><img class="screen-visual-img" src="../assets/images/oph-screen-01-spotlight.png" alt="Rollout Overview screen — decision spotlight on the blocking issue" loading="lazy" /></div>
+          </div>
+        </div>
+        <p class="block-body" style="font-size:12.5px;color:var(--dim);">The rollout appeared ready to expand until the dashboard surfaced one group whose unsupported claims rose from 5.2% to 8.9%.</p>
+
+        <div class="takeaway"><b>What this shows.</b> I designed the overview around the reason the rollout cannot advance &#8212; not around a generic collection of KPIs.</div>
+      </div>
+
+      <p style="font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--dim);margin:32px 0 16px;">A Quick Recap Before Comparing</p>
+      <div class="card-grid cols-3">
+        <div class="g-card"><span class="g-label">Tradeoffs</span><div class="g-body">Every gain has a cost somewhere else. Better answers, slower responses. Overall improvement, one group getting worse.</div></div>
+        <div class="g-card"><span class="g-label">Evidence Check</span><div class="g-body">A number only counts if it shows how recent it is, how much data backs it, and whether it crossed a limit.</div></div>
+        <div class="g-card"><span class="g-label">The Flow</span><div class="g-body">Spot a signal &#8594; compare the models &#8594; find who's affected &#8594; decide &#8594; record it.</div></div>
+      </div>
+
+      <!-- SCREEN 02 -->
+      <div class="screen-block">
+        <div class="screen-stage-label">02 &#8212; Compare</div>
+        <div class="screen-head"><span class="screen-num">02</span><h3 class="screen-name">Compare Health Areas</h3></div>
+        <p class="screen-q">"Which part of product health is blocking the rollout?"</p>
+        <p class="block-body">This screen compares the new model with the current model across quality, safety, user experience, and reliability. Each area stays separate so one strong result can't cancel out a meaningful regression elsewhere.</p>
+        <p class="block-body" style="font-size:13.5px;"><b>Why it matters.</b> A rollout shouldn't get one overall health score. The team needs to see where performance improved, where it stayed stable, and where it failed.</p>
+
+        <div class="screen-visual-grid">
+          <div>
+            <div class="visual-label">Full Interface</div>
+            <!-- SCREEN 02 FULL -->
+            <div class="visual-box"><img class="screen-visual-img" src="../assets/images/oph-screen-02-full.png" alt="Compare Health Areas screen — full interface" loading="lazy" /></div>
+          </div>
+        </div>
+
+        <div class="takeaway"><b>What this shows.</b> I treated product health as a set of connected tradeoffs rather than one simplified score.</div>
+      </div>
+
+      <!-- SCREEN 03 -->
+      <div class="screen-block">
+        <div class="screen-stage-label">03 &#8212; Investigate</div>
+        <div class="screen-head"><span class="screen-num">03</span><h3 class="screen-name">Investigation Case</h3></div>
+        <p class="screen-q">"What do we know, and what still needs to be proven?"</p>
+        <p class="block-body">The investigation separates confirmed observations from a working explanation. It records what changed, what the team currently believes, which alternatives have been ruled out, and what evidence is still missing.</p>
+        <p class="block-body" style="font-size:13.5px;"><b>Why it matters.</b> The interface helps the team reason under uncertainty without presenting a coincidence as proven causation.</p>
+
+        <div class="screen-visual-grid">
+          <div>
+            <div class="visual-label">Full Interface</div>
+            <!-- SCREEN 03 FULL -->
+            <div class="visual-box visual-context"><img class="screen-visual-img" src="../assets/images/oph-screen-03-full.png" alt="Investigation Case screen — full interface" loading="lazy" /></div>
+          </div>
+          <div>
+            <div class="visual-label">Decision Spotlight</div>
+            <!-- SCREEN 03 SPOTLIGHT -->
+            <div class="visual-box"><img class="screen-visual-img" src="../assets/images/oph-screen-03-spotlight.png" alt="Investigation Case screen — decision spotlight on the working theory" loading="lazy" /></div>
+          </div>
+        </div>
+        <p class="block-body" style="font-size:12.5px;color:var(--dim);">The team has a likely explanation, but the dashboard keeps the uncertainty visible. A missing test may explain why the problem went undetected &#8212; without proving what caused it.</p>
+
+        <div class="takeaway"><b>What this shows.</b> I designed AI and analytical support to expose uncertainty &#8212; not conceal it behind a confident answer.</div>
+      </div>
+
+      <!-- SCREEN 04 -->
+      <div class="screen-block">
+        <div class="screen-stage-label">04 &#8212; Prepare</div>
+        <div class="screen-head"><span class="screen-num">04</span><h3 class="screen-name">Investigate the Alert</h3></div>
+        <p class="screen-q">"What changed?"</p>
+        <p class="block-body">This is where the team gathers what's been learned so far &#8212; the evidence collected, the explanations considered, and what's still unresolved. Before anyone recommends advancing or holding, the review has to be based on what's actually known, not the first plausible story.</p>
+        <p class="block-body" style="font-size:13.5px;"><b>Why it matters.</b> A final decision should be based on reviewed evidence, not on the loudest alert or the first plausible explanation.</p>
+
+        <div class="screen-visual-grid">
+          <div>
+            <div class="visual-label">Full Interface</div>
+            <!-- SCREEN 04 FULL -->
+            <div class="visual-box"><img class="screen-visual-img" src="../assets/images/oph-screen-04-full.png" alt="Investigate the Alert screen — full interface" loading="lazy" /></div>
+          </div>
+        </div>
+
+        <div class="takeaway"><b>What this shows.</b> I designed a clear handoff from investigation to accountable decision-making.</div>
+      </div>
+
+      <!-- SCREEN 05 -->
+      <div class="screen-block">
+        <div class="screen-stage-label">05 &#8212; Decide</div>
+        <div class="screen-head"><span class="screen-num">05</span><h3 class="screen-name">Decision Record</h3></div>
+        <p class="screen-q">"What did the team decide, and what happens next?"</p>
+        <p class="block-body">The final screen records the selected action, rationale, owners, approvals, unresolved uncertainty, and required follow-up. In this scenario, the team maintains the rollout at 25% and authorizes a controlled retest.</p>
+        <p class="block-body" style="font-size:13.5px;"><b>Why it matters.</b> Finding a regression isn't the end of the product workflow. The evidence has to become an accountable decision with a clear next step.</p>
+
+        <div class="screen-visual-grid">
+          <div>
+            <div class="visual-label">Full Interface</div>
+            <!-- SCREEN 05 FULL -->
+            <div class="visual-box visual-context"><img class="screen-visual-img" src="../assets/images/oph-screen-05-full.png" alt="Decision Record screen — full interface" loading="lazy" /></div>
+          </div>
+          <div>
+            <div class="visual-label">Decision Spotlight</div>
+            <!-- SCREEN 05 SPOTLIGHT -->
+            <div class="visual-box"><img class="screen-visual-img" src="../assets/images/oph-screen-05-spotlight.png" alt="Decision Record screen — decision spotlight on the final decision and required follow-up" loading="lazy" /></div>
+          </div>
+        </div>
+        <p class="block-body" style="font-size:12.5px;color:var(--dim);">The team holds the rollout at 25% and requires a controlled retest before reconsidering expansion.</p>
+
+        <div class="takeaway"><b>What this shows.</b> I designed the decision as a permanent, human-owned product artifact &#8212; not an AI-generated recommendation that disappears after the review.</div>
+      </div>
+
+      <!-- Prototype-link placeholder — kept commented until a real prototype URL exists
+      <div class="prototype-block">
+        <div class="p-text">A clickable prototype of the five-screen flow is available for closer review.</div>
+        <a class="btn-cta-solid" href="#" target="_blank" rel="noopener">View Prototype &#8594;</a>
+      </div>
+      -->
+
+      <div class="sub-label" style="margin-top:56px;">06 &#8212; AI Judgment</div>
+      <h2 class="block-title">AI organizes evidence. It doesn't own the decision.</h2>
+
+      <div class="card-grid cols-2" style="margin-top:24px;max-width:660px;">
+        <div class="g-card">
+          <span class="g-label">AI Can</span>
+          <div class="bullet-list">
+            <div>Summarize changes</div>
+            <div>Group related alerts</div>
+            <div>Find similar past issues</div>
+            <div>Draft explanations with sources</div>
+          </div>
+        </div>
+        <div class="g-card">
+          <span class="g-label">People Must</span>
+          <div class="bullet-list">
+            <div>Confirm what caused the issue</div>
+            <div>Decide to advance, hold, or roll back</div>
+            <div>Approve actions</div>
+            <div>Review sensitive evidence</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sub-label">AI Example <span class="tag tag-concept" style="margin-left:8px;vertical-align:middle;">Fictional Data — Product Concept Illustration</span></div>
+      <div class="ai-card">
+        <div class="ai-card-head"><span class="t">AI-Assisted &#8212; What Changed</span><span class="t">Analysis model v2.3</span></div>
+        <div class="ai-card-body">
+          <p class="ai-summary">Right when the new model hit 25% of traffic, one group started getting more answers without enough evidence.</p>
+          <div class="ai-fields">
+            <div class="ai-field"><div class="k">Sources</div><div class="v">3 linked evaluations, 1 experimentation log</div></div>
+            <div class="ai-field"><div class="k">How recent</div><div class="v">4 hours</div></div>
+            <div class="ai-field"><div class="k">Confidence</div><div class="v">Related, but not proven to be the cause</div></div>
+            <div class="ai-field"><div class="k">Alternative explanation</div><div class="v">No test covers this group yet — this could be an existing gap, not something the new model caused</div></div>
+            <div class="ai-field"><div class="k">Missing evidence</div><div class="v">No prior baseline test for this group</div></div>
+            <div class="ai-field"><div class="k">Analysis model / version</div><div class="v">Internal analysis model v2.3</div></div>
+          </div>
+          <div class="ai-directional">"Possible contributing factor detected &#8212; related, but not proven to be the cause."</div>
+        </div>
+      </div>
+
+      <div class="takeaway"><b>Key takeaway.</b> AI points to evidence. A person owns the decision.</div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- 05 — MEASUREMENT  (public §07 Measurement + §08 Roadmap + §09 Reflection) -->
+    <!-- ============================================================ -->
+    <div class="content-block" id="measurement">
+      <div class="block-label">05 &#8212; Measure &amp; Learn</div>
+      <h2 class="block-title">How I'd know if this is working.</h2>
+
+      <div class="card-grid cols-3">
+        <div class="g-card measure-card"><div class="m-title">Time to understand the problem</div><div class="m-row"><div class="k">Why it matters</div><div class="v">How fast the team gets a clear explanation</div></div></div>
+        <div class="g-card measure-card"><div class="m-title">Problems caught before wider release</div><div class="m-row"><div class="k">Why it matters</div><div class="v">The main reason this system exists</div></div></div>
+        <div class="g-card measure-card"><div class="m-title">False alarms</div><div class="m-row"><div class="k">Why it matters</div><div class="v">Keeps trust in the alert system</div></div></div>
+        <div class="g-card measure-card"><div class="m-title">Complete rollout reviews</div><div class="m-row"><div class="k">Why it matters</div><div class="v">% of rollouts where all four areas were checked</div></div></div>
+        <div class="g-card measure-card"><div class="m-title">Decisions made with current data</div><div class="m-row"><div class="k">Why it matters</div><div class="v">Guards against acting on outdated evidence</div></div></div>
+        <div class="g-card measure-card"><div class="m-title">Incidents turned into new tests</div><div class="m-row"><div class="k">Why it matters</div><div class="v">Whether the team learns from problems</div></div></div>
+        <div class="g-card measure-card"><div class="m-title">Accuracy of the final explanation</div><div class="m-row"><div class="k">Why it matters</div><div class="v">Whether the fast answer was also the right one</div></div></div>
+      </div>
+      <p class="block-body"><b>North Star:</b> Catch meaningful problems before the model reaches more users.</p>
+      <p class="block-body" style="font-size:13px;color:var(--dim);margin-top:8px;max-width:620px;">Nothing here has been measured yet. This is the plan for finding out &#8212; have a few PMs, researchers, and safety reviewers work through this same story and see if they land on the same call.</p>
+
+      <div class="takeaway"><b>Key takeaway.</b> No outcomes claimed. Just the method for finding out.</div>
+
+      <div class="sub-label" style="border-top:none;margin-top:56px;">08 &#8212; Roadmap</div>
+      <h2 class="block-title">What ships first.</h2>
+
+      <div class="roadmap-grid">
+        <div class="roadmap-card mvp"><div class="r-phase">MVP</div><div class="r-scope">One rollout, four health areas, one decision record.</div></div>
+        <div class="roadmap-card"><div class="r-phase">Phase 2</div><div class="r-scope">More products, deeper group analysis, and incident workflows.</div></div>
+        <div class="roadmap-card"><div class="r-phase">Phase 3</div><div class="r-scope">AI summaries, cross-product insight, and cost/capacity context.</div></div>
+      </div>
+      <div class="exclusion-strip">
+        <div class="e-label">Not in the MVP</div>
+        <div class="e-list">
+          <span class="e-item">No company-wide BI</span>
+          <span class="e-item">No finance dashboard</span>
+          <span class="e-item">No autonomous rollout decisions</span>
+          <span class="e-item">No overall health score</span>
+        </div>
+      </div>
+      <p class="block-body" style="margin-top:20px;font-size:13.5px;">It only grows once this one workflow proves it actually helps.</p>
+
+      <div class="takeaway"><b>Key takeaway.</b> Depth on one rollout workflow, before breadth across the company.</div>
+
+      <div class="sub-label" style="border-top:none;margin-top:56px;">09 &#8212; Reflection</div>
+      <p class="block-body">I started designing a dashboard. I ended up designing a decision.</p>
+      <p class="block-body">More data wasn't the answer. The harder problem was helping a team see the tradeoffs without hiding the uncertainty &#8212; no single score, no metric without its context, no AI explanation without its evidence.</p>
+      <p class="block-body">The best version of this isn't the one that makes model health look simple. It's the one that helps a team understand why they should wait.</p>
+      <p class="reflection-quote">"Good internal tools do not remove uncertainty. They make it easier to act responsibly in spite of it."</p>
+
+      <div class="sub-label" style="border-top:none;margin-top:56px;">Sources &amp; Disclosure</div>
+
+      <details class="disclosure" id="full-disclosure">
+        <summary>Read the full disclosure</summary>
+        <div class="disclaimer-list" style="max-width:620px;">
+          <div>Not an official OpenAI project</div>
+          <div>Does not imply employment by OpenAI</div>
+          <div>Does not use internal OpenAI data</div>
+          <div>No claimed knowledge of OpenAI's private rollout systems</div>
+          <div>Not validated by OpenAI employees</div>
+          <div>No claimed measured business impact</div>
+          <div>All scenario data is fictional and illustrative</div>
+          <div>Research date-locked: July 22, 2026</div>
+        </div>
+      </details>
+
+      <details class="disclosure">
+        <summary>View research sources</summary>
+        <p class="block-body" style="font-size:13px;margin-bottom:16px;">Primary/official sources are prioritized; where multiple accounts covered the same event, only the strongest independent account is kept. One arXiv preprint is retained and explicitly labeled as unreviewed.</p>
+        <div class="sources-list">
+          <div class="source-item" id="src-1"><span class="num">[1]</span><span class="txt"><span class="type">Official.</span> OpenAI — GPT-5 System Card (PDF, Aug 13, 2025). <a href="https://cdn.openai.com/gpt-5-system-card.pdf" target="_blank" rel="noopener">cdn.openai.com/gpt-5-system-card.pdf</a></span></div>
+          <div class="source-item" id="src-2"><span class="num">[2]</span><span class="txt"><span class="type">Official.</span> OpenAI — GPT-5.5 System Card. <a href="https://openai.com/index/gpt-5-5-system-card/" target="_blank" rel="noopener">openai.com/index/gpt-5-5-system-card</a></span></div>
+          <div class="source-item" id="src-3"><span class="num">[3]</span><span class="txt"><span class="type">Official.</span> OpenAI — Deployment Safety Hub, GPT-5.5. <a href="https://deploymentsafety.openai.com/gpt-5-5" target="_blank" rel="noopener">deploymentsafety.openai.com/gpt-5-5</a></span></div>
+          <div class="source-item" id="src-4"><span class="num">[4]</span><span class="txt"><span class="type">Official.</span> OpenAI Status — incident postmortem (routing-layer capacity failure). <a href="https://status.openai.com/incidents/01JMYB63BJ47J3SXV6KSCT4D2A" target="_blank" rel="noopener">status.openai.com/incidents/...</a></span></div>
+          <div class="source-item" id="src-5"><span class="num">[5]</span><span class="txt"><span class="type">Official.</span> OpenAI Status — status page. <a href="https://status.openai.com/" target="_blank" rel="noopener">status.openai.com</a></span></div>
+          <div class="source-item" id="src-6"><span class="num">[6]</span><span class="txt"><span class="type">Official documentation.</span> OpenAI — Moderation (API guide). <a href="https://developers.openai.com/api/docs/guides/moderation" target="_blank" rel="noopener">developers.openai.com/.../moderation</a></span></div>
+          <div class="source-item" id="src-7"><span class="num">[7]</span><span class="txt"><span class="type">Official.</span> OpenAI — Usage policies. <a href="https://openai.com/policies/usage-policies/" target="_blank" rel="noopener">openai.com/policies/usage-policies</a></span></div>
+          <div class="source-item" id="src-8"><span class="num">[8]</span><span class="txt"><span class="type">Official.</span> OpenAI — Transparency &amp; content moderation. <a href="https://openai.com/transparency-and-content-moderation/" target="_blank" rel="noopener">openai.com/transparency-and-content-moderation</a></span></div>
+          <div class="source-item" id="src-9"><span class="num">[9]</span><span class="txt"><span class="type">Official.</span> OpenAI — evals GitHub repository. <a href="https://github.com/openai/evals" target="_blank" rel="noopener">github.com/openai/evals</a></span></div>
+          <div class="source-item" id="src-10"><span class="num">[10]</span><span class="txt"><span class="type">Official documentation.</span> OpenAI — Rate limits (API guide). <a href="https://developers.openai.com/api/docs/guides/rate-limits" target="_blank" rel="noopener">developers.openai.com/.../rate-limits</a></span></div>
+          <div class="source-item" id="src-11"><span class="num">[11]</span><span class="txt"><span class="type">Official.</span> OpenAI — OpenAI Red Teaming Network. <a href="https://openai.com/index/red-teaming-network/" target="_blank" rel="noopener">openai.com/index/red-teaming-network</a></span></div>
+          <div class="source-item" id="src-12"><span class="num">[12]</span><span class="txt"><span class="type">Official (acquired-company statement).</span> Statsig — Statsig is joining OpenAI. <a href="https://www.statsig.com/blog/openai-acquisition" target="_blank" rel="noopener">statsig.com/blog/openai-acquisition</a></span></div>
+          <div class="source-item" id="src-13"><span class="num">[13]</span><span class="txt"><span class="type">Reputable journalism.</span> TechCrunch — OpenAI acquires product testing startup Statsig... (Sept 2, 2025). <a href="https://techcrunch.com/2025/09/02/openai-acquires-product-testing-startup-statsig-and-shakes-up-its-leadership-team/" target="_blank" rel="noopener">techcrunch.com/...</a></span></div>
+          <div class="source-item" id="src-14"><span class="num">[14]</span><span class="txt"><span class="type">Official.</span> Arize AI — phoenix GitHub repository. <a href="https://github.com/arize-ai/phoenix" target="_blank" rel="noopener">github.com/arize-ai/phoenix</a></span></div>
+          <div class="source-item" id="src-15"><span class="num">[15]</span><span class="txt"><span class="type">Official.</span> Datadog — Datadog LLM Observability Is Now Generally Available... (press release). <a href="https://www.datadoghq.com/about/latest-news/press-releases/datadog-llm-observability-is-now-generally-available-to-help-businesses-monitor-improve-and-secure-generative-ai-applications/" target="_blank" rel="noopener">datadoghq.com/...</a></span></div>
+          <div class="source-item" id="src-16"><span class="num">[16]</span><span class="txt"><span class="type">Official.</span> PagerDuty — The Incident Response Lifecycle for DevOps Teams. <a href="https://www.pagerduty.com/resources/digital-operations/learn/incident-response-lifecycle-for-devops/" target="_blank" rel="noopener">pagerduty.com/...</a></span></div>
+          <div class="source-item" id="src-17"><span class="num">[17]</span><span class="txt"><span class="type">Official documentation.</span> PagerDuty — Escalation Policy Basics. <a href="https://support.pagerduty.com/main/docs/escalation-policies" target="_blank" rel="noopener">support.pagerduty.com/.../escalation-policies</a></span></div>
+          <div class="source-item" id="src-18"><span class="num">[18]</span><span class="txt"><span class="type">Unreviewed preprint (not peer-reviewed).</span> Coggins, S. et al. — The 2025 OpenAI Preparedness Framework does not guarantee any AI risk mitigation practices, arXiv:2509.24394. Cited only to support the design principle that a single discretionary score can obscure real risk. <a href="https://arxiv.org/abs/2509.24394" target="_blank" rel="noopener">arxiv.org/abs/2509.24394</a></span></div>
+        </div>
+      </details>
+    </div>
+
+  </main>
+</div>
+
+</body>
+</html>

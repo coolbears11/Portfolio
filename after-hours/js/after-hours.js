@@ -32,6 +32,9 @@ const tracks = [
   { title: 'i just want to fly', artist: ARTIST, duration: 125, explicit: true,
     src: 'assets/audio/07-i-just-want-to-fly.wav', art: 'assets/covers/07-i-just-want-to-fly.jpg',
     note: 'A stream of existential thoughts moving between God, love, anger, humor, sex, ambition, and fantasy. It is intentionally contradictory: wanting meaning and freedom while repeatedly rejecting the things that might provide them. “Flying” became the image for escaping my own mind.' },
+  { title: 'crashout', artist: ARTIST, duration: 132, explicit: false,
+    src: 'assets/audio/08-crashout.wav', art: null,
+    note: 'Crashout explores the feeling of growing into someone you don’t fully recognize yet. It’s about moving too fast, questioning your own reflection, and hoping that the version of yourself in the future will understand the confusion you’re living through today.' },
 ];
 
 /* glow position per track — the room's light shifts with the music */

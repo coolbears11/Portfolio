@@ -200,6 +200,26 @@ a { color: inherit; }
   object-fit: contain;
 }
 
+.project-thumb-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px;
+  background: repeating-linear-gradient(135deg, rgba(26,24,20,0.035) 0 10px, transparent 10px 20px);
+}
+
+.project-thumb-placeholder span {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--dim);
+  line-height: 1.8;
+}
+
 .project-info {
   display: flex;
   flex-direction: column;
@@ -413,10 +433,26 @@ a { color: inherit; }
   color: var(--dim);
   opacity: 0.45;
   transition: opacity 0.3s, color 0.3s, filter 0.3s, transform 0.6s ease;
+  animation: moon-jiggle 6s ease-in-out infinite;
+  transform-origin: 50% 55%;
+}
+
+@keyframes moon-jiggle {
+  0%, 90%, 100% { transform: rotate(0deg); }
+  91% { transform: rotate(-9deg); }
+  92.5% { transform: rotate(8deg); }
+  94% { transform: rotate(-6deg); }
+  95.5% { transform: rotate(4deg); }
+  97% { transform: rotate(-2deg); }
+  98.5% { transform: rotate(0deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .moon-link { animation: none; }
 }
 
 .moon-link:hover,
-.moon-link:focus-visible { opacity: 1; color: var(--fg); transform: rotate(-14deg); }
+.moon-link:focus-visible { opacity: 1; color: var(--fg); transform: rotate(-14deg); animation-play-state: paused; }
 
 /* nightfall — dusk radiates from the moon's corner */
 .nightfall {
@@ -493,12 +529,35 @@ body.nightfall-active .moon-link {
         </div>
       </a>
 
+      <a class="project-spread" href="finished-projects/openai-product-health.html" aria-label="View case study — OpenAI Product Health">
+        <div class="project-thumb project-thumb-contain">
+          <div class="project-thumb-placeholder"><span>OpenAI Product Health<br />Thumbnail &mdash; To Be Added</span></div>
+        </div>
+        <div class="project-info">
+          <div class="project-num">02</div>
+          <h3 class="project-title">OpenAI Product Health</h3>
+          <div class="project-meta">AI Product Health &bull; Internal Tools &bull; Rollout Systems</div>
+          <p class="project-desc">A rollout decision system that helps product, research, safety, and infrastructure teams determine whether a candidate model is ready for more traffic.</p>
+          <div class="project-facts">
+            <div class="project-fact">
+              <span class="fact-label">Status</span>
+              <span class="fact-value">Independent Strategy Concept</span>
+            </div>
+            <div class="project-fact">
+              <span class="fact-label">Note</span>
+              <span class="fact-value">Company-scale data product</span>
+            </div>
+          </div>
+          <span class="view-link"><span class="arrow">&#8594;</span> View Case Study</span>
+        </div>
+      </a>
+
       <a class="project-spread" href="finished-projects/tiktok-shop-trust-layer.html" aria-label="View case study — TikTok Shop Trust Layer">
         <div class="project-thumb project-thumb-contain">
           <img class="project-thumb-img" src="assets/images/tiktok-shop-thumbnail.png" alt="TikTok Shop Trust Layer thumbnail" />
         </div>
         <div class="project-info">
-          <div class="project-num">02</div>
+          <div class="project-num">03</div>
           <h3 class="project-title">TikTok Shop Trust Layer</h3>
           <div class="project-meta">AI Commerce &bull; Trust Systems &bull; Marketplace UX</div>
           <p class="project-desc">Designing a confidence layer that helps buyers judge products before purchase, during checkout, and after delivery.</p>
@@ -521,7 +580,7 @@ body.nightfall-active .moon-link {
           <img class="project-thumb-img" src="assets/images/room-match-thumbnail.png" alt="Room Match thumbnail" />
         </div>
         <div class="project-info">
-          <div class="project-num">03</div>
+          <div class="project-num">04</div>
           <h3 class="project-title">Room Match</h3>
           <div class="project-meta">Matching Systems &bull; Housing &bull; Consumer Platform</div>
           <p class="project-desc">Reducing roommate uncertainty through compatibility modeling and preference-based matching.</p>
